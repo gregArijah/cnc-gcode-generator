@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'cnc-background': "url('/images/mill-surfacing.jpg')",
+      }
+    },
   },
   plugins: [],
 }
