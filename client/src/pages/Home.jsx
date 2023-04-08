@@ -22,9 +22,9 @@ function Home() {
                   <h2 className="text-4xl font-bold leading-snug">Revolutionize your CNC programming<br/> with our user-friendly and intuitive software</h2>
                   <p className='text-2xl leading-normal'>Say goodbye to complicated programming and hello to a more efficient workflow<br/> Try our conversational software today and experience the difference for yourself</p>
                 </div> 
-              </div> 
-            </div>
+              </div>
             
+            </div>
         </div>
       </div>  
     </div>
