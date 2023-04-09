@@ -3,6 +3,8 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://gregArijah.github.io/javatrol",
+
   "scripts": {
     "dev": "vite",
     "predeploy": "npm run build",
