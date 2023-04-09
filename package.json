@@ -1,0 +1,19 @@
+{
+  "name": "javatrol",
+  "version": "1.0.0",
+  "description": "conversational cnc programming",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gregArijah/javatrol.git"
+  },
+  "author": "Greg Arijah",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gregArijah/javatrol/issues"
+  },
+  "homepage": "https://github.com/gregArijah/javatrol#readme"
+}
