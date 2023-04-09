@@ -3,8 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://gregArijah.github.io/javatrol/",
-
+  "homepage": "https://gregarijah.github.io/javatrol/",
   "scripts": {
     "dev": "vite",
     "predeploy": "npm run build",
@@ -14,7 +13,8 @@
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.10.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
