@@ -1,14 +1,20 @@
-import React, { useState }  from 'react';
+import React, { useState, useEffect, useRef }  from 'react';
 
 
 function Home() {
   const [brief, setBrief] = useState(0);
+  const [scroll, setScroll] = useState('');
+  const myRef = useRef(null);
+
+  useEffect(()=>{
+      myRef.current.scrollTop = 0;
+  },[brief])
 
   const changeBriefs = () => {
     if (brief<5) setBrief(brief+1);
     else setBrief(0);    
   }
-
+  
   const [name,setName] = useState('');
   const [email,setEmail] = useState('');
   const [message,setMessage] = useState('');
@@ -18,8 +24,7 @@ function Home() {
     //on submit use npm package to send text msg or email 
     setName('');
     setEmail('');
-    setMessage('');
-    
+    setMessage('');    
     alert("That button dont work.LOL! :P ")
   }
 
@@ -36,7 +41,7 @@ function Home() {
               </div>
             </div>
             <div className= "p-2 md:pl-10 md:flex">
-              <div className='border-solid border-4 rounded-2xl p-8 md:w-max' style={{backgroundColor: 'rgba(0, 0, 0, 0.4)', overflowY: 'auto', maxHeight: '500px' }} >
+              <div className='border-solid border-4 rounded-2xl p-8 md:w-max' style={{backgroundColor: 'rgba(0, 0, 0, 0.4)', overflowY: 'auto', maxHeight: '500px' }} ref={myRef} >
                 <div className='opacity-100 space-y-5'> 
                   
                   <div className= {`${brief==0 ? '':'hidden'} space-y-5`}> 
