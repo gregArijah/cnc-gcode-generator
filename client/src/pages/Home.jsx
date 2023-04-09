@@ -74,8 +74,8 @@ function Home() {
                     <h2 className='text-4xl font-bold'>Tech Stack</h2>
                     <p className='text-2xl leading-snug'>The following technologies were used during the development of this project: </p>
                     <ul className='list-disc list-inside text-2xl leading-snug'>
-                      <li>Front-end: ReactJS, JS, HTML, CSS, TailwindCSS</li>
-                      <li>Back-end: Node.js, Express.js, MongoDB, Apollo</li>
+                      <li>Front-end: React, JS, HTML, CSS, TailwindCSS</li>
+                      <li>Back-end: Node.js, Express, MongoDB, Apollo</li>
                       <li>API: GraphQL</li>
                       <li>Authentication: JWT, Passport.js</li>
                       <li>Deployment: GitHub Pages, Heroku</li>
