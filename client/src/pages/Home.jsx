@@ -5,7 +5,7 @@ function Home() {
   const [brief, setBrief] = useState(0);
 
   const changeBriefs = () => {
-    if (brief<4) setBrief(brief+1);
+    if (brief<5) setBrief(brief+1);
     else setBrief(0);    
   }
 
@@ -71,6 +71,18 @@ function Home() {
                     <p className='text-2xl leading-snug'>If you encounter any issues or have suggestions for improvements, please feel free to open an issue in the repository. We welcome contributions from the community, and we're always looking for ways to improve the project.</p>
                   </div>
                   <div className={`${brief == 4 ? '' : 'hidden'} space-y-5`} >
+                    <h2 className='text-4xl font-bold'>Tech Stack</h2>
+                    <p className='text-2xl leading-snug'>The following technologies were used during the development of this project: </p>
+                    <ul className='list-disc list-inside text-2xl leading-snug'>
+                      <li>Front-end: ReactJS, JS, HTML, CSS, TailwindCSS</li>
+                      <li>Back-end: Node.js, Express.js, MongoDB, Apollo</li>
+                      <li>API: GraphQL</li>
+                      <li>Authentication: JWT, Passport.js</li>
+                      <li>Deployment: GitHub Pages, Heroku</li>
+                      <li>Version Control: Git, GitHub</li>
+                    </ul>
+                  </div>
+                  <div className={`${brief == 5 ? '' : 'hidden'} space-y-5`} >
                     <h2 className='text-4xl font-bold'>Contact</h2>
                     <p className='text-2xl leading-snug'>Let's cut to the chase - you need someone with top-notch design and development skills, and I need a steady supply of coffee to fuel my creative process. I'm excited to connect with you and discuss how my skills and experience can contribute to your team. Let's chat!"</p>
                     <form onSubmit={handleSubmit} className="flex flex-col space-y-5">
