@@ -5,9 +5,15 @@ function Home() {
   const [brief, setBrief] = useState(0);
 
   const changeBriefs = () => {
-    if (brief<3) setBrief(brief+1);
-    else setBrief(0);
-    
+    if (brief<4) setBrief(brief+1);
+    else setBrief(0);    
+  }
+
+  const handleSubmit =(event) => {
+    event.preventDefault();
+    //on submit use npm package to send text msg or email 
+    alert("That button dont work.LOL! :P")
+
   }
 
   return (
@@ -50,7 +56,6 @@ function Home() {
                       <li>Comprehensive user manual and online support resources</li>
                     </ul>
                   </div> 
-
                   <div className={`${brief == 3 ? '' : 'hidden'} space-y-5`} >
                     <h2 className='text-4xl font-bold'>Repository</h2>
                     <p className='text-2xl leading-snug'>Our project code is hosted on GitHub, and you can view the repository by&nbsp;
@@ -58,6 +63,24 @@ function Home() {
                     <p className='text-2xl leading-snug'>In the repository, you'll find all the code for the project, including the frontend and backend code. We've also included documentation on how to run the application and contribute to the project.</p>
                     <p className='text-2xl leading-snug'>If you encounter any issues or have suggestions for improvements, please feel free to open an issue in the repository. We welcome contributions from the community, and we're always looking for ways to improve the project.</p>
                   </div>
+                  <div className={`${brief == 4 ? '' : 'hidden'} space-y-5`} >
+                    <h2 className='text-4xl font-bold'>Contact</h2>
+                    <p className='text-2xl leading-snug'>Let's cut to the chase - you need someone with top-notch design and development skills, and I need a steady supply of coffee to fuel my creative process. I'm excited to connect with you and discuss how my skills and experience can contribute to your team. Let's chat!"</p>
+                    <form onSubmit={handleSubmit} className="flex flex-col space-y-5">
+                      <label className="text-lg font-medium" for="name">Name:</label>
+                      <input className="rounded-md  text-black border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200" type="text" id="name" name="name" required/>
+
+                      <label className="text-lg font-medium" for="email">Email:</label>
+                      <input className="rounded-md text-black border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200" type="email" id="email" name="email" required/>
+
+                      <label className="text-lg font-medium" for="message">Message:</label>
+                      <textarea className="rounded-md  text-black border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200" id="message" name="message" rows="5" required></textarea>
+
+                      <button className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded" type="submit">Submit</button>
+                    </form>
+
+                  </div>
+
                 </div> 
               </div>
               <div className="p-10">
@@ -69,22 +92,6 @@ function Home() {
         </div>
       </div>  
     </div>
-    // <div className="container mx-auto py-8">
-    //   <h1 className="text-3xl font-bold mb-4">Welcome to the Mazatrol Clone</h1>
-    //   <p className="mb-8">This is a web-based Mazatrol interpreter for reading and writing Mazatrol programs.</p>
-    //   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-    //     <div className="bg-gray-100 rounded-lg p-4">
-    //       <h2 className="text-xl font-bold mb-4">Read Mazatrol Program</h2>
-    //       <p className="mb-4">Upload a Mazatrol program file to read its contents and view its graphical representation.</p>
-    //       <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Upload Mazatrol Program</button>
-    //     </div>
-    //     <div className="bg-gray-100 rounded-lg p-4">
-    //       <h2 className="text-xl font-bold mb-4">Write Mazatrol Program</h2>
-    //       <p className="mb-4">Create a new Mazatrol program or edit an existing one using the graphical editor.</p>
-    //       <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Create/Edit Mazatrol Program</button>
-    //     </div>
-    //   </div>
-    // </div>
   );
 }
 
