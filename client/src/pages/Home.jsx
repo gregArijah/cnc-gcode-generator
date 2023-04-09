@@ -12,7 +12,7 @@ function Home() {
   const handleSubmit =(event) => {
     event.preventDefault();
     //on submit use npm package to send text msg or email 
-    alert("That button dont work.LOL! :P")
+    alert("That button dont work.LOL! :P ")
 
   }
 
