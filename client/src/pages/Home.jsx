@@ -9,11 +9,18 @@ function Home() {
     else setBrief(0);    
   }
 
+  const [name,setName] = useState('');
+  const [email,setEmail] = useState('');
+  const [message,setMessage] = useState('');
+  
   const handleSubmit =(event) => {
     event.preventDefault();
     //on submit use npm package to send text msg or email 
+    setName('');
+    setEmail('');
+    setMessage('');
+    
     alert("That button dont work.LOL! :P ")
-
   }
 
   return (
@@ -68,13 +75,13 @@ function Home() {
                     <p className='text-2xl leading-snug'>Let's cut to the chase - you need someone with top-notch design and development skills, and I need a steady supply of coffee to fuel my creative process. I'm excited to connect with you and discuss how my skills and experience can contribute to your team. Let's chat!"</p>
                     <form onSubmit={handleSubmit} className="flex flex-col space-y-5">
                       <label className="text-lg font-medium" for="name">Name:</label>
-                      <input className="rounded-md  text-black border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200" type="text" id="name" name="name" required/>
+                      <input className="rounded-md  text-black border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200" type="text" id="name" value={name}  onChange={(event) => setName(event.target.value)} required/>
 
                       <label className="text-lg font-medium" for="email">Email:</label>
-                      <input className="rounded-md text-black border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200" type="email" id="email" name="email" required/>
+                      <input className="rounded-md text-black border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200" type="email" id="email" value={email} onChange={(event) => setEmail(event.target.value)} required/>
 
                       <label className="text-lg font-medium" for="message">Message:</label>
-                      <textarea className="rounded-md  text-black border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200" id="message" name="message" rows="5" required></textarea>
+                      <textarea className="rounded-md  text-black border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200" id="message" value={message} rows="5" onChange={(event) => setMessage(event.target.value)} required></textarea>
 
                       <button className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded" type="submit">Submit</button>
                     </form>
