@@ -4,6 +4,7 @@
   "description": "conversational cnc programming",
   "main": "index.js",
   "scripts": {
+    "build": "cd client && vite build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
