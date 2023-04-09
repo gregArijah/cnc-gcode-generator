@@ -25,18 +25,18 @@ function Home() {
 
   return (
     <div>
-        <div className="bg-cnc-background bg-cover text-white min-h-screen max-w-full ">
+        <div className="bg-cnc-background bg-cover text-white min-h-screen max-w-full bg-center">
           <div className='min-h-screen' style={{backgroundColor: 'rgba(35, 35, 100, 0.5)'}}> 
             <div className='flex items-center justify-between'>
-              <img className="m-5 h-48 w-72" src= "/images/logos/logosmallwhite.png"/>
-              <div className="pr-28">
-                <button className="text-2xl bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full h-16 w-48 float-right">
+              <img className="m-5 h-36 sm:h-48" src= "images/logos/logosmallwhite.png"/> 
+              <div className="pr-4 md:pr-28">
+                <button className="sm:text-2xl bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full h-16 w-20 sm:h-16 sm:w-48 float-right">
                   Enter App
                 </button>
               </div>
             </div>
-            <div className= "pl-10 flex">
-              <div className='border-solid border-4 rounded-2xl p-8 w-max ' style={{backgroundColor: 'rgba(0, 0, 0, 0.4)', overflowY: 'auto', maxHeight: '500px' }} >
+            <div className= "p-2 md:pl-10 md:flex">
+              <div className='border-solid border-4 rounded-2xl p-8 md:w-max' style={{backgroundColor: 'rgba(0, 0, 0, 0.4)', overflowY: 'auto', maxHeight: '500px' }} >
                 <div className='opacity-100 space-y-5'> 
                   
                   <div className= {`${brief==0 ? '':'hidden'} space-y-5`}> 
@@ -86,13 +86,13 @@ function Home() {
                     <h2 className='text-4xl font-bold'>Contact</h2>
                     <p className='text-2xl leading-snug'>Let's cut to the chase - you need someone with top-notch design and development skills, and I need a steady supply of coffee to fuel my creative process. I'm excited to connect with you and discuss how my skills and experience can contribute to your team. Let's chat!"</p>
                     <form onSubmit={handleSubmit} className="flex flex-col space-y-5">
-                      <label className="text-lg font-medium" for="name">Name:</label>
+                      <label className="text-lg font-medium" htmlFor="name">Name:</label>
                       <input className="rounded-md  text-black border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200" type="text" id="name" value={name}  onChange={(event) => setName(event.target.value)} required/>
 
-                      <label className="text-lg font-medium" for="email">Email:</label>
+                      <label className="text-lg font-medium" htmlFor="email">Email:</label>
                       <input className="rounded-md text-black border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200" type="email" id="email" value={email} onChange={(event) => setEmail(event.target.value)} required/>
 
-                      <label className="text-lg font-medium" for="message">Message:</label>
+                      <label className="text-lg font-medium" htmlFor="message">Message:</label>
                       <textarea className="rounded-md  text-black border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200" id="message" value={message} rows="5" onChange={(event) => setMessage(event.target.value)} required></textarea>
 
                       <button className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded" type="submit">Submit</button>
@@ -102,8 +102,8 @@ function Home() {
 
                 </div> 
               </div>
-              <div className="p-10">
-                <button onClick={changeBriefs} className="flex items-center justify-top text-8xl bg-orange-500 hover:bg-orange-700 text-white font-bold  px-2.5 pb-4  rounded-full h-20 w-20">
+              <div className="p-2">
+                <button onClick={changeBriefs} className="flex items-center justify-top text-6xl md:text-8xl bg-orange-500 hover:bg-orange-700 text-white font-bold  px-2.5 pb-4  rounded-full h-14 w-14 md:h-20 md:w-20">
                   {'>'}
                 </button>
               </div>  
