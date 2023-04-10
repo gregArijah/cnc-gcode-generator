@@ -8,6 +8,7 @@ export default {
     extend: {
       backgroundImage: {
         'cnc-background': "url('/images/mill-surfacing.jpg')",
+        'jvt-outside': "url('/images/jvt-outside.png')",
       }
     },
   },

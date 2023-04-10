@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef }  from 'react';
+import { Link } from 'react-router-dom';
 
 
 function Home() {
@@ -35,9 +36,9 @@ function Home() {
             <div className='flex items-center justify-between'>
               <img className="m-5 h-36 sm:h-48" src= "images/logos/logosmallwhite.png"/> 
               <div className="pr-4 md:pr-28">
-                <button className="sm:text-2xl bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full h-16 w-20 sm:h-16 sm:w-48 float-right">
+                <Link role='button' to='/app' className="flex items-center justify-center sm:text-2xl bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full h-16 w-20 sm:h-16 sm:w-48 float-right">
                   Enter App
-                </button>
+                </Link>
               </div>
             </div>
             <div className= "p-2 md:pl-10 md:flex">
@@ -108,7 +109,7 @@ function Home() {
                 </div> 
               </div>
               <div className="p-2">
-                <button onClick={changeBriefs} className="flex items-center justify-top text-6xl md:text-8xl bg-orange-500 hover:bg-orange-700 text-white font-bold  px-2.5 pb-4  rounded-full h-14 w-14 md:h-20 md:w-20">
+                <button onClick={changeBriefs} className="flex items-center justify-center text-6xl md:text-8xl bg-orange-500 hover:bg-orange-700 text-white font-bold  px-2.5 pb-4  rounded-full h-14 w-14 md:h-20 md:w-20">
                   {'>'}
                 </button>
               </div>  
