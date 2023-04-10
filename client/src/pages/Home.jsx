@@ -36,7 +36,7 @@ function Home() {
             <div className='flex items-center justify-between'>
               <img className="m-5 h-36 sm:h-48" src= "images/logos/logosmallwhite.png"/> 
               <div className="pr-4 md:pr-28">
-                <Link role='button' to='/app' className="flex items-center justify-center sm:text-2xl bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full h-16 w-20 sm:h-16 sm:w-48 float-right">
+                <Link role='button' to='/app' className="flex items-center justify-center sm:text-2xl bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full h-16 sm:h-16 sm:w-48 float-right">
                   Enter App
                 </Link>
               </div>
