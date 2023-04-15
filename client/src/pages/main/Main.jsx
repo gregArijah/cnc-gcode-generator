@@ -1,22 +1,6 @@
 import React, { useState, useEffect, useRef }  from 'react';
 import { Link } from 'react-router-dom';
 
-// function Main() {
-//     return (
-//         <div className="bg-jvt-outside bg-cover text-white min-h-screen max-w-full bg-center flex flex-col justify-center md:justify-end items-center md:pb-8">
-//           <div className='border-solid border-4 rounded-2xl p-12 w-min md:w-max min-h-min' style={{backgroundColor: 'rgba(0, 0, 0, 0.65)', overflowY: 'auto', maxHeight: '500px' }}>
-//             <div className='opacity-100 space-y-5'>   
-//                 <h1 className="text-4xl text-white font-bold mb-16 md:mb-0 text-center ">Coming Soon!</h1>
-//                 <p className="text-xl md:text-2xl text-white font-medium pt-20 md:pt-14 text-center max-w-md">
-//                 We're working hard to bring you an amazing application. Stay tuned for
-//                 updates!
-//                 </p>
-//             </div>
-//           </div>
-//         </div>
-//   );
-// }
-
 function Main() {
   const [currentTab, setCurrentTab] = useState("G-code");
 
@@ -49,6 +33,43 @@ function Main() {
 
       {/* Main section */}
       <main className="flex-grow p-4">  
+        {/* Nav Links */}
+        <div className="flex-grow p-4">
+                <ul> 
+                  <li
+                    className={`${
+                      currentTab === "G-code" ? "bg-gray-200" : ""
+                    } py-2 px-4 cursor-pointer`}
+                    onClick={() => setCurrentTab("G-code")}
+                  >
+                    G-code
+                  </li>
+                  <li
+                    className={`${
+                      currentTab === "Toolpath" ? "bg-gray-200" : ""
+                    } py-2 px-4 cursor-pointer`}
+                    onClick={() => setCurrentTab("Toolpath")}
+                  >
+                    Toolpath
+                  </li>
+                  <li
+                    className={`${
+                      currentTab === "Meta" ? "bg-gray-200" : ""
+                    } py-2 px-4 cursor-pointer`}
+                    onClick={() => setCurrentTab("Meta")}
+                  >
+                    Meta
+                  </li>
+                  <li
+                    className={`${
+                      currentTab === "Chat" ? "bg-gray-200" : ""
+                    } py-2 px-4 cursor-pointer`}
+                    onClick={() => setCurrentTab("Chat")}
+                  >
+                    Chat
+                  </li>
+                </ul>
+          </div>
         {/* Main content */}
         {currentTab === "G-code" && <div>G-code info goes here</div>}
         {currentTab === "Toolpath" && <div>Toolpath info goes here</div>}
