@@ -5,7 +5,7 @@ function Main() {
   const [currentTab, setCurrentTab] = useState("G-code");
 
   return (
-    <div className="h-screen bg-gray-900 text-white p-4">
+    <div className="min-h-screen bg-gray-900 text-white p-4">
       {/* Header */}
       <header className="h-16 flex justify-between items-center font-bold text-xl border-b mb-4 pb-4">
         <div>Javatrol</div>
@@ -17,18 +17,18 @@ function Main() {
       </header>
 
       {/* Body */}
-      <body className="flex">  
+      <body className="flex flex-grow">  
           {/* Sidebar */}
-          <div className="flex flex-col flex-shrink-0 w-64 bg-gray-800">
-              <div className="h-16 flex justify-center items-center font-bold text-xl border-b">
+          <div className="w-64 bg-gray-800 border rounded-md" style={{height:"80vh", overflowY: 'auto',}}>
+              <div className="h-16 flex justify-center items-center font-bold text-xl border-b" >
                   Operations
               </div>
-              <ul>
+              <ul className='px-2'>
                 <li>opertation item 1</li>
                 <li>opertation item 2</li>
                 <li>opertation item 3</li>
                 <li>opertation item 4</li>
-                <li>+ add new operation</li>
+                <li className='border rounded-md mt-2 bg-gray-900'>+ new operation</li>
               </ul>
           </div>
 
