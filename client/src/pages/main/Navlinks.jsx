@@ -1,11 +1,8 @@
 import { useState } from "react";
 
-
 import { libraryIcon, codeIcon, dataIcon, robotIcon } from './FontAwesome';
 
-export default function Navlinks(){
-    const [currentTab, setCurrentTab] = useState("G-code");
-
+export default function Navlinks({ currentTab, setCurrentTab }){    
     return(
         <nav className="flex-grow">
             <ul className="flex border-b">
