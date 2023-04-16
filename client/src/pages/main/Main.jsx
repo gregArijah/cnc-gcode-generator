@@ -5,8 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faTrashCan, faFileCirclePlus, faFolderOpen, faCloudArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { faComments, faScrewdriverWrench, faCircleQuestion, faDoorOpen} from '@fortawesome/free-solid-svg-icons';
 import { faBuildingColumns, faCode, faDatabase, faRobot } from '@fortawesome/free-solid-svg-icons';
-
-
+import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 
 const trashIcon = <FontAwesomeIcon icon={faTrashCan} style={{color: "#ff6600",}} />
 const dropIcon = <FontAwesomeIcon icon={faChevronDown} style={{color: "#ff6600",}} />
@@ -21,13 +20,13 @@ const libraryIcon = <FontAwesomeIcon icon={faBuildingColumns} style={{color: "wh
 const codeIcon = <FontAwesomeIcon icon={faCode} style={{color: "white",}} />
 const dataIcon = <FontAwesomeIcon icon={faDatabase} style={{color: "white",}} />
 const robotIcon = <FontAwesomeIcon icon={faRobot} style={{color: "white",}} />
+const plusIcon = <FontAwesomeIcon icon={faCirclePlus} style={{color: "white",}} />
 
 function Main() {
   const [isOpen, setIsOpen] = useState(false);
   const toggleDropdown = () => {
       setIsOpen(!isOpen);
     };
-  
 
   const [currentTab, setCurrentTab] = useState("G-code");
   
@@ -66,36 +65,37 @@ function Main() {
               <div className="h-16 flex justify-center items-center font-bold text-xl border-b" >
                   Operations
               </div>
-              <ul className='px-2'>
-                <li>opertation item 1</li>
-                <li>opertation item 2</li>
-                <li>opertation item 3</li>
-                <li>opertation item 4</li>
-                <li className='border rounded-md mt-2 bg-gray-900'>+ new operation</li>
-              </ul>
+              <ul className='pl-4'>
+                <li>operation item 1</li>
+                <li>operation item 2</li>
+                <li>operation item 3</li>
+                <li>operation item 4</li>
+              </ul> 
+              <button className='border-t border-b min-w-full mt-2 p-1 pl-4 bg-gray-900 text-left'>{plusIcon} add operation</button>
+              
           </div>
 
       {/* Main section */}
-      <main className="flex-grow p-4">
+      <main className="flex-grow p-6">
         {/* Nav Links */}
-        <nav className="flex-grow p-4">
+        <nav className="flex-grow">
             <ul className="flex border-b">
-              <li className={`mr-1 py-2 px-4 cursor-pointer border-b-2 border-transparent ${currentTab === 'G-code' ? 'bg-gray-700' : 'text-white hover:bg-gray-800'}`} onClick={() => setCurrentTab('G-code')}>
+              <li className={`mr-1 py-2 px-4 cursor-pointer ${currentTab === 'G-code' ? 'bg-gray-700' : 'text-white hover:bg-gray-800'}`} onClick={() => setCurrentTab('G-code')}>
                 G-code {codeIcon}
               </li>
-              <li className={`mr-1 py-2 px-4 cursor-pointer border-b-2 border-transparent ${currentTab === 'Simulate' ? 'bg-gray-700' : 'text-white hover:bg-gray-800'}`} onClick={() => setCurrentTab('Simulate')}>
+              <li className={`mr-1 py-2 px-4 cursor-pointer ${currentTab === 'Simulate' ? 'bg-gray-700' : 'text-white hover:bg-gray-800'}`} onClick={() => setCurrentTab('Simulate')}>
                 Simulate {robotIcon}
               </li>
-              <li className={`mr-1 py-2 px-4 cursor-pointer border-b-2 border-transparent ${currentTab === 'Meta' ? 'bg-gray-700' : 'text-white hover:bg-gray-800'}`} onClick={() => setCurrentTab('Meta')}>
+              <li className={`mr-1 py-2 px-4 cursor-pointer ${currentTab === 'Meta' ? 'bg-gray-700' : 'text-white hover:bg-gray-800'}`} onClick={() => setCurrentTab('Meta')}>
                 Metadata {dataIcon}
               </li>
-              <li className={`mr-1 py-2 px-4 cursor-pointer border-b-2 border-transparent ${currentTab === 'Library' ? 'bg-gray-700' : 'text-white hover:bg-gray-800'}`} onClick={() => setCurrentTab('Library')}>
+              <li className={`mr-1 py-2 px-4 cursor-pointer ${currentTab === 'Library' ? 'bg-gray-700' : 'text-white hover:bg-gray-800'}`} onClick={() => setCurrentTab('Library')}>
                 Tool Library {libraryIcon}
               </li>
             </ul>
 
         </nav>
-        <div>
+        <div className='p-3'>
             {/* Main content */}
             {currentTab === "G-code" && <div>G-code info goes here</div>}
             {currentTab === "Simulate" && <div>Simulation info goes here</div>}
