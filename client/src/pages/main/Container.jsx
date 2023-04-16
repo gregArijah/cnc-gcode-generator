@@ -14,7 +14,7 @@ export default function Container() {
     if (currentPage === 'Metadata') {
       return <Metadata />;
     }
-    return <Chat />;
+    return <Library />;
   };
 
   const handlePageChange = (page) => setCurrentPage(page);

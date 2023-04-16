@@ -55,8 +55,8 @@ function Main() {
               <li className={`mr-1 py-2 px-4 cursor-pointer border-b-2 border-transparent ${currentTab === 'Meta' ? 'bg-gray-200 border-gray-500' : 'text-gray-500 hover:text-gray-800'}`} onClick={() => setCurrentTab('Meta')}>
                 Metadata
               </li>
-              <li className={`mr-1 py-2 px-4 cursor-pointer border-b-2 border-transparent ${currentTab === 'Chat' ? 'bg-gray-200 border-gray-500' : 'text-gray-500 hover:text-gray-800'}`} onClick={() => setCurrentTab('Chat')}>
-                Chat
+              <li className={`mr-1 py-2 px-4 cursor-pointer border-b-2 border-transparent ${currentTab === 'Library' ? 'bg-gray-200 border-gray-500' : 'text-gray-500 hover:text-gray-800'}`} onClick={() => setCurrentTab('Library')}>
+                Library
               </li>
             </ul>
 
@@ -66,7 +66,7 @@ function Main() {
             {currentTab === "G-code" && <div>G-code info goes here</div>}
             {currentTab === "Simulate" && <div>Simulation info goes here</div>}
             {currentTab === "Meta" && <div>Meta info goes here</div>}
-            {currentTab === "Chat" && <div>Tool Library info goes here</div>}
+            {currentTab === "Library" && <div>Tool Library info goes here</div>}
         </div>
       </main>
       </body>
