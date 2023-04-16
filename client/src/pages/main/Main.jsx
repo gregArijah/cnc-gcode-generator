@@ -1,6 +1,22 @@
 import React, { useState, useEffect, useRef }  from 'react';
 import { Link } from 'react-router-dom';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFileCirclePlus } from '@fortawesome/free-solid-svg-icons'
+import { faFolderOpen } from '@fortawesome/free-solid-svg-icons'
+import { faCloudArrowUp} from '@fortawesome/free-solid-svg-icons'
+import { faComments} from '@fortawesome/free-solid-svg-icons'
+import { faScrewdriverWrench} from '@fortawesome/free-solid-svg-icons'
+import { faCircleQuestion } from '@fortawesome/free-solid-svg-icons'
+
+
+const newIcon = <FontAwesomeIcon icon={faFileCirclePlus} style={{color: "#ff6600",}} />
+const openIcon = <FontAwesomeIcon icon={faFolderOpen} style={{color: "#ff6600",}} />
+const saveIcon = <FontAwesomeIcon icon={faCloudArrowUp} style={{color: "#ff6600",}} />
+const chatIcon = <FontAwesomeIcon icon={faComments} style={{color: "#ff6600",}} />
+const settingsIcon = <FontAwesomeIcon icon={faScrewdriverWrench} style={{color: "#ff6600",}} />
+const helpIcon = <FontAwesomeIcon icon={faCircleQuestion} style={{color: "#ff6600",}} />
+
 function Main() {
   const [currentTab, setCurrentTab] = useState("G-code");
 
@@ -9,24 +25,21 @@ function Main() {
       {/* Header */}
       <header className="h-16 flex justify-between items-center font-bold text-xl border-b mb-4 pb-4">
         <div>Javatrol</div>
-        <div className="pr-4 md:pr-6">
-                {/* <Link role='button' to='/app' className="flex items-center justify-center sm:text-2xl bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full h-16 sm:h-16 sm:w-48 float-right">
-                  Leave App
-                </Link> */}
+        <div className="pr-4 md:pr-6">              
                 <ul className='flex px-2 font-thin space-x-6'>
-                  <li>New</li>
-                  <li>Open</li>
-                  <li>Save</li>
-                  <li>Chat</li>
-                  <li>Settings</li>
-                  <li>Help</li>
-                  <button className=' border rounded-md bg-orange-800 font-medium px-2'>Leave App</button>
+                  <li>New {newIcon}</li>
+                  <li>Open {openIcon}</li>
+                  <li>Save {saveIcon}</li>
+                  <li>Chat {chatIcon}</li>
+                  <li>Settings {settingsIcon}</li>
+                  <li>Help {helpIcon}</li>
+                  <button className=' border rounded-md bg-orange-700 font-medium px-2'>Leave App</button>
               </ul>
           </div>
       </header>
 
       {/* Body */}
-      <body className="flex flex-grow">  
+      <div className="flex flex-grow">  
           {/* Sidebar */}
           <div className="w-64 bg-gray-800 border rounded-md" style={{height:"80vh", overflowY: 'auto',}}>
               <div className="h-16 flex justify-center items-center font-bold text-xl border-b" >
@@ -69,7 +82,7 @@ function Main() {
             {currentTab === "Library" && <div>Tool Library info goes here</div>}
         </div>
       </main>
-      </body>
+      </div>
     </div>
 );
 }
