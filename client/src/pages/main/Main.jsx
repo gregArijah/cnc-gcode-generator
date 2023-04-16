@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useRef }  from 'react';
 import { Link } from 'react-router-dom';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFileCirclePlus } from '@fortawesome/free-solid-svg-icons'
-import { faFolderOpen } from '@fortawesome/free-solid-svg-icons'
-import { faCloudArrowUp} from '@fortawesome/free-solid-svg-icons'
-import { faComments} from '@fortawesome/free-solid-svg-icons'
-import { faScrewdriverWrench} from '@fortawesome/free-solid-svg-icons'
-import { faCircleQuestion } from '@fortawesome/free-solid-svg-icons'
-import { faBook } from '@fortawesome/free-solid-svg-icons'
-import { faCode } from '@fortawesome/free-solid-svg-icons'
-import { faDatabase } from '@fortawesome/free-solid-svg-icons'
-import { faRobot } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFileCirclePlus } from '@fortawesome/free-solid-svg-icons';
+import { faFolderOpen } from '@fortawesome/free-solid-svg-icons';
+import { faCloudArrowUp} from '@fortawesome/free-solid-svg-icons';
+import { faComments} from '@fortawesome/free-solid-svg-icons';
+import { faScrewdriverWrench} from '@fortawesome/free-solid-svg-icons';
+import { faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
+import { faBook } from '@fortawesome/free-solid-svg-icons';
+import { faCode } from '@fortawesome/free-solid-svg-icons';
+import { faDatabase } from '@fortawesome/free-solid-svg-icons';
+import { faRobot } from '@fortawesome/free-solid-svg-icons';
 
 
 const newIcon = <FontAwesomeIcon icon={faFileCirclePlus} style={{color: "#ff6600",}} />
@@ -77,7 +77,7 @@ function Main() {
                 Metadata {dataIcon}
               </li>
               <li className={`mr-1 py-2 px-4 cursor-pointer border-b-2 border-transparent ${currentTab === 'Library' ? 'bg-gray-200 border-gray-500' : 'text-gray-500 hover:text-gray-800'}`} onClick={() => setCurrentTab('Library')}>
-                Library {bookIcon}
+                Tool Library {bookIcon}
               </li>
             </ul>
 
