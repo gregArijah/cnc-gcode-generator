@@ -8,6 +8,10 @@ import { faCloudArrowUp} from '@fortawesome/free-solid-svg-icons'
 import { faComments} from '@fortawesome/free-solid-svg-icons'
 import { faScrewdriverWrench} from '@fortawesome/free-solid-svg-icons'
 import { faCircleQuestion } from '@fortawesome/free-solid-svg-icons'
+import { faBook } from '@fortawesome/free-solid-svg-icons'
+import { faCode } from '@fortawesome/free-solid-svg-icons'
+import { faDatabase } from '@fortawesome/free-solid-svg-icons'
+import { faRobot } from '@fortawesome/free-solid-svg-icons'
 
 
 const newIcon = <FontAwesomeIcon icon={faFileCirclePlus} style={{color: "#ff6600",}} />
@@ -16,6 +20,10 @@ const saveIcon = <FontAwesomeIcon icon={faCloudArrowUp} style={{color: "#ff6600"
 const chatIcon = <FontAwesomeIcon icon={faComments} style={{color: "#ff6600",}} />
 const settingsIcon = <FontAwesomeIcon icon={faScrewdriverWrench} style={{color: "#ff6600",}} />
 const helpIcon = <FontAwesomeIcon icon={faCircleQuestion} style={{color: "#ff6600",}} />
+const bookIcon = <FontAwesomeIcon icon={faBook} style={{color: "white",}} />
+const codeIcon = <FontAwesomeIcon icon={faCode} style={{color: "white",}} />
+const dataIcon = <FontAwesomeIcon icon={faDatabase} style={{color: "white",}} />
+const robotIcon = <FontAwesomeIcon icon={faRobot} style={{color: "white",}} />
 
 function Main() {
   const [currentTab, setCurrentTab] = useState("G-code");
@@ -60,16 +68,16 @@ function Main() {
         <nav className="flex-grow p-4">
             <ul className="flex border-b">
               <li className={`mr-1 py-2 px-4 cursor-pointer border-b-2 border-transparent ${currentTab === 'G-code' ? 'bg-gray-200 border-gray-500' : 'text-gray-500 hover:text-gray-800'}`} onClick={() => setCurrentTab('G-code')}>
-                G-code
+                G-code {codeIcon}
               </li>
               <li className={`mr-1 py-2 px-4 cursor-pointer border-b-2 border-transparent ${currentTab === 'Simulate' ? 'bg-gray-200 border-gray-500' : 'text-gray-500 hover:text-gray-800'}`} onClick={() => setCurrentTab('Simulate')}>
-                Simulate
+                Simulate {robotIcon}
               </li>
               <li className={`mr-1 py-2 px-4 cursor-pointer border-b-2 border-transparent ${currentTab === 'Meta' ? 'bg-gray-200 border-gray-500' : 'text-gray-500 hover:text-gray-800'}`} onClick={() => setCurrentTab('Meta')}>
-                Metadata
+                Metadata {dataIcon}
               </li>
               <li className={`mr-1 py-2 px-4 cursor-pointer border-b-2 border-transparent ${currentTab === 'Library' ? 'bg-gray-200 border-gray-500' : 'text-gray-500 hover:text-gray-800'}`} onClick={() => setCurrentTab('Library')}>
-                Library
+                Library {bookIcon}
               </li>
             </ul>
 
