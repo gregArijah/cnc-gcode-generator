@@ -8,7 +8,7 @@ import { faCloudArrowUp} from '@fortawesome/free-solid-svg-icons';
 import { faComments} from '@fortawesome/free-solid-svg-icons';
 import { faScrewdriverWrench} from '@fortawesome/free-solid-svg-icons';
 import { faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
-import { faBook } from '@fortawesome/free-solid-svg-icons';
+import { faBuildingColumns } from '@fortawesome/free-solid-svg-icons';
 import { faCode } from '@fortawesome/free-solid-svg-icons';
 import { faDatabase } from '@fortawesome/free-solid-svg-icons';
 import { faRobot } from '@fortawesome/free-solid-svg-icons';
@@ -20,7 +20,7 @@ const saveIcon = <FontAwesomeIcon icon={faCloudArrowUp} style={{color: "#ff6600"
 const chatIcon = <FontAwesomeIcon icon={faComments} style={{color: "#ff6600",}} />
 const settingsIcon = <FontAwesomeIcon icon={faScrewdriverWrench} style={{color: "#ff6600",}} />
 const helpIcon = <FontAwesomeIcon icon={faCircleQuestion} style={{color: "#ff6600",}} />
-const bookIcon = <FontAwesomeIcon icon={faBook} style={{color: "white",}} />
+const libraryIcon = <FontAwesomeIcon icon={faBuildingColumns} style={{color: "white",}} />
 const codeIcon = <FontAwesomeIcon icon={faCode} style={{color: "white",}} />
 const dataIcon = <FontAwesomeIcon icon={faDatabase} style={{color: "white",}} />
 const robotIcon = <FontAwesomeIcon icon={faRobot} style={{color: "white",}} />
@@ -77,7 +77,7 @@ function Main() {
                 Metadata {dataIcon}
               </li>
               <li className={`mr-1 py-2 px-4 cursor-pointer border-b-2 border-transparent ${currentTab === 'Library' ? 'bg-gray-200 border-gray-500' : 'text-gray-500 hover:text-gray-800'}`} onClick={() => setCurrentTab('Library')}>
-                Tool Library {bookIcon}
+                Tool Library {libraryIcon}
               </li>
             </ul>
 
