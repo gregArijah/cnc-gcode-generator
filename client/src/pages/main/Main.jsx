@@ -20,7 +20,7 @@ function Main() {
                   <li>Chat</li>
                   <li>Settings</li>
                   <li>Help</li>
-                  <button className=' border rounded-md bg-orange-500 font-medium px-2'>Leave App</button>
+                  <button className=' border rounded-md bg-orange-800 font-medium px-2'>Leave App</button>
               </ul>
           </div>
       </header>
@@ -49,8 +49,8 @@ function Main() {
               <li className={`mr-1 py-2 px-4 cursor-pointer border-b-2 border-transparent ${currentTab === 'G-code' ? 'bg-gray-200 border-gray-500' : 'text-gray-500 hover:text-gray-800'}`} onClick={() => setCurrentTab('G-code')}>
                 G-code
               </li>
-              <li className={`mr-1 py-2 px-4 cursor-pointer border-b-2 border-transparent ${currentTab === 'Toolpath' ? 'bg-gray-200 border-gray-500' : 'text-gray-500 hover:text-gray-800'}`} onClick={() => setCurrentTab('Toolpath')}>
-                Toolpath
+              <li className={`mr-1 py-2 px-4 cursor-pointer border-b-2 border-transparent ${currentTab === 'Simulate' ? 'bg-gray-200 border-gray-500' : 'text-gray-500 hover:text-gray-800'}`} onClick={() => setCurrentTab('Simulate')}>
+                Simulate
               </li>
               <li className={`mr-1 py-2 px-4 cursor-pointer border-b-2 border-transparent ${currentTab === 'Meta' ? 'bg-gray-200 border-gray-500' : 'text-gray-500 hover:text-gray-800'}`} onClick={() => setCurrentTab('Meta')}>
                 Metadata
@@ -64,9 +64,9 @@ function Main() {
         <div>
             {/* Main content */}
             {currentTab === "G-code" && <div>G-code info goes here</div>}
-            {currentTab === "Toolpath" && <div>Toolpath info goes here</div>}
+            {currentTab === "Simulate" && <div>Simulation info goes here</div>}
             {currentTab === "Meta" && <div>Meta info goes here</div>}
-            {currentTab === "Chat" && <div>Chat info goes here</div>}
+            {currentTab === "Chat" && <div>Tool Library info goes here</div>}
         </div>
       </main>
       </body>
