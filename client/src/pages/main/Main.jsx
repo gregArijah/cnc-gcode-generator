@@ -68,8 +68,8 @@ function Main() {
                   Operations
               </div>
               <ol className='pl-4'>
-                {operations.map((item)=>{
-                  return <li>{item}</li>
+                {operations.map((item,index)=>{
+                  return <li key={index}>{index+1}. {item}</li>
                 })}
               </ol> 
               <button className='border-t border-b min-w-full mt-2 p-1 pl-4 bg-gray-900 text-left'>{plusIcon} add operation</button>
