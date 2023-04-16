@@ -2,32 +2,35 @@ import React, { useState, useEffect, useRef }  from 'react';
 import { Link } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFileCirclePlus } from '@fortawesome/free-solid-svg-icons';
-import { faFolderOpen } from '@fortawesome/free-solid-svg-icons';
-import { faCloudArrowUp} from '@fortawesome/free-solid-svg-icons';
-import { faComments} from '@fortawesome/free-solid-svg-icons';
-import { faScrewdriverWrench} from '@fortawesome/free-solid-svg-icons';
-import { faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
-import { faBuildingColumns } from '@fortawesome/free-solid-svg-icons';
-import { faCode } from '@fortawesome/free-solid-svg-icons';
-import { faDatabase } from '@fortawesome/free-solid-svg-icons';
-import { faRobot } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faTrashCan, faFileCirclePlus, faFolderOpen, faCloudArrowDown } from '@fortawesome/free-solid-svg-icons';
+import { faComments, faScrewdriverWrench, faCircleQuestion, faDoorOpen} from '@fortawesome/free-solid-svg-icons';
+import { faBuildingColumns, faCode, faDatabase, faRobot } from '@fortawesome/free-solid-svg-icons';
 
 
+
+const trashIcon = <FontAwesomeIcon icon={faTrashCan} style={{color: "#ff6600",}} />
+const dropIcon = <FontAwesomeIcon icon={faChevronDown} style={{color: "#ff6600",}} />
 const newIcon = <FontAwesomeIcon icon={faFileCirclePlus} style={{color: "#ff6600",}} />
 const openIcon = <FontAwesomeIcon icon={faFolderOpen} style={{color: "#ff6600",}} />
-const saveIcon = <FontAwesomeIcon icon={faCloudArrowUp} style={{color: "#ff6600",}} />
+const dlIcon = <FontAwesomeIcon icon={faCloudArrowDown} style={{color: "#ff6600",}} />
 const chatIcon = <FontAwesomeIcon icon={faComments} style={{color: "#ff6600",}} />
 const settingsIcon = <FontAwesomeIcon icon={faScrewdriverWrench} style={{color: "#ff6600",}} />
 const helpIcon = <FontAwesomeIcon icon={faCircleQuestion} style={{color: "#ff6600",}} />
+const exitIcon = <FontAwesomeIcon icon={faDoorOpen} style={{color: "#ff6600",}} />
 const libraryIcon = <FontAwesomeIcon icon={faBuildingColumns} style={{color: "white",}} />
 const codeIcon = <FontAwesomeIcon icon={faCode} style={{color: "white",}} />
 const dataIcon = <FontAwesomeIcon icon={faDatabase} style={{color: "white",}} />
 const robotIcon = <FontAwesomeIcon icon={faRobot} style={{color: "white",}} />
 
 function Main() {
-  const [currentTab, setCurrentTab] = useState("G-code");
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleDropdown = () => {
+      setIsOpen(!isOpen);
+    };
+  
 
+  const [currentTab, setCurrentTab] = useState("G-code");
+  
   return (
     <div className="min-h-screen bg-gray-900 text-white p-4">
       {/* Header */}
@@ -35,13 +38,23 @@ function Main() {
         <div>Javatrol</div>
         <div className="pr-4 md:pr-6">              
                 <ul className='flex px-2 font-thin space-x-6'>
-                  <li>New {newIcon}</li>
-                  <li>Open {openIcon}</li>
-                  <li>Save {saveIcon}</li>
+                  <div className="relative">
+                    <button type="button" className="font-semibold px-4 rounded items-center hover:bg-gray-800 focus:outline-none" onClick={toggleDropdown} >
+                      My Projects {dropIcon}  
+                    </button>
+                    {isOpen && (
+                      <ul className="absolute z-10 right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                        <li onClick={()=>setIsOpen(!isOpen)}><a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{newIcon} New</a></li>
+                        <li onClick={()=>setIsOpen(!isOpen)}><a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{openIcon} Open</a></li>
+                        <li onClick={()=>setIsOpen(!isOpen)}><a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{trashIcon} Delete</a></li>
+                        <li onClick={()=>setIsOpen(!isOpen)}><a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{dlIcon} Download</a></li>
+                      </ul>
+                    )}
+                  </div>
                   <li>Chat {chatIcon}</li>
                   <li>Settings {settingsIcon}</li>
                   <li>Help {helpIcon}</li>
-                  <button className=' border rounded-md bg-orange-700 font-medium px-2'>Leave App</button>
+                  <li>Exit {exitIcon}</li>
               </ul>
           </div>
       </header>
@@ -67,16 +80,16 @@ function Main() {
         {/* Nav Links */}
         <nav className="flex-grow p-4">
             <ul className="flex border-b">
-              <li className={`mr-1 py-2 px-4 cursor-pointer border-b-2 border-transparent ${currentTab === 'G-code' ? 'bg-gray-200 border-gray-500' : 'text-gray-500 hover:text-gray-800'}`} onClick={() => setCurrentTab('G-code')}>
+              <li className={`mr-1 py-2 px-4 cursor-pointer border-b-2 border-transparent ${currentTab === 'G-code' ? 'bg-gray-700' : 'text-white hover:bg-gray-800'}`} onClick={() => setCurrentTab('G-code')}>
                 G-code {codeIcon}
               </li>
-              <li className={`mr-1 py-2 px-4 cursor-pointer border-b-2 border-transparent ${currentTab === 'Simulate' ? 'bg-gray-200 border-gray-500' : 'text-gray-500 hover:text-gray-800'}`} onClick={() => setCurrentTab('Simulate')}>
+              <li className={`mr-1 py-2 px-4 cursor-pointer border-b-2 border-transparent ${currentTab === 'Simulate' ? 'bg-gray-700' : 'text-white hover:bg-gray-800'}`} onClick={() => setCurrentTab('Simulate')}>
                 Simulate {robotIcon}
               </li>
-              <li className={`mr-1 py-2 px-4 cursor-pointer border-b-2 border-transparent ${currentTab === 'Meta' ? 'bg-gray-200 border-gray-500' : 'text-gray-500 hover:text-gray-800'}`} onClick={() => setCurrentTab('Meta')}>
+              <li className={`mr-1 py-2 px-4 cursor-pointer border-b-2 border-transparent ${currentTab === 'Meta' ? 'bg-gray-700' : 'text-white hover:bg-gray-800'}`} onClick={() => setCurrentTab('Meta')}>
                 Metadata {dataIcon}
               </li>
-              <li className={`mr-1 py-2 px-4 cursor-pointer border-b-2 border-transparent ${currentTab === 'Library' ? 'bg-gray-200 border-gray-500' : 'text-gray-500 hover:text-gray-800'}`} onClick={() => setCurrentTab('Library')}>
+              <li className={`mr-1 py-2 px-4 cursor-pointer border-b-2 border-transparent ${currentTab === 'Library' ? 'bg-gray-700' : 'text-white hover:bg-gray-800'}`} onClick={() => setCurrentTab('Library')}>
                 Tool Library {libraryIcon}
               </li>
             </ul>
