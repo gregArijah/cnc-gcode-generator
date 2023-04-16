@@ -10,9 +10,18 @@ function Main() {
       <header className="h-16 flex justify-between items-center font-bold text-xl border-b mb-4 pb-4">
         <div>Javatrol</div>
         <div className="pr-4 md:pr-6">
-                <Link role='button' to='/app' className="flex items-center justify-center sm:text-2xl bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full h-16 sm:h-16 sm:w-48 float-right">
+                {/* <Link role='button' to='/app' className="flex items-center justify-center sm:text-2xl bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full h-16 sm:h-16 sm:w-48 float-right">
                   Leave App
-                </Link>
+                </Link> */}
+                <ul className='flex px-2 font-thin space-x-6'>
+                  <li>New</li>
+                  <li>Open</li>
+                  <li>Save</li>
+                  <li>Chat</li>
+                  <li>Settings</li>
+                  <li>Help</li>
+                  <button className=' border rounded-md bg-orange-500 font-medium px-2'>Leave App</button>
+              </ul>
           </div>
       </header>
 
