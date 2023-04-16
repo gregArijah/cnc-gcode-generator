@@ -1,26 +1,10 @@
 import React, { useState, useEffect, useRef }  from 'react';
 import { Link } from 'react-router-dom';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faTrashCan, faFileCirclePlus, faFolderOpen, faCloudArrowDown } from '@fortawesome/free-solid-svg-icons';
-import { faComments, faScrewdriverWrench, faCircleQuestion, faDoorOpen} from '@fortawesome/free-solid-svg-icons';
-import { faBuildingColumns, faCode, faDatabase, faRobot } from '@fortawesome/free-solid-svg-icons';
-import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
-
-const trashIcon = <FontAwesomeIcon icon={faTrashCan} style={{color: "#ff6600",}} />
-const dropIcon = <FontAwesomeIcon icon={faChevronDown} style={{color: "#ff6600",}} />
-const newIcon = <FontAwesomeIcon icon={faFileCirclePlus} style={{color: "#ff6600",}} />
-const openIcon = <FontAwesomeIcon icon={faFolderOpen} style={{color: "#ff6600",}} />
-const dlIcon = <FontAwesomeIcon icon={faCloudArrowDown} style={{color: "#ff6600",}} />
-const chatIcon = <FontAwesomeIcon icon={faComments} style={{color: "#ff6600",}} />
-const settingsIcon = <FontAwesomeIcon icon={faScrewdriverWrench} style={{color: "#ff6600",}} />
-const helpIcon = <FontAwesomeIcon icon={faCircleQuestion} style={{color: "#ff6600",}} />
-const exitIcon = <FontAwesomeIcon icon={faDoorOpen} style={{color: "#ff6600",}} />
-const libraryIcon = <FontAwesomeIcon icon={faBuildingColumns} style={{color: "white",}} />
-const codeIcon = <FontAwesomeIcon icon={faCode} style={{color: "white",}} />
-const dataIcon = <FontAwesomeIcon icon={faDatabase} style={{color: "white",}} />
-const robotIcon = <FontAwesomeIcon icon={faRobot} style={{color: "white",}} />
-const plusIcon = <FontAwesomeIcon icon={faCirclePlus} style={{color: "white",}} />
+import { dropIcon, newIcon, openIcon, dlIcon, trashIcon  } from './FontAwesome';
+import { chatIcon, settingsIcon, helpIcon, exitIcon } from './FontAwesome';
+import { libraryIcon, codeIcon, dataIcon, robotIcon } from './FontAwesome';
+import { plusIcon } from './FontAwesome';
 
 function Main() {
   const [isOpen, setIsOpen] = useState(false);
