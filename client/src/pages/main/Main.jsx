@@ -29,6 +29,8 @@ function Main() {
     };
 
   const [currentTab, setCurrentTab] = useState("G-code");
+
+  const operations = ["centre drill","drill for 1/2-13 holes","chamfer","tap 1/2-13 holes"];
   
   return (
     <div className="min-h-screen bg-gray-900 text-white p-4">
@@ -65,12 +67,11 @@ function Main() {
               <div className="h-16 flex justify-center items-center font-bold text-xl border-b" >
                   Operations
               </div>
-              <ul className='pl-4'>
-                <li>operation item 1</li>
-                <li>operation item 2</li>
-                <li>operation item 3</li>
-                <li>operation item 4</li>
-              </ul> 
+              <ol className='pl-4'>
+                {operations.map((item)=>{
+                  return <li>{item}</li>
+                })}
+              </ol> 
               <button className='border-t border-b min-w-full mt-2 p-1 pl-4 bg-gray-900 text-left'>{plusIcon} add operation</button>
               
           </div>
