@@ -1,10 +1,7 @@
 import React, { useState, useEffect, useRef }  from 'react';
 import { Link } from 'react-router-dom';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleRight } from '@fortawesome/free-regular-svg-icons';
-
-const rightArrow = <FontAwesomeIcon icon={faCircleRight} /> // style={{color: "#f06000",}} />
+import { circleRightIcon } from '../icons/FontAwesome';
 
 function Home() {
   const [brief, setBrief] = useState(0);
@@ -114,7 +111,7 @@ function Home() {
               </div>
               <div className="p-2">
                 <button onClick={changeBriefs} className="flex items-center justify-center text-6xl md:text-7xl hover:text-orange-700 text-orange-500 px-2.5 pb-4">
-                  {rightArrow}
+                  {circleRightIcon}
                 </button>
               </div>  
             </div>
