@@ -4,8 +4,8 @@ import { Link, NavLink } from 'react-router-dom';
 //import components
 import Header from './Header';
 import Sidebar from './Sidebar';
-import Navlinks from './Navlinks';
-import Output from './output';
+import Navlinks from './Navlinks'
+import Output from './Display';
 
 function Main() {
   const [currentTab, setCurrentTab] = useState("G-code");
