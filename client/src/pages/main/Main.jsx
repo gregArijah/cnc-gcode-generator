@@ -9,7 +9,7 @@ import Display from './Display';
 
 function Main() {
 
-  const [currentOperation, setCurrentOperation] = useState(1);
+  const [currentOperation, setCurrentOperation] = useState("");
   const [currentTab, setCurrentTab] = useState("G-code");
 
   
@@ -20,7 +20,7 @@ function Main() {
           {<Sidebar currentOperation={currentOperation} setCurrentOperation={setCurrentOperation} />}
           <main className="flex-grow p-6">
             {< Navbar setCurrentTab={setCurrentTab} currentTab={currentTab} />}    
-            {< Display currentTab={currentTab} />}
+            {< Display currentTab={currentTab} currentOperation={currentOperation} />}
           </main>
       </div>
     </div>
