@@ -1,4 +1,4 @@
-export default function Output({ currentTab } ){
+export default function Display({ currentTab } ){
 
     return(
         <div className='p-3'>
