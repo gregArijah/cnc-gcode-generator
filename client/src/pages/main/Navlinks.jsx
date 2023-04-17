@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { listIcon, codeIcon, dataIcon, robotIcon } from './FontAwesome';
+import { listIcon, codeIcon, dataIcon, robotIcon } from '../../icons/FontAwesome';
 
 export default function Navlinks({ currentTab, setCurrentTab }){    
     return(

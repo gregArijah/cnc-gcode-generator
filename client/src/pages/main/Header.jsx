@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import { dropIcon, newIcon, openIcon, dlIcon, trashIcon  } from './FontAwesome';
-import { libraryIcon, chatIcon, settingsIcon, helpIcon, exitIcon } from './FontAwesome';
+import { dropIcon, newIcon, openIcon, dlIcon, trashIcon  } from '../../icons/FontAwesome';
+import { libraryIcon, chatIcon, settingsIcon, helpIcon, exitIcon } from '../../icons/FontAwesome';
 
 export default function Header (){
 

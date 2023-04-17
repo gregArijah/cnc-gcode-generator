@@ -1,4 +1,4 @@
-import { plusIcon } from './FontAwesome';
+import { plusIcon } from '../../icons/FontAwesome';
 
 export default function Sidebar(){
     const operations = ["centre drill","drill for 1/2-13 holes","chamfer","tap 1/2-13 holes"];
