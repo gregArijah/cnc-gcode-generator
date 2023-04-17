@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { libraryIcon, codeIcon, dataIcon, robotIcon } from './FontAwesome';
+import { listIcon, codeIcon, dataIcon, robotIcon } from './FontAwesome';
 
 export default function Navlinks({ currentTab, setCurrentTab }){    
     return(
@@ -15,8 +15,8 @@ export default function Navlinks({ currentTab, setCurrentTab }){
               <li className={`mr-1 py-2 px-4 cursor-pointer ${currentTab === 'Meta' ? 'bg-gray-700' : 'text-white hover:bg-gray-800'}`} onClick={() => setCurrentTab('Meta')}>
                 Metadata {dataIcon}
               </li>
-              <li className={`mr-1 py-2 px-4 cursor-pointer ${currentTab === 'Library' ? 'bg-gray-700' : 'text-white hover:bg-gray-800'}`} onClick={() => setCurrentTab('Library')}>
-                Tool Library {libraryIcon}
+              <li className={`mr-1 py-2 px-4 cursor-pointer ${currentTab === 'List' ? 'bg-gray-700' : 'text-white hover:bg-gray-800'}`} onClick={() => setCurrentTab('List')}>
+                Tool List {listIcon}
               </li>
             </ul>
         </nav>
