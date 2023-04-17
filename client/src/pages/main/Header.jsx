@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { dropIcon, newIcon, openIcon, dlIcon, trashIcon  } from './FontAwesome';
-import { chatIcon, settingsIcon, helpIcon, exitIcon } from './FontAwesome';
+import { libraryIcon, chatIcon, settingsIcon, helpIcon, exitIcon } from './FontAwesome';
 
 export default function Header (){
 
@@ -29,6 +29,7 @@ export default function Header (){
                         </ul>
                         )}
                         </div>
+                        <li>Tool Library {libraryIcon}</li>
                         <li>Chat {chatIcon}</li>
                         <li>Settings {settingsIcon}</li>
                         <li>Help {helpIcon}</li>

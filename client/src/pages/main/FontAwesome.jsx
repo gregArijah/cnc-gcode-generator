@@ -13,7 +13,7 @@ export const chatIcon = <FontAwesomeIcon icon={faComments} style={{color: "#ff66
 export const settingsIcon = <FontAwesomeIcon icon={faScrewdriverWrench} style={{color: "#ff6600",}} />
 export const helpIcon = <FontAwesomeIcon icon={faCircleQuestion} style={{color: "#ff6600",}} />
 export const exitIcon = <FontAwesomeIcon icon={faDoorOpen} style={{color: "#ff6600",}} />
-export const libraryIcon = <FontAwesomeIcon icon={faBuildingColumns} style={{color: "white",}} />
+export const libraryIcon = <FontAwesomeIcon icon={faBuildingColumns} style={{color: "#ff6600",}} />
 export const codeIcon = <FontAwesomeIcon icon={faCode} style={{color: "white",}} />
 export const dataIcon = <FontAwesomeIcon icon={faDatabase} style={{color: "white",}} />
 export const robotIcon = <FontAwesomeIcon icon={faRobot} style={{color: "white",}} />
