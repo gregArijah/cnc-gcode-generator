@@ -3,8 +3,8 @@ import { Link, NavLink } from 'react-router-dom';
 
 //import components
 import Header from './Header';
-import Sidebar from './Sidebar';
-import Navlinks from './Navlinks'
+import Sidebar from './DisplaySide';
+import Navlinks from './DisplayNav'
 import Output from './Display';
 
 function Main() {
