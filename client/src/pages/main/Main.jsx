@@ -20,7 +20,7 @@ function Main() {
           {<Sidebar currentOperation={currentOperation} setCurrentOperation={setCurrentOperation} />}
           <main className="flex-grow p-6">
             {< Navbar setCurrentTab={setCurrentTab} currentTab={currentTab} />}    
-            {< Display currentTab={currentTab} currentOperation={currentOperation} />}
+            {< Display currentTab={currentTab} setCurrentTab={setCurrentTab} currentOperation={currentOperation} />}
           </main>
       </div>
     </div>
