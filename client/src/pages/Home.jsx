@@ -12,7 +12,7 @@ function Home() {
       myRef.current.scrollTop = 0;
   },[brief])
 
-  const changeBriefs = () => {
+  const changeBriefs = () => {  //i made a funny haha
     if (brief<5) setBrief(brief+1);
     else setBrief(0);    
   }
@@ -43,12 +43,12 @@ function Home() {
               </div>
             </div>
             <div className= "p-2 md:pl-10 md:flex">
-              <div className='border-solid border-4 rounded-2xl p-8 md:w-max' style={{backgroundColor: 'rgba(0, 0, 0, 0.4)', overflowY: 'auto', maxHeight: '500px' }} ref={myRef} >
+              <div className='border-solid border-4 rounded-2xl p-8 md:w-full' style={{backgroundColor: 'rgba(0, 0, 0, 0.4)', overflowY: 'auto', maxHeight: '500px' }} ref={myRef} >
                 <div className='opacity-100 space-y-5'> 
                   
                   <div className= {`${brief==0 ? '':'hidden'} space-y-5`}> 
                     <h2 className="text-4xl font-bold ">Revolutionize your CNC programming<br/> with our user-friendly and intuitive software</h2>
-                    <p className='text-2xl leading-normal'>Say goodbye to complicated programming and hello to a more efficient workflow<br/>Try our conversational software today and experience the difference for yourself</p>
+                    <p className='text-2xl leading-normal'>Say goodbye to complicated programming and hello to a more efficient workflow.<br/>Try our conversational software today and experience the difference for yourself!</p>
                   </div>
                   
                   <div className={`${brief == 1 ? '' : 'hidden'} space-y-5`} >
