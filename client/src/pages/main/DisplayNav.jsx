@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { listIcon, codeIcon, dataIcon, robotIcon } from '../../icons/FontAwesome';
 
-export default function Navlinks({ currentTab, setCurrentTab }){    
+export default function Navlinks({ currentTab, setCurrentTab, currentOperation }){  
     return(
         <nav className="flex-grow">
             <ul className="flex border-b">
@@ -23,3 +23,4 @@ export default function Navlinks({ currentTab, setCurrentTab }){
         </nav>
     )
 }
+

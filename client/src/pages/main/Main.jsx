@@ -19,8 +19,9 @@ function Main() {
       <div className="flex flex-grow">  
           {<Sidebar currentOperation={currentOperation} setCurrentOperation={setCurrentOperation} />}
           <main className="flex-grow p-6">
-            {< Navbar setCurrentTab={setCurrentTab} currentTab={currentTab} />}    
+            {< Navbar setCurrentTab={setCurrentTab} currentTab={currentTab} currentOperation={currentOperation}/>}    
             {< Display currentTab={currentTab} setCurrentTab={setCurrentTab} currentOperation={currentOperation} />}
+            {currentTab===""&&currentOperation!==""&&setCurrentTab('Meta')}
           </main>
       </div>
     </div>
