@@ -10,7 +10,7 @@ import Display from './Display';
 function Main() {
 
   const [currentOperation, setCurrentOperation] = useState("");
-  const [currentTab, setCurrentTab] = useState("G-code");
+  const [currentTab, setCurrentTab] = useState("");
 
   
   return (

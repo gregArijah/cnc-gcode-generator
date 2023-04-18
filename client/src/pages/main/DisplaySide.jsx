@@ -10,7 +10,7 @@ export default function Sidebar({ currentOperation, setCurrentOperation }){
             </div>
             <ul className='pl-4'>
                 {operations.map((item,index)=>{
-                    return <li key={index} className= {`mr-1 py-0.5 cursor-pointer ${currentOperation === `op${index+1}` ? 'text-orange-400' : 'text-white hover:text-orange-700'}`} onClick={() => setCurrentOperation(`op${index+1}`)}>{index+1}. {item}</li>
+                    return <li key={index} className= {`mr-1 py-0.5 cursor-pointer ${currentOperation === `op${index+1}` ? 'text-orange-500' : 'text-white hover:text-orange-700'}`} onClick={() => setCurrentOperation(`op${index+1}`)}>{index+1}. {item}</li>
                 })}
             </ul>  
             <button className='border-t border-b min-w-full mt-2 p-1 pl-4 bg-gray-900 text-left'>{plusIcon} add operation</button>      
