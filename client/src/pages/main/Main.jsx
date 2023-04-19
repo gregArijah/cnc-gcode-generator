@@ -22,6 +22,7 @@ function Main() {
             {< Navbar setCurrentTab={setCurrentTab} currentTab={currentTab} currentOperation={currentOperation}/>}    
             {< Display currentTab={currentTab} setCurrentTab={setCurrentTab} currentOperation={currentOperation} />}
             {currentTab===""&&currentOperation!==""&&setCurrentTab('Meta')}
+            {currentTab!==""&&currentOperation===""&&setCurrentTab('')}
           </main>
       </div>
     </div>
