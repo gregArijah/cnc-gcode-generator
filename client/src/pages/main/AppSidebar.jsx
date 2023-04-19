@@ -1,14 +1,29 @@
 import { plusIcon } from '../../icons/FontAwesome';
 
+//    const operations = [
+//       {
+//         name:"centre drill",
+//         desc:"centre drill for 1 inch holes",
+//         tool:"centre drill",
+//         gcode:"gcode goes here for centre drilling 1 inch holes"
+//         },
+//       {
+//         name:"pilot drill",
+//         desc:"pilot drill for 1 inch holes",
+//         tool:"5/8 drill",
+//         gcode:"gcode goes here for pilot drilling 1 inch holes with 5/8 drill"
+//         },
+//       {
+//         name:"drill",
+//         desc:"drill for 1 inch holes",
+//         tool:"1 inch drill",
+//         gcode:"gcode goes here for drilling 1 inch holes"
+//         }
+//     ]
+    
 export default function Sidebar({ currentOperation, setCurrentOperation }){
     const operations = ["centre drill","drill for 1/2-13 holes","chamfer","tap 1/2-13 holes",""];
-
-    const op1 = {
-        "name":"centre drill",
-        "desc":"centre drill for 1/2 holes",
-        "tool":"centre drill",
-        "gcode":"gcode goes here for centre drilling 1/2 holes"
-    }
+ 
 
     return (
         <div className="w-64 bg-gray-800 border rounded-md" style={{height:"80vh", overflowY: 'auto',}}>
