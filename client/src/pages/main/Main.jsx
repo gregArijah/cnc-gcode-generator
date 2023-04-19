@@ -2,10 +2,10 @@ import React, { useState, useEffect, useRef }  from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 //import components
-import Header from './Header';
-import Sidebar from './DisplaySide';
-import Navbar from './DisplayNav'
-import Display from './Display';
+import Header from './AppHeader';
+import Sidebar from './AppSidebar';
+import Navbar from './AppNavbar'
+import Display from './AppDisplay';
 
 function Main() {
 
