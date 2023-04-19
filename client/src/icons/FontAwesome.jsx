@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faTrashCan, faFileCirclePlus, faFolderOpen, faCloudArrowDown } from '@fortawesome/free-solid-svg-icons';
-import { faComments, faScrewdriverWrench, faCircleQuestion, faDoorOpen} from '@fortawesome/free-solid-svg-icons';
-import { faBuildingColumns, faList, faCode, faDatabase, faRobot } from '@fortawesome/free-solid-svg-icons';
-import { faCirclePlus, faCircleRight } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faTrashCan, faFileCirclePlus, faFolderOpen, faCloudArrowDown, 
+         faComments, faScrewdriverWrench, faCircleQuestion, faDoorOpen, faBuildingColumns, 
+         faList, faCode, faDatabase, faRobot, faCirclePlus, faCircleRight, faPenToSquare} from '@fortawesome/free-solid-svg-icons';
+
     
 export const circleRightIcon = <FontAwesomeIcon icon={faCircleRight} />
 export const trashIcon = <FontAwesomeIcon icon={faTrashCan} style={{color: "#ff6600",}} />
@@ -20,3 +20,4 @@ export const dataIcon = <FontAwesomeIcon icon={faDatabase} style={{color: "white
 export const robotIcon = <FontAwesomeIcon icon={faRobot} style={{color: "white",}} />
 export const plusIcon = <FontAwesomeIcon icon={faCirclePlus} style={{color: "white",}} />
 export const listIcon = <FontAwesomeIcon icon={faList} style={{color: "white",}} />
+export const updateIcon = <FontAwesomeIcon icon={faPenToSquare} />
