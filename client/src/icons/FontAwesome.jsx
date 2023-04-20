@@ -1,9 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faTrashCan, faFileCirclePlus, faFolderOpen, faCloudArrowDown, 
          faComments, faScrewdriverWrench, faCircleQuestion, faDoorOpen, faBuildingColumns, 
-         faList, faCode, faDatabase, faRobot, faCirclePlus, faCircleRight, faPenToSquare} from '@fortawesome/free-solid-svg-icons';
+         faList, faCode, faDatabase, faRobot, faCirclePlus, faCircleRight, faPenToSquare,
+        faWarehouse} from '@fortawesome/free-solid-svg-icons';
 
-    
 export const circleRightIcon = <FontAwesomeIcon icon={faCircleRight} />
 export const trashIcon = <FontAwesomeIcon icon={faTrashCan} style={{color: "#ff6600",}} />
 export const dropIcon = <FontAwesomeIcon icon={faChevronDown} style={{color: "#ff6600",}} />
@@ -21,3 +21,4 @@ export const robotIcon = <FontAwesomeIcon icon={faRobot} style={{color: "white",
 export const plusIcon = <FontAwesomeIcon icon={faCirclePlus} style={{color: "white",}} />
 export const listIcon = <FontAwesomeIcon icon={faList} style={{color: "white",}} />
 export const updateIcon = <FontAwesomeIcon icon={faPenToSquare} />
+export const warehouseIcon = <FontAwesomeIcon icon={faWarehouse} style={{color: "#ff6600",}} />
