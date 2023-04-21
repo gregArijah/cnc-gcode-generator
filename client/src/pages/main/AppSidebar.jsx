@@ -1,29 +1,43 @@
+import { useState } from 'react';
+import MyModal from './components/add-op-1-selectTypes';
+
 import { plusIcon } from '../../icons/FontAwesome';
 
-   const operations = [
-      {
-        name:"centre drill",
-        desc:"centre drill for 1 inch holes",
-        tool:"centre drill",
-        gcode:"gcode goes here for centre drilling 1 inch holes"
-        },
-      {
-        name:"pilot drill",
-        desc:"pilot drill for 1 inch holes",
-        tool:"5/8 drill",
-        gcode:"gcode goes here for pilot drilling 1 inch holes with 5/8 drill"
-        },
-      {
-        name:"drill",
-        desc:"drill for 1 inch holes",
-        tool:"1 inch drill",
-        gcode:"gcode goes here for drilling 1 inch holes"
-        }
-    ]
-    
+
+const operations = [
+    {
+    name:"centre drill",
+    desc:"centre drill for 1 inch holes",
+    tool:"centre drill",
+    gcode:"gcode goes here for centre drilling 1 inch holes"
+    },
+    {
+    name:"pilot drill",
+    desc:"pilot drill for 1 inch holes",
+    tool:"5/8 drill",
+    gcode:"gcode goes here for pilot drilling 1 inch holes with 5/8 drill"
+    },
+    {
+    name:"drill",
+    desc:"drill for 1 inch holes",
+    tool:"1 inch drill",
+    gcode:"gcode goes here for drilling 1 inch holes"
+    }
+]
+   
 export default function Sidebar({ currentOperation, setCurrentOperation }){
    // const operations = ["centre drill","drill for 1/2-13 holes","chamfer","tap 1/2-13 holes",""];
+   
+    const [isOpen, setIsOpen] = useState(false);
  
+    
+    const handleOpenModal = () => {
+        setIsOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsOpen(false);
+    };    
 
     return (
         <div className="w-64 bg-gray-800 border rounded-md" style={{height:"80vh", overflowY: 'auto',}}>
@@ -36,7 +50,12 @@ export default function Sidebar({ currentOperation, setCurrentOperation }){
                 })}
             </ul>  
             
-            <button className='border-t border-b min-w-full mt-2 p-1 pl-4 bg-gray-900 text-left'>{plusIcon} add operation</button>      
+            <button onClick={handleOpenModal} className='border-t border-b min-w-full mt-2 p-1 pl-4 bg-gray-900 text-left'>{plusIcon} add operation</button>      
+            <MyModal isOpen={isOpen} onClose={handleCloseModal}>
+                <div className="text-lg font-medium mb-4">Modal Title</div>
+                <p className="mb-4">Modal content goes here.</p>
+                <button onClick={handleCloseModal}>Close Modal</button>
+            </MyModal>
         </div>
     )
 }
