@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import MyModal from './components/add-op-1-selectTypes';
+import MyModal from './components/modal';
 
 import { plusIcon } from '../../icons/FontAwesome';
 

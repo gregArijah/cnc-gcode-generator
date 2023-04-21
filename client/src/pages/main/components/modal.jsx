@@ -21,7 +21,7 @@ export default function MyModal({ isOpen, onClose, children }) {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+              <Dialog.Overlay className="fixed inset-0 bg-gray-600 bg-opacity-75 transition-opacity" />
             </Transition.Child>
   
             <span
@@ -39,7 +39,7 @@ export default function MyModal({ isOpen, onClose, children }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+              <div className="inline-block w-full p-6 my-8 overflow-hidden text-left text-white align-middle transition-all transform bg-gray-900 shadow-xl rounded-2xl border">
                 {children}
               </div>
             </Transition.Child>
