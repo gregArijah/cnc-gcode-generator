@@ -28,7 +28,7 @@ export default function MyModal({ isOpen, onClose, children }) {
               className="inline-block h-screen align-middle"
               aria-hidden="true"
             >
-              &#8203;
+              {/* &#8203; */}
             </span>
             <Transition.Child
               as={Fragment}
