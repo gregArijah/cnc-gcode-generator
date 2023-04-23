@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { plusIcon } from '../../icons/FontAwesome';
-import Select from './Select_Main';
+import SelectOpType from './Select_Main';
 
 const operations = [
     {
@@ -48,7 +48,7 @@ export default function Sidebar({ currentOperation, setCurrentOperation }){
             </ul>  
             
             <button onClick={handleOpenModal} className='border-t border-b min-w-full mt-2 p-1 pl-4 bg-gray-900 text-left'>{plusIcon} add operation</button>      
-            <Select isOpen={isOpen} onClose={handleCloseModal} />
+            <SelectOpType isOpen={isOpen} onClose={handleCloseModal} />
             
  
         </div>
