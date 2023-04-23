@@ -1,13 +1,19 @@
 import React from "react";
 import MyModal from "../../components/modal"
+import SelectDrill  from "./SelectDrill";
 
 export default function SelectOpType({ isOpen, onClose}){
+    const SelectDrill = () =>{
+        onClose();        
+        alert("Currently working to bring your our first tool path");
+
+    }
     return ( 
             <MyModal isOpen={isOpen} onClose={onClose}>
                 <div className="text-2xl font-medium mb-4">Select an Operation</div>
                 <p className="m-4 mb-2 text-lg font-medium">Point</p>
                 <ul className="ml-8 flex space-x-6">
-                    <li className="cursor-pointer hover:bg-orange-500 transition duration-500" onClick={()=>alert("Currently working to bring your our first tool path")}><img src="https://image-placeholder.com/images/actual-size/57x57.png" alt="placeholder" /><p className="mb-2 text-md">Drill</p></li>       
+                    <li className="cursor-pointer hover:bg-orange-500 rounded-md p-0.5 transition duration-300" onClick={SelectDrill}><img src="https://image-placeholder.com/images/actual-size/57x57.png" alt="placeholder" /><p className="mb-2 text-md">Drill</p></li>       
                     <li className="opacity-20"><img src="https://image-placeholder.com/images/actual-size/57x57.png" alt="placeholder" /><p className="mb-2 text-md">Ream</p></li>       
                     <li className="opacity-20"><img src="https://image-placeholder.com/images/actual-size/57x57.png" alt="placeholder" /><p className="mb-2 text-md">Tap</p></li>             
                     <li className="opacity-20"><img src="https://image-placeholder.com/images/actual-size/57x57.png" alt="placeholder" /><p className="mb-2 text-md">Chamfer</p></li>
