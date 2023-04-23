@@ -1,19 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import MyModal from "../../components/modal"
 import SelectDrill  from "./SelectDrill";
 
 export default function SelectOpType({ isOpen, onClose}){
-    const SelectDrill = () =>{
-        onClose();        
-        alert("Currently working to bring your our first tool path");
 
-    }
+    const [isDrillOpen, setIsDrillOpen] = useState(false);
+    const handleDrillOpen = () => { setIsDrillOpen(true)};
+    const handleDrillClose = () => { setIsDrillOpen(false)}; 
+    
     return ( 
+        <div>
             <MyModal isOpen={isOpen} onClose={onClose}>
                 <div className="text-2xl font-medium mb-4">Select an Operation</div>
                 <p className="m-4 mb-2 text-lg font-medium">Point</p>
                 <ul className="ml-8 flex space-x-6">
-                    <li className="cursor-pointer hover:bg-orange-500 rounded-md p-0.5 transition duration-300" onClick={SelectDrill}><img src="https://image-placeholder.com/images/actual-size/57x57.png" alt="placeholder" /><p className="mb-2 text-md">Drill</p></li>       
+                    <li onClick={handleDrillOpen} className="cursor-pointer hover:bg-orange-500 rounded-md p-0.5 transition duration-300"><img src="https://image-placeholder.com/images/actual-size/57x57.png" alt="placeholder" /><p className="mb-2 text-md">Drill</p></li>       
                     <li className="opacity-20"><img src="https://image-placeholder.com/images/actual-size/57x57.png" alt="placeholder" /><p className="mb-2 text-md">Ream</p></li>       
                     <li className="opacity-20"><img src="https://image-placeholder.com/images/actual-size/57x57.png" alt="placeholder" /><p className="mb-2 text-md">Tap</p></li>             
                     <li className="opacity-20"><img src="https://image-placeholder.com/images/actual-size/57x57.png" alt="placeholder" /><p className="mb-2 text-md">Chamfer</p></li>
@@ -54,6 +55,8 @@ export default function SelectOpType({ isOpen, onClose}){
                 </div>
  
                 <button onClick={onClose} className="rounded border-2 p-3 px-10 mt-2 bg-gray-950 hover:text-orange-500  hover:border-orange-500">Cancel</button>
-            </MyModal>    
+            </MyModal>
+            <SelectDrill isOpen={isDrillOpen} onClose={handleDrillClose} />
+        </div>    
     )
 } 

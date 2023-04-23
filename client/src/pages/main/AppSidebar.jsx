@@ -1,10 +1,7 @@
 import { useState } from 'react';
-import MyModal from '../../components/modal';
 
 import { plusIcon } from '../../icons/FontAwesome';
-import SelectOpType from './SelectOpType';
-
-
+import Select from './Select_Main';
 
 const operations = [
     {
@@ -28,11 +25,9 @@ const operations = [
 ]
    
 export default function Sidebar({ currentOperation, setCurrentOperation }){
-  
-   
+     
     const [isOpen, setIsOpen] = useState(false);
- 
-    
+   
     const handleOpenModal = () => {
         setIsOpen(true);
     };
@@ -53,7 +48,8 @@ export default function Sidebar({ currentOperation, setCurrentOperation }){
             </ul>  
             
             <button onClick={handleOpenModal} className='border-t border-b min-w-full mt-2 p-1 pl-4 bg-gray-900 text-left'>{plusIcon} add operation</button>      
-            <SelectOpType isOpen={isOpen} onClose={handleCloseModal} />
+            <Select isOpen={isOpen} onClose={handleCloseModal} />
+            
  
         </div>
     )

@@ -15,12 +15,12 @@ function Main() {
   
   return (
     <div className="min-h-screen bg-gray-900 text-white p-4">
-      {<Header />}  
+      <Header />  
       <div className="flex flex-grow">  
-          {<Sidebar currentOperation={currentOperation} setCurrentOperation={setCurrentOperation} />}
+          <Sidebar currentOperation={currentOperation} setCurrentOperation={setCurrentOperation} />
           <main className="flex-grow p-6">
-            {< Navbar setCurrentTab={setCurrentTab} currentTab={currentTab} currentOperation={currentOperation}/>}    
-            {< Display currentTab={currentTab} setCurrentTab={setCurrentTab} currentOperation={currentOperation} />}
+            < Navbar setCurrentTab={setCurrentTab} currentTab={currentTab} currentOperation={currentOperation}/>    
+            < Display currentTab={currentTab} setCurrentTab={setCurrentTab} currentOperation={currentOperation} />
             {currentTab===""&&currentOperation!==""&&setCurrentTab('Meta')}
             {currentTab!==""&&currentOperation===""&&setCurrentTab('')}
           </main>
