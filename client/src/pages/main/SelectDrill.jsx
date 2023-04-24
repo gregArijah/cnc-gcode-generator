@@ -1,13 +1,12 @@
 import React,{ useState } from "react";
-import { Switch } from "@headlessui/react";
 import MyModal from "../../components/modal"
 import MyToggle from "../../components/toggle"
 
 export default function SelectDrill({ isOpen, onClose, selectMainClose}){
-    const [enabled, setEnabled] = useState(false);
-    const [enabled1, setEnabled1] = useState(false);
-    const [enabled2, setEnabled2] = useState(false);
-    const [enabled3, setEnabled3] = useState(false);
+    const [enabled_spot, setEnabled_spot] = useState(false);
+    const [enabled_centre, setEnabled_centre] = useState(true);
+    const [enabled_drill, setEnabled_drill] = useState(true);
+    const [enabled_chamfer, setEnabled_chamfer] = useState(true);
 
     const [formData, setFormData] = useState({
         holeDiameter: "",
@@ -28,9 +27,11 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
         //clear values in form
         setFormData({
             holeDiameter: "",
+            holeDepth: "",
+            chamferWidth: "",
+
             startZ: "",
             finishZ: "",
-            chamferWidth: "",
             xPos: "",
             yPos: "",
         });
@@ -48,15 +49,12 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
      
         
             <MyModal isOpen={isOpen} onClose={onClose}>   
-            {console.log(enabled)}
-            {console.log(enabled2)}
-            {console.log(enabled3)}
                 <div className="text-2xl font-medium mb-4">Drilling</div>
                 <form className="flex flex-col max-w-fit">   
-                <div className="flex justify-between">Include spot face<MyToggle enabled={enabled} setEnabled={setEnabled}/></div>
-                <div className="flex justify-between">Include centre drill<MyToggle enabled={enabled1} setEnabled={setEnabled1}/></div>
-                <div className="flex justify-between">Include drill<MyToggle enabled={enabled2} setEnabled={setEnabled2}/></div>
-                <div className="flex justify-between">Include chamfer drill<MyToggle enabled={enabled3} setEnabled={setEnabled3}/></div>
+                <div className="flex justify-between">Include spot face<MyToggle enabled={enabled_spot} setEnabled={setEnabled_spot}/></div>
+                <div className="flex justify-between">Include centre drill<MyToggle enabled={enabled_centre} setEnabled={setEnabled_centre}/></div>
+                <div className="flex justify-between">Include drill<MyToggle enabled={enabled_drill} setEnabled={setEnabled_drill}/></div>
+                <div className="flex justify-between">Include chamfer drill<MyToggle enabled={enabled_chamfer} setEnabled={setEnabled_chamfer}/></div>
                 <br/>
                 <label htmlFor="holeDiameter">Hole Diameter</label>
                 <input
@@ -68,52 +66,22 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                     className="text-black"
                 />
 
-                <label htmlFor="startZ">Start Z</label>
+                <label htmlFor="holeDepth">Hole Depth</label>
                 <input
                     type="text"
-                    id="startZ"
-                    name="startZ"
-                    value={formData.startZ}
+                    id="holeDepth"
+                    name="holeDepth"
+                    value={formData.holeDepth}
                     onChange={handleInputChange}
                     className="text-black"
-                />
-
-                <label htmlFor="finishZ">Finish Z</label>
-                <input
-                    type="text"
-                    id="finishZ"
-                    name="finishZ"
-                    value={formData.finishZ}
-                    onChange={handleInputChange}
-                    className="text-black"
-                />
-
+                />  
+                
                 <label htmlFor="chamferWidth">Chamfer Width</label>
                 <input
                     type="text"
                     id="chamferWidth"
                     name="chamferWidth"
                     value={formData.chamferWidth}
-                    onChange={handleInputChange}
-                    className="text-black"
-                />
-
-                <label htmlFor="xPos">X Position</label>
-                <input
-                    type="text"
-                    id="xPos"
-                    name="xPos"
-                    value={formData.xPos}
-                    onChange={handleInputChange}
-                    className="text-black"
-                />
-
-                <label htmlFor="yPos">Y Position</label>
-                <input
-                    type="text"
-                    id="yPos"
-                    name="yPos"
-                    value={formData.yPos}
                     onChange={handleInputChange}
                     className="text-black"
                 />
