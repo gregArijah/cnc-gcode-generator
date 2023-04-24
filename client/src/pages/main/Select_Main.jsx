@@ -54,7 +54,7 @@ export default function SelectOpType({ isOpen, onClose}){
                 </ul>
                 </div>
  
-                <button onClick={onClose} className="rounded border-2 p-3 px-10 mt-2 bg-gray-950 hover:text-orange-500  hover:border-orange-500">Cancel</button>
+                <button onClick={onClose} className="rounded border-2 p-3 px-10 mt-2 bg-gray-950 hover:text-orange-500  hover:border-orange-500">Go Back</button>
             </MyModal>
             <SelectDrill isOpen={isDrillOpen} onClose={handleDrillClose} selectMainClose={onClose}/>
         </div>    
