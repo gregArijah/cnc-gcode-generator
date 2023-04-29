@@ -80,8 +80,8 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                     </div>
                     <div>
                     
-                    <div className="flex justify-between">
-                        <div className={`flex max-w-fit ${enabled_spot? '' : 'hidden'}`}>
+                    <div className="flex flex-col justify-between space-y-1">
+                        <div className={`flex max-w-fit space-x-1 ml-6 ${enabled_spot? '' : 'hidden'}`}>
                             <label htmlFor="spotDiameter"> Tool Dia.</label>
                             <input
                                 type="text"
@@ -137,6 +137,175 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 className="text-black w-12"
                             />
                         </div>
+                        <div className={`flex max-w-fit space-x-1 ml-6 ${enabled_spot? '' : 'hidden'}`}>
+                            <label htmlFor="spotDiameter"> Tool Dia.</label>
+                            <input
+                                type="text"
+                                id="spotDiameter"
+                                name="spotDiameter"
+                                value={formData.drillDiameter}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />
+                            <label htmlFor="spotDiameter"> Hole Dia.</label>
+                            <input
+                                type="text"
+                                id="spotDiameter"
+                                name="spotDiameter"
+                                value={formData.drillDiameter}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />
+                            <label htmlFor="spotDiameter"> Angle </label>
+                            <input
+                                type="text"
+                                id="spotDiameter"
+                                name="spotDiameter"
+                                value={formData.drillDiameter}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />
+                            <label htmlFor="spotDiameter"> FeedRate</label>
+                            <input
+                                type="text"
+                                id="spotDiameter"
+                                name="spotDiameter"
+                                value={formData.drillDiameter}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />
+                            <label htmlFor="spotDiameter"> SpeedRate</label>
+                            <input
+                                type="text"
+                                id="spotDiameter"
+                                name="spotDiameter"
+                                value={formData.drillDiameter}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />
+                            <label htmlFor="spotDiameter"> Coolant</label>
+                            <input
+                                type="text"
+                                id="spotDiameter"
+                                name="spotDiameter"
+                                value={formData.drillDiameter}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />
+                        </div>
+                        <div className={`flex max-w-fit space-x-1 ml-6 ${enabled_spot? '' : 'hidden'}`}>
+                            <label htmlFor="spotDiameter"> Tool Dia.</label>
+                            <input
+                                type="text"
+                                id="spotDiameter"
+                                name="spotDiameter"
+                                value={formData.drillDiameter}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />
+                            <label htmlFor="spotDiameter"> Hole Dia.</label>
+                            <input
+                                type="text"
+                                id="spotDiameter"
+                                name="spotDiameter"
+                                value={formData.drillDiameter}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />
+                            <label htmlFor="spotDiameter"> Angle </label>
+                            <input
+                                type="text"
+                                id="spotDiameter"
+                                name="spotDiameter"
+                                value={formData.drillDiameter}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />
+                            <label htmlFor="spotDiameter"> FeedRate</label>
+                            <input
+                                type="text"
+                                id="spotDiameter"
+                                name="spotDiameter"
+                                value={formData.drillDiameter}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />
+                            <label htmlFor="spotDiameter"> SpeedRate</label>
+                            <input
+                                type="text"
+                                id="spotDiameter"
+                                name="spotDiameter"
+                                value={formData.drillDiameter}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />
+                            <label htmlFor="spotDiameter"> Coolant</label>
+                            <input
+                                type="text"
+                                id="spotDiameter"
+                                name="spotDiameter"
+                                value={formData.drillDiameter}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />
+                        </div>
+                        <div className={`flex max-w-fit space-x-1 ml-6 ${enabled_spot? '' : 'hidden'}`}>
+                            <label htmlFor="spotDiameter"> Tool Dia.</label>
+                            <input
+                                type="text"
+                                id="spotDiameter"
+                                name="spotDiameter"
+                                value={formData.drillDiameter}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />
+                            <label htmlFor="spotDiameter"> Hole Dia.</label>
+                            <input
+                                type="text"
+                                id="spotDiameter"
+                                name="spotDiameter"
+                                value={formData.drillDiameter}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />
+                            <label htmlFor="spotDiameter"> Angle </label>
+                            <input
+                                type="text"
+                                id="spotDiameter"
+                                name="spotDiameter"
+                                value={formData.drillDiameter}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />
+                            <label htmlFor="spotDiameter"> FeedRate</label>
+                            <input
+                                type="text"
+                                id="spotDiameter"
+                                name="spotDiameter"
+                                value={formData.drillDiameter}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />
+                            <label htmlFor="spotDiameter"> SpeedRate</label>
+                            <input
+                                type="text"
+                                id="spotDiameter"
+                                name="spotDiameter"
+                                value={formData.drillDiameter}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />
+                            <label htmlFor="spotDiameter"> Coolant</label>
+                            <input
+                                type="text"
+                                id="spotDiameter"
+                                name="spotDiameter"
+                                value={formData.drillDiameter}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />
+                        </div>
+                        
                       </div>  
                     </div>    
                 </div>
