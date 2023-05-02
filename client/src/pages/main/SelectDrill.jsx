@@ -14,9 +14,13 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
     const [enabled_chamfer, setEnabled_chamfer] = useState(true);
 
     const [formData, setFormData] = useState({
-        holeDiameter: null,
-        holeDepth: null,
-        chamferWidth: null,
+        holeDiameter: null, holeDepth: null, chamferWidth: null,
+        spotToolNum: null, spotToolDepth:null, spotToolFeed: null, spotToolSpeed: null, spotToolCoolant: false,
+        centreToolNum: null, centreToolDepth: null, centreToolFeed: null, centreToolSpeed: null, centreToolCoolant: false,
+        drillToolNum: null, drillToolAngle: null, drillToolFeed: null, drillToolSpeed: null, drillToolCoolant: false,
+        chamferToolNum: null, chamferToolAngle:null, chamferToolFeed: null, chamferToolSpeed: null, chamferToolCoolant: false,
+
+
       });
 
     const handleInputChange = (e) => {
@@ -56,7 +60,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                         onChange={handleInputChange}
                         className="text-black"
                         min="0"
-                        step="0.0625"
+                        step="any"
                         />
                         <label htmlFor="holeDepth">Hole Depth</label>
                         <input
@@ -67,7 +71,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                         onChange={handleInputChange}
                         className="text-black"
                         min="0"
-                        step="0.125"
+                        step="any"
                         />  
                         <label htmlFor="chamferWidth">Chamfer Width</label>
                         <input
@@ -78,7 +82,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                         onChange={handleInputChange}
                         className="text-black"
                         min="0"
-                        step="0.03125"
+                        step="any"
                         />
                 </div>
                 <br />
@@ -102,6 +106,18 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 onChange={handleInputChange}
                                 className="text-black w-12"
                                 min="0"
+                                step="any"
+                            />
+                            <label htmlFor="spotToolDepth"> Stock Removal</label>
+                            <input
+                                type="number"
+                                id="spotToolDepth"
+                                name="spotToolDepth"
+                                value={formData.spotToolDepth || 0}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                                min="0"
+                                step="any"
                             />
                             <label htmlFor="spotToolFeed"> FeedRate</label>
                             <input
@@ -111,8 +127,8 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 value={formData.spotToolFeed}
                                 onChange={handleInputChange}
                                 className="text-black w-12"
-                                step="5"
                                 min="0"
+                                step="any"
                             />
                             <label htmlFor="spotToolSpeed"> SpeedRate</label>
                             <input
@@ -122,8 +138,8 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 value={formData.spotToolSpeed}
                                 onChange={handleInputChange}
                                 className="text-black w-12"
-                                step="50"
                                 min="0"
+                                step="any"
                             />
                             <label htmlFor="spotToolCoolant"> Coolant</label>
                             <input
@@ -145,8 +161,9 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 onChange={handleInputChange}
                                 className="text-black w-12"
                                 min="0"
+                                step="any"
                             />
-                            <label htmlFor="centreToolDepth"> Hole Depth</label>
+                            <label htmlFor="centreToolDepth"> Depth</label>
                             <input
                                 type="number"
                                 id="centreToolDepth"
@@ -155,8 +172,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 onChange={handleInputChange}
                                 className="text-black w-12"
                                 min="0"
-                                step="0.05"
-
+                                step="any"
                             />
                             <label htmlFor="centreToolFeed"> Feed Rate</label>
                             <input
@@ -165,9 +181,9 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 name="centreToolFeed"
                                 value={formData.centreToolFeed}
                                 onChange={handleInputChange}
-                                className="text-black w-12"
-                                step="5"
+                                className="text-black w-12"                                
                                 min="0"
+                                step="any"
                             />
                             <label htmlFor="centreToolSpeed"> Speed Rate</label>
                             <input
@@ -177,8 +193,8 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 value={formData.centreToolSpeed}
                                 onChange={handleInputChange}
                                 className="text-black w-12"
-                                step="50"
                                 min="0"
+                                step="any"
                             />
                             <label htmlFor="centreToolCoolant"> Coolant</label>
                             <input
@@ -200,26 +216,42 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 onChange={handleInputChange}
                                 className="text-black w-12"
                                 min="0"
+                                step="any"
+                            /> 
+                            <label htmlFor="drillToolAngle">Angle</label>
+                            <input
+                                type="number"
+                                id="drillToolAngle"
+                                name="drillToolAngle"
+                                value={formData.drillToolAngle||118}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                                min="90"
+                                max="180"
+                                step="any" 
                             />
-                            <label htmlFor="drillToolDepth"> Hole Depth</label>
+                            <label htmlFor="drillToolDepth">Depth</label>
                             <input
                                 type="number"
                                 id="drillToolDepth"
                                 name="drillToolDepth"
-                                value={`${parseFloat(formData.holeDepth)+parseFloat((formData.holeDiameter/2)/Math.tan(toRadians(59)))}`}
+                                value={`${parseFloat(formData.holeDepth)+parseFloat((formData.holeDiameter/2)/Math.tan(toRadians(parseInt(formData.drillToolAngle||118)/2)))}`}
                                 onChange={handleInputChange}
                                 className="text-black w-12"
                                 min="0"
-                                
+                                step="any"   
                             />
+                           
                             <label htmlFor="drillToolFeed"> Feed Rate</label>
                             <input
-                                type="number"
+                                type="number" 
                                 id="drillToolFeed"
                                 name="drillToolFeed"
                                 value={formData.drillToolFeed}
                                 onChange={handleInputChange}
                                 className="text-black w-12"
+                                min="0"
+                                step="any"
                             />
                             <label htmlFor="drillToolSpeed"> Speed Rate </label>
                             <input
@@ -229,6 +261,8 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 value={formData.drillToolSpeed}
                                 onChange={handleInputChange}
                                 className="text-black w-12"
+                                min="0"
+                                step="any"
                             />
                             <label htmlFor="drillToolCoolant"> Coolant</label>
                             <input
@@ -248,6 +282,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 value="G81"
                                 onChange={handleInputChange}
                                 className="text-black w-4"
+                                checked
                             />
                             <label htmlFor="drillToolCycle"> G83</label>
                             <input
@@ -260,59 +295,64 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                             /> 
                         </div>
                         <div className={`flex max-w-fit space-x-1 ml-6 ${enabled_chamfer? '' : 'pointer-events-none opacity-5'}`}>
-                            <label htmlFor="spotDiameter"> Tool Dia.</label>
+                            <label htmlFor="chamferToolNum"> Tool #</label>
                             <input
-                                type="text" 
-                                id="spotDiameter"
-                                name="spotDiameter"
-                                value={formData.drillDiameter}
+                                type="number" 
+                                id="chamferToolNum"
+                                name="chamferToolNum"
+                                value={formData.chamferToolNum}
                                 onChange={handleInputChange}
                                 className="text-black w-12"
                             />
-                            <label htmlFor="spotDiameter"> Hole Dia.</label>
+                            <label htmlFor="chamferToolAngle"> Angle </label>
                             <input
-                                type="text"
-                                id="spotDiameter"
-                                name="spotDiameter"
-                                value={formData.drillDiameter}
+                                type="number"
+                                id="chamferToolAngle"
+                                name="chamferToolAngle"
+                                value={formData.chamferToolAngle||90}
                                 onChange={handleInputChange}
                                 className="text-black w-12"
+                                min="60"
+                                max="180"
                             />
-                            <label htmlFor="spotDiameter"> Angle </label>
+                            <label htmlFor="chamferToolDepth"> Depth </label>
                             <input
-                                type="text"
-                                id="spotDiameter"
-                                name="spotDiameter"
-                                value={formData.drillDiameter}
+                                type="number"
+                                id="chamferToolDepth"
+                                name="chamferToolDepth"
+                                value={formData.chamferWidth == 0|| formData.chamferWidth == null ? formData.chamferToolDepth = 0 : (parseFloat(formData.holeDiameter/2)+parseFloat(formData.chamferWidth))/Math.tan(toRadians(parseFloat((formData.chamferToolAngle||90)/2)))}
                                 onChange={handleInputChange}
                                 className="text-black w-12"
+                                min="0"
                             />
-                            <label htmlFor="spotDiameter"> FeedRate</label>
+                            <label htmlFor="chamferToolFeed"> Feed Rate</label>
                             <input
-                                type="text"
-                                id="spotDiameter"
-                                name="spotDiameter"
-                                value={formData.drillDiameter}
+                                type="number"
+                                id="chamferToolFeed"
+                                name="chamferToolFeed"
+                                value={formData.chamferToolFeed}
                                 onChange={handleInputChange}
                                 className="text-black w-12"
+                                min="0"
                             />
-                            <label htmlFor="spotDiameter"> SpeedRate</label>
+                            <label htmlFor="chamferToolSpeed"> Speed Rate</label>
                             <input
-                                type="text"
-                                id="spotDiameter"
-                                name="spotDiameter"
-                                value={formData.drillDiameter}
+                                type="number"
+                                id="chamferToolSpeed"
+                                name="chamferToolSpeed"
+                                value={formData.chamferToolSpeed}
                                 onChange={handleInputChange}
                                 className="text-black w-12"
+                                min="0"
                             />
                             <label htmlFor="spotDiameter"> Coolant</label>
                             <input
-                                type="text"
+                                type="checkbox"
                                 id="spotDiameter"
                                 name="spotDiameter"
                                 value={formData.drillDiameter}
                                 onChange={handleInputChange}
-                                className="text-black w-12"
+                                className="text-black w-4"
                             />
                         </div>
                         
