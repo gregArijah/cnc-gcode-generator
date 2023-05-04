@@ -15,19 +15,20 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
 
     const [formData, setFormData] = useState({
         holeDiameter: "", holeDepth: "", chamferWidth: "",
-        spotToolNum: "", spotToolDepth:"", spotToolFeed: "", spotToolSpeed: "", spotToolCoolant: false,
-        centreToolNum: "", centreToolDepth: "", centreToolFeed: "", centreToolSpeed: "", centreToolCoolant: false,
-        drillToolNum: "", drillToolAngle: "", drillToolFeed: "", drillToolSpeed: "", drillToolCoolant: false,
-        chamferToolNum: "", chamferToolAngle:"", chamferToolFeed: "", chamferToolSpeed: "", chamferToolCoolant: false,
-        dropdown: "" ,
+        spotToolNum: "", spotToolDepth:"", spotToolFeed: "", spotToolSpeed: "", spotToolCoolant: "",
+        centreToolNum: "", centreToolDepth: "", centreToolFeed: "", centreToolSpeed: "", centreToolCoolant: "",
+        drillToolNum: "", drillToolAngle: "", drillToolFeed: "", drillToolSpeed: "", drillToolCoolant: "", drillToolCycle:"",
+        chamferToolNum: "", chamferToolAngle:"", chamferToolFeed: "", chamferToolSpeed: "", chamferToolCoolant: "",
+        dropdown: "" , XVal: "", YVal: "", ZVal: "", RVal: "",
 
 
       });
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-        console.log(`looking for ${name} and ${value} `);
+        const { name, value, type, checked } = e.target;
+        const val = type === "checkbox" ? checked : value;
+        setFormData({ ...formData, [name]: val });
+        console.log(`looking for ${name} and ${val} `);
         };
     
     const handleSubmit = (e) => {
@@ -126,7 +127,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 min="0"
                                 step="any"
                             />
-                            <label htmlFor="spotToolFeed"> FeedRate</label>
+                            <label htmlFor="spotToolFeed"> Feed Rate</label>
                             <input
                                 type="number"
                                 id="spotToolFeed"
@@ -138,7 +139,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 min="0"
                                 step="any"
                             />
-                            <label htmlFor="spotToolSpeed"> SpeedRate</label>
+                            <label htmlFor="spotToolSpeed"> Speed Rate</label>
                             <input
                                 type="number"
                                 id="spotToolSpeed"
@@ -178,7 +179,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                             <input
                                 type="number"
                                 id="centreToolDepth"
-                                name="spotDiameter"
+                                name="centreToolDepth"
                                 title="Enter centre drill depth"
                                 value={formData.centreToolDepth}
                                 onChange={handleInputChange}
@@ -253,7 +254,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 id="drillToolDepth"
                                 name="drillToolDepth"
                                 title="Enter drill tool depth"
-                                value={formData.holeDepth>0 && `${parseFloat(formData.holeDepth)+parseFloat((formData.holeDiameter/2)/Math.tan(toRadians(parseInt(formData.drillToolAngle||118)/2)))}`}
+                                value={formData.holeDepth == 0 ||formData.holeDepth == null? formData.drillToolDepth = 0 : `${parseFloat(formData.holeDepth)+parseFloat((formData.holeDiameter/2)/Math.tan(toRadians(parseInt(formData.drillToolAngle||118)/2)))}`}
                                 onChange={handleInputChange}
                                 className="text-black w-12"
                                 min="0"
@@ -304,7 +305,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 title="Select for standard drilling cycle"
                                 onChange={handleInputChange}
                                 className="text-black w-4"
-                                checked
+                                checked={formData.drillToolCycle === "G81"}
                             />
                             <label htmlFor="drillToolCycle"> G83</label>
                             <input
@@ -315,6 +316,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 value={formData.drillToolCycle}
                                 onChange={handleInputChange}
                                 className="text-black w-4"
+                                checked={formData.drillToolCycle === "G83"}
                             /> 
                         </div>
                         <div className={`flex max-w-fit space-x-1 ml-6 ${enabled_chamfer? '' : 'pointer-events-none opacity-5'}`}>
@@ -377,7 +379,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                             <input
                                 type="checkbox"
                                 id="chamferToolCoolant"
-                                name="spotDiameter"
+                                name="chamferToolCoolant"
                                 title="Select if coolant is required"
                                 value={formData.drillDiameter}
                                 onChange={handleInputChange}
@@ -389,25 +391,275 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                     </div>    
                 </div>
                 <br/>
-                <div className="flex space-x-2">
-                    <label htmlFor="dropdown">Select a drilling pattern:</label>
-                        <select id="dropdown" 
-                                type="text"
-                                name="dropdown" 
-                                title="Select a drilling pattern from the following options"
+                <div className="flex flex-col space-x-2 space-y-1">
+                    <div className="space-x-2">
+                        <label htmlFor="dropdown">Select a drilling pattern:</label>
+                            <select id="dropdown"
+                                    type="text"
+                                    name="dropdown"
+                                    title="Select a drilling pattern from the following options"
+                                    onChange={handleInputChange}
+                                    className="text-black">
+                                <option defaultValue="">-- Select an option --</option>
+                                <option value="Point">Point</option>
+                                <option value="Line">Line</option>
+                                <option value="Square">Square</option>
+                                <option value="Grid">Grid</option>
+                                <option value="Circle">Circle</option>
+                                <option value="Arc">Arc</option>
+                            </select>
+                    </div>
+                        <div className={`flex max-w-fit space-x-1 ml-6 ${formData.dropdown==="Point"? 'block' : 'hidden'}`}> 
+                            <label htmlFor="ZVal"> Z:</label>
+                            <input 
+                                type="number"
+                                id="ZVal"
+                                name="ZVal"
+                                title="Enter Z value"
+                                value={formData.ZVal}
                                 onChange={handleInputChange}
-                                className="text-black">
-                            <option defaultValue="">-- Select an option --</option>
-                            <option value="Point">Point</option>
-                            <option value="Line">Line</option>
-                            <option value="Square">Square</option>
-                            <option value="Grid">Grid</option>
-                            <option value="Circle">Circle</option>
-                            <option value="Arc">Arc</option>
-                        </select>
-                        <div className={`flex max-w-fit space-x-1 ml-6 ${formData.dropdown==="Point"? 'text-white' : formData.dropdown && 'text-green-500'}`}> 
-                        hello world
-                        
+                                className="text-black w-12"
+                            />  
+                            <label htmlFor="XVal"> X:</label>
+                            <input 
+                                type="number"
+                                id="XVal"
+                                name="XVal"
+                                title="Enter X value"
+                                value={formData.XVal}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />  
+                            <label htmlFor="YVal"> Y:</label>
+                            <input 
+                                type="number"
+                                id="YVal"
+                                name="YVal"
+                                title="Enter Y value"
+                                value={formData.YVal}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />  
+                            <label htmlFor="RVal"> R:</label>
+                            <input 
+                                type="number"
+                                id="RVal"
+                                name="RVal"
+                                title="Enter R value"
+                                value={formData.RVal}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />  
+                        </div>   
+                        <div className={`flex max-w-fit space-x-1 ml-6 ${formData.dropdown==="Line"? 'block' : 'hidden'}`}> 
+                            <label htmlFor="ZVal"> Z:</label>
+                            <input 
+                                type="number"
+                                id="ZVal"
+                                name="ZVal"
+                                title="Enter Z value"
+                                value={formData.ZVal}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />  
+                            <label htmlFor="XVal"> X:</label>
+                            <input 
+                                type="number"
+                                id="XVal"
+                                name="XVal"
+                                title="Enter X value"
+                                value={formData.XVal}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />  
+                            <label htmlFor="YVal"> Y:</label>
+                            <input 
+                                type="number"
+                                id="YVal"
+                                name="YVal"
+                                title="Enter Y value"
+                                value={formData.YVal}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />  
+                            <label htmlFor="RVal"> R:</label>
+                            <input 
+                                type="number"
+                                id="RVal"
+                                name="RVal"
+                                title="Enter R value"
+                                value={formData.RVal}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />    
+                        </div>   
+                        <div className={`flex max-w-fit space-x-1 ml-6 ${formData.dropdown==="Square"? 'block' : 'hidden'}`}> 
+                        <label htmlFor="ZVal"> Z:</label>
+                            <input 
+                                type="number"
+                                id="ZVal"
+                                name="ZVal"
+                                title="Enter Z value"
+                                value={formData.ZVal}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />  
+                            <label htmlFor="XVal"> X:</label>
+                            <input 
+                                type="number"
+                                id="XVal"
+                                name="XVal"
+                                title="Enter X value"
+                                value={formData.XVal}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />  
+                            <label htmlFor="YVal"> Y:</label>
+                            <input 
+                                type="number"
+                                id="YVal"
+                                name="YVal"
+                                title="Enter Y value"
+                                value={formData.YVal}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />  
+                            <label htmlFor="RVal"> R:</label>
+                            <input 
+                                type="number"
+                                id="RVal"
+                                name="RVal"
+                                title="Enter R value"
+                                value={formData.RVal}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />  
+                        </div>   
+                        <div className={`flex max-w-fit space-x-1 ml-6 ${formData.dropdown==="Grid"? 'block' : 'hidden'}`}> 
+                        <label htmlFor="ZVal"> Z:</label>
+                            <input 
+                                type="number"
+                                id="ZVal"
+                                name="ZVal"
+                                title="Enter Z value"
+                                value={formData.ZVal}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />  
+                            <label htmlFor="XVal"> X:</label>
+                            <input 
+                                type="number"
+                                id="XVal"
+                                name="XVal"
+                                title="Enter X value"
+                                value={formData.XVal}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />  
+                            <label htmlFor="YVal"> Y:</label>
+                            <input 
+                                type="number"
+                                id="YVal"
+                                name="YVal"
+                                title="Enter Y value"
+                                value={formData.YVal}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />  
+                            <label htmlFor="RVal"> R:</label>
+                            <input 
+                                type="number"
+                                id="RVal"
+                                name="RVal"
+                                title="Enter R value"
+                                value={formData.RVal}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />    
+                        </div>   
+                        <div className={`flex max-w-fit space-x-1 ml-6 ${formData.dropdown==="Circle"? 'block' : 'hidden'}`}> 
+                        <label htmlFor="ZVal"> Z:</label>
+                            <input 
+                                type="number"
+                                id="ZVal"
+                                name="ZVal"
+                                title="Enter Z value"
+                                value={formData.ZVal}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />  
+                            <label htmlFor="XVal"> X:</label>
+                            <input 
+                                type="number"
+                                id="XVal"
+                                name="XVal"
+                                title="Enter X value"
+                                value={formData.XVal}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />  
+                            <label htmlFor="YVal"> Y:</label>
+                            <input 
+                                type="number"
+                                id="YVal"
+                                name="YVal"
+                                title="Enter Y value"
+                                value={formData.YVal}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />  
+                            <label htmlFor="RVal"> R:</label>
+                            <input 
+                                type="number"
+                                id="RVal"
+                                name="RVal"
+                                title="Enter R value"
+                                value={formData.RVal}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />   
+                        </div>   
+                        <div className={`flex max-w-fit space-x-1 ml-6 ${formData.dropdown==="Arc"? 'block' : 'hidden'}`}> 
+                        <label htmlFor="ZVal"> Z:</label>
+                            <input 
+                                type="number"
+                                id="ZVal"
+                                name="ZVal"
+                                title="Enter Z value"
+                                value={formData.ZVal}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />  
+                            <label htmlFor="XVal"> X:</label>
+                            <input 
+                                type="number"
+                                id="XVal"
+                                name="XVal"
+                                title="Enter X value"
+                                value={formData.XVal}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />  
+                            <label htmlFor="YVal"> Y:</label>
+                            <input 
+                                type="number"
+                                id="YVal"
+                                name="YVal"
+                                title="Enter Y value"
+                                value={formData.YVal}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />  
+                            <label htmlFor="RVal"> R:</label>
+                            <input 
+                                type="number"
+                                id="RVal"
+                                name="RVal"
+                                title="Enter R value"
+                                value={formData.RVal}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />    
                         </div>   
                 </div>
                 <br/>
