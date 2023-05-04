@@ -14,11 +14,12 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
     const [enabled_chamfer, setEnabled_chamfer] = useState(true);
 
     const [formData, setFormData] = useState({
-        holeDiameter: null, holeDepth: null, chamferWidth: null,
-        spotToolNum: null, spotToolDepth:null, spotToolFeed: null, spotToolSpeed: null, spotToolCoolant: false,
-        centreToolNum: null, centreToolDepth: null, centreToolFeed: null, centreToolSpeed: null, centreToolCoolant: false,
-        drillToolNum: null, drillToolAngle: null, drillToolFeed: null, drillToolSpeed: null, drillToolCoolant: false,
-        chamferToolNum: null, chamferToolAngle:null, chamferToolFeed: null, chamferToolSpeed: null, chamferToolCoolant: false,
+        holeDiameter: "", holeDepth: "", chamferWidth: "",
+        spotToolNum: "", spotToolDepth:"", spotToolFeed: "", spotToolSpeed: "", spotToolCoolant: false,
+        centreToolNum: "", centreToolDepth: "", centreToolFeed: "", centreToolSpeed: "", centreToolCoolant: false,
+        drillToolNum: "", drillToolAngle: "", drillToolFeed: "", drillToolSpeed: "", drillToolCoolant: false,
+        chamferToolNum: "", chamferToolAngle:"", chamferToolFeed: "", chamferToolSpeed: "", chamferToolCoolant: false,
+        dropdown: "" ,
 
 
       });
@@ -26,6 +27,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
+        console.log(`looking for ${name} and ${value} `);
         };
     
     const handleSubmit = (e) => {
@@ -56,6 +58,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                         type="number"
                         id="holeDiameter"
                         name="holeDiameter"
+                        title="Enter hole diameter"
                         value={formData.holeDiameter}
                         onChange={handleInputChange}
                         className="text-black"
@@ -67,6 +70,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                         type="number"
                         id="holeDepth"
                         name="holeDepth"
+                        title="Enter hole depth"
                         value={formData.holeDepth}
                         onChange={handleInputChange}
                         className="text-black"
@@ -78,6 +82,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                         type="number"
                         id="chamferWidth"
                         name="chamferWidth"
+                        title="Enter chamfer width"
                         value={formData.chamferWidth}
                         onChange={handleInputChange}
                         className="text-black"
@@ -102,18 +107,20 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 type="number"
                                 id="spotToolNum"
                                 name="spotToolNum"
+                                title="Enter spot face tool number"
                                 value={formData.spotToolNum}
                                 onChange={handleInputChange}
                                 className="text-black w-12"
                                 min="0"
                                 step="any"
                             />
-                            <label htmlFor="spotToolDepth"> Stock Removal</label>
+                            <label htmlFor="spotToolStock"> Stock Removal</label>
                             <input
                                 type="number"
-                                id="spotToolDepth"
-                                name="spotToolDepth"
-                                value={formData.spotToolDepth || 0}
+                                id="spotToolStock"
+                                name="spotToolStock"
+                                title="Enter stock to be removed by spot face tool"
+                                value={formData.spotToolStock || 0}
                                 onChange={handleInputChange}
                                 className="text-black w-12"
                                 min="0"
@@ -124,6 +131,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 type="number"
                                 id="spotToolFeed"
                                 name="spotToolFeed"
+                                title="Enter feed rate for spot face tool"
                                 value={formData.spotToolFeed}
                                 onChange={handleInputChange}
                                 className="text-black w-12"
@@ -135,6 +143,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 type="number"
                                 id="spotToolSpeed"
                                 name="spotToolSpeed"
+                                title="Enter speed rate for spot face tool"
                                 value={formData.spotToolSpeed}
                                 onChange={handleInputChange}
                                 className="text-black w-12"
@@ -146,6 +155,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 type="checkbox"
                                 id="spotToolCoolant"
                                 name="spotToolCoolant"
+                                title="Select if coolant is required"
                                 value={formData.spotToolCoolant}
                                 onChange={handleInputChange}
                                 className="w-4"
@@ -157,6 +167,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 type="number"
                                 id="centreToolNum"
                                 name="centreToolNum"
+                                title="Enter centre drill tool number"
                                 value={formData.centreToolNum}
                                 onChange={handleInputChange}
                                 className="text-black w-12"
@@ -168,6 +179,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 type="number"
                                 id="centreToolDepth"
                                 name="spotDiameter"
+                                title="Enter centre drill depth"
                                 value={formData.centreToolDepth}
                                 onChange={handleInputChange}
                                 className="text-black w-12"
@@ -179,6 +191,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 type="number"
                                 id="centreToolFeed"
                                 name="centreToolFeed"
+                                title="Enter centre drill feed rate"
                                 value={formData.centreToolFeed}
                                 onChange={handleInputChange}
                                 className="text-black w-12"                                
@@ -190,6 +203,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 type="number"
                                 id="centreToolSpeed"
                                 name="centreToolSpeed"
+                                title="Enter centre drill speed rate"
                                 value={formData.centreToolSpeed}
                                 onChange={handleInputChange}
                                 className="text-black w-12"
@@ -201,6 +215,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 type="checkbox"
                                 id="centreToolCoolant"
                                 name="centreToolCoolant"
+                                title="Select if coolant is required"
                                 value={formData.centreToolCoolant}
                                 onChange={handleInputChange}
                                 className="w-4"
@@ -212,6 +227,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 type="number"
                                 id="drillToolNum"  
                                 name="drillToolNum"
+                                title="Enter drill tool number"
                                 value={formData.drillToolNum}
                                 onChange={handleInputChange}
                                 className="text-black w-12"
@@ -223,6 +239,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 type="number"
                                 id="drillToolAngle"
                                 name="drillToolAngle"
+                                title="Enter drill tool angle"
                                 value={formData.drillToolAngle||118}
                                 onChange={handleInputChange}
                                 className="text-black w-12"
@@ -235,7 +252,8 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 type="number"
                                 id="drillToolDepth"
                                 name="drillToolDepth"
-                                value={`${parseFloat(formData.holeDepth)+parseFloat((formData.holeDiameter/2)/Math.tan(toRadians(parseInt(formData.drillToolAngle||118)/2)))}`}
+                                title="Enter drill tool depth"
+                                value={formData.holeDepth>0 && `${parseFloat(formData.holeDepth)+parseFloat((formData.holeDiameter/2)/Math.tan(toRadians(parseInt(formData.drillToolAngle||118)/2)))}`}
                                 onChange={handleInputChange}
                                 className="text-black w-12"
                                 min="0"
@@ -247,6 +265,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 type="number" 
                                 id="drillToolFeed"
                                 name="drillToolFeed"
+                                title="Enter drill tool feed rate"
                                 value={formData.drillToolFeed}
                                 onChange={handleInputChange}
                                 className="text-black w-12"
@@ -258,6 +277,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 type="number"
                                 id="drillToolSpeed"
                                 name="drillToolSpeed"
+                                title="Enter drill tool speed rate"
                                 value={formData.drillToolSpeed}
                                 onChange={handleInputChange}
                                 className="text-black w-12"
@@ -269,6 +289,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 type="checkbox"
                                 id="drillToolCoolant"
                                 name="drillToolCoolant"
+                                title="Select if coolant is required"
                                 value={formData.drillToolCoolant}
                                 onChange={handleInputChange}
                                 className="text-black w-4"
@@ -280,6 +301,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 id="drillToolCycle"
                                 name="drillToolCycle"
                                 value="G81"
+                                title="Select for standard drilling cycle"
                                 onChange={handleInputChange}
                                 className="text-black w-4"
                                 checked
@@ -289,6 +311,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 type="radio"
                                 id="drillToolCycle"
                                 name="drillToolCycle"
+                                title="Select for peck drilling cycle"
                                 value={formData.drillToolCycle}
                                 onChange={handleInputChange}
                                 className="text-black w-4"
@@ -300,6 +323,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 type="number" 
                                 id="chamferToolNum"
                                 name="chamferToolNum"
+                                title="Enter chamfer tool number"
                                 value={formData.chamferToolNum}
                                 onChange={handleInputChange}
                                 className="text-black w-12"
@@ -309,6 +333,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 type="number"
                                 id="chamferToolAngle"
                                 name="chamferToolAngle"
+                                title="Enter chamfer tool angle"
                                 value={formData.chamferToolAngle||90}
                                 onChange={handleInputChange}
                                 className="text-black w-12"
@@ -320,6 +345,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 type="number"
                                 id="chamferToolDepth"
                                 name="chamferToolDepth"
+                                title="Enter chamfer tool depth"
                                 value={formData.chamferWidth == 0|| formData.chamferWidth == null ? formData.chamferToolDepth = 0 : (parseFloat(formData.holeDiameter/2)+parseFloat(formData.chamferWidth))/Math.tan(toRadians(parseFloat((formData.chamferToolAngle||90)/2)))}
                                 onChange={handleInputChange}
                                 className="text-black w-12"
@@ -330,6 +356,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 type="number"
                                 id="chamferToolFeed"
                                 name="chamferToolFeed"
+                                title="Enter chamfer tool feed rate"
                                 value={formData.chamferToolFeed}
                                 onChange={handleInputChange}
                                 className="text-black w-12"
@@ -340,16 +367,18 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 type="number"
                                 id="chamferToolSpeed"
                                 name="chamferToolSpeed"
+                                title="Enter chamfer tool speed rate"
                                 value={formData.chamferToolSpeed}
                                 onChange={handleInputChange}
                                 className="text-black w-12"
                                 min="0"
                             />
-                            <label htmlFor="spotDiameter"> Coolant</label>
+                            <label htmlFor="chamferToolCoolant"> Coolant</label>
                             <input
                                 type="checkbox"
-                                id="spotDiameter"
+                                id="chamferToolCoolant"
                                 name="spotDiameter"
+                                title="Select if coolant is required"
                                 value={formData.drillDiameter}
                                 onChange={handleInputChange}
                                 className="text-black w-4"
@@ -358,6 +387,28 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                         
                       </div>  
                     </div>    
+                </div>
+                <br/>
+                <div className="flex space-x-2">
+                    <label htmlFor="dropdown">Select a drilling pattern:</label>
+                        <select id="dropdown" 
+                                type="text"
+                                name="dropdown" 
+                                title="Select a drilling pattern from the following options"
+                                onChange={handleInputChange}
+                                className="text-black">
+                            <option defaultValue="">-- Select an option --</option>
+                            <option value="Point">Point</option>
+                            <option value="Line">Line</option>
+                            <option value="Square">Square</option>
+                            <option value="Grid">Grid</option>
+                            <option value="Circle">Circle</option>
+                            <option value="Arc">Arc</option>
+                        </select>
+                        <div className={`flex max-w-fit space-x-1 ml-6 ${formData.dropdown==="Point"? 'text-white' : formData.dropdown && 'text-green-500'}`}> 
+                        hello world
+                        
+                        </div>   
                 </div>
                 <br/>
                 
