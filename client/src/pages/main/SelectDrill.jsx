@@ -19,7 +19,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
         centreToolNum: "", centreToolDepth: "", centreToolFeed: "", centreToolSpeed: "", centreToolCoolant: "",
         drillToolNum: "", drillToolAngle: "", drillToolFeed: "", drillToolSpeed: "", drillToolCoolant: "", drillToolCycle:"",
         chamferToolNum: "", chamferToolAngle:"", chamferToolFeed: "", chamferToolSpeed: "", chamferToolCoolant: "",
-        dropdown: "" , XVal: "", YVal: "", ZVal: "", RVal: "",
+        dropdown: "" , XVal: "", YVal: "", ZVal: "", RVal: "", Theta: "", Spacing: "", SpacingMode: "", NumberOfHoles: "",
 
 
       });
@@ -467,7 +467,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 type="number"
                                 id="XVal"
                                 name="XVal"
-                                title="Enter X value"
+                                title="Enter X position of first hole"
                                 value={formData.XVal}
                                 onChange={handleInputChange}
                                 className="text-black w-12"
@@ -477,7 +477,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 type="number"
                                 id="YVal"
                                 name="YVal"
-                                title="Enter Y value"
+                                title="Enter Y position of first hole"
                                 value={formData.YVal}
                                 onChange={handleInputChange}
                                 className="text-black w-12"
@@ -492,6 +492,50 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose}){
                                 onChange={handleInputChange}
                                 className="text-black w-12"
                             />    
+                            <label htmlFor="Theta"> θ:</label>
+                            <input 
+                                type="number"
+                                id="Theta"
+                                name="Theta"
+                                title="Enter angle from X axis"
+                                value={formData.Theta}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />    
+                            <label htmlFor="Spacing"> Pitch/Length:</label>
+                            <input 
+                                type="number"
+                                id="Spacing"
+                                name="Spacing"
+                                title="Enter Pitch between holes or length of line"
+                                value={formData.Spacing}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />    
+                            <label htmlFor="SpacingMode"> </label>
+                            <select 
+                                type="number"
+                                id="SpacingMode"
+                                name="SpacingMode"
+                                title="Select pitch or length"
+                                value={formData.SpacingMode}
+                                onChange={handleInputChange}
+                                className="text-black w-12">
+                                <option defaultValue="">Select</option>
+                                <option value="Pitch">Pitch</option>
+                                <option value="Length">Length</option>
+                            </select>
+                            <label htmlFor="NumberOfHoles"> # of Holes:</label>
+                            <input 
+                                type="number"
+                                id="NumberOfHoles"
+                                name="NumberOfHoles"
+                                title="Enter the number of holes"
+                                value={formData.NumberOfHoles}
+                                onChange={handleInputChange}
+                                className="text-black w-12"
+                            />        
+                               
                         </div>   
                         <div className={`flex max-w-fit space-x-1 ml-6 ${formData.dropdown==="Square"? 'block' : 'hidden'}`}> 
                         <label htmlFor="ZVal"> Z:</label>
