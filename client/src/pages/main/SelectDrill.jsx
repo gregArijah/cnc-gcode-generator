@@ -20,7 +20,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
         centreToolNum: "", centreToolDepth: "", centreToolFeed: "", centreToolSpeed: "", centreToolCoolant: "",
         drillToolNum: "", drillToolAngle: "", drillToolDepth: "", drillToolFeed: "", drillToolSpeed: "", drillToolCoolant: "", drillToolCycle: "",
         chamferToolNum: "", chamferToolAngle: "", chamferToolFeed: "", chamferToolSpeed: "", chamferToolCoolant: "",
-        dropdown: "", xPosition: "", yPosition: "", zVal: "", rVal: "", theta: "", spacing: "", spacingMode: "", numberOfHoles: "",
+        dropdown: "", xPosition: "", yPosition: "", zVal: "", theta: "", spacing: "", spacingMode: "", numberOfHoles: "",
         returnMode: "", radius: "",
     });
 
@@ -33,25 +33,25 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+        const { value } = e.target;
         //calculate values
-        operations.push({
-            name:"drill2",
-            desc:"drill for 1 inch holes",
-            tool:"1 inch drill",
-            gcode:"gcode goes here for drilling 1 inch holes"
-            });
+        // operations.push({
+        //     name:"drill2",
+        //     desc:"drill for 1 inch holes",
+        //     tool:"1 inch drill",
+        //     gcode:"gcode goes here for drilling 1 inch holes"
+        //     });
+        operations.push({formData});
+        console.log(operations);
         
-            //re-init values in form
-        setFormData({
-            holeDiameter: "", holeDepth: "", chamferWidth: "",
-            spotToolNum: "", spotToolDepth: "", spotToolFeed: "", spotToolSpeed: "", spotToolCoolant: "",
-            centreToolNum: "", centreToolDepth: "", centreToolFeed: "", centreToolSpeed: "", centreToolCoolant: "",
-            drillToolNum: "", drillToolAngle: "", drillToolDepth: "", drillToolFeed: "", drillToolSpeed: "", drillToolCoolant: "", drillToolCycle: "",
-            chamferToolNum: "", chamferToolAngle: "", chamferToolFeed: "", chamferToolSpeed: "", chamferToolCoolant: "",
-            dropdown: "", xPosition: "", yPosition: "", zVal: "", rVal: "", theta: "", spacing: "", spacingMode: "", numberOfHoles: "",
-            returnMode: "", radius: "",
-        });
+        
+        //re-init values in form
+        //setFormData({ ...formData, [value]: "" });
+
+        Object.keys(formData).forEach((key) => {
+            formData[key]= "";
+          });
+    
         onClose();
         selectMainClose();
 
@@ -455,7 +455,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
                             onChange={handleInputChange}
                             className="text-black w-12"
                         />
-                        <label htmlFor="rVal"> Return </label>
+                        <label htmlFor="returnMode"> Return </label>
                         <select
                             type="number"
                             id="returnMode"
@@ -465,8 +465,8 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
                             onChange={handleInputChange}
                             className="text-black w-12">
                             <option defaultValue="">Select</option>
-                            <option value="Pitch">Init</option>
-                            <option value="Length">R Point</option>
+                            <option value="Init">Init</option>
+                            <option value="R Point">R Point</option>
                         </select>
                     </div>
                     <div className={`flex max-w-fit space-x-1 ml-6 ${formData.dropdown === "Line" ? 'block' : 'hidden'}`}>
@@ -500,19 +500,6 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
                             onChange={handleInputChange}
                             className="text-black w-12"
                         />
-                        <label htmlFor="rVal"> Return </label>
-                        <select
-                            type="number"
-                            id="returnMode"
-                            name="returnMode"
-                            title="Select return mode"
-                            value={formData.returnMode}
-                            onChange={handleInputChange}
-                            className="text-black w-12">
-                            <option defaultValue="">Select</option>
-                            <option value="Pitch">Init</option>
-                            <option value="Length">R Point</option>
-                        </select>
                         <label htmlFor="theta"> θ:</label>
                         <input
                             type="number"
@@ -557,6 +544,19 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
                             onChange={handleInputChange}
                             className="text-black w-12"
                         />
+                        <label htmlFor="returnMode"> Return </label>
+                        <select
+                            type="number"
+                            id="returnMode"
+                            name="returnMode"
+                            title="Select return mode"
+                            value={formData.returnMode}
+                            onChange={handleInputChange}
+                            className="text-black w-12">
+                            <option defaultValue="">Select</option>
+                            <option value="Init">Init</option>
+                            <option value="R Point">R Point</option>
+                        </select>
 
                     </div>
                     <div className={`flex max-w-fit space-x-1 ml-6 ${formData.dropdown === "Square" ? 'block' : 'hidden'}`}>
@@ -590,7 +590,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
                             onChange={handleInputChange}
                             className="text-black w-12"
                         />
-                        <label htmlFor="rVal"> Return </label>
+                        <label htmlFor="returnMode"> Return </label>
                         <select
                             type="number"
                             id="returnMode"
@@ -600,8 +600,8 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
                             onChange={handleInputChange}
                             className="text-black w-12">
                             <option defaultValue="">Select</option>
-                            <option value="Pitch">Init</option>
-                            <option value="Length">R Point</option>
+                            <option value="Init">Init</option>
+                            <option value="R Point">R Point</option>
                         </select>
                     </div>
                     <div className={`flex max-w-fit space-x-1 ml-6 ${formData.dropdown === "Grid" ? 'block' : 'hidden'}`}>
@@ -635,7 +635,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
                             onChange={handleInputChange}
                             className="text-black w-12"
                         />
-                        <label htmlFor="rVal"> Return </label>
+                        <label htmlFor="returnMode"> Return </label>
                         <select
                             type="number"
                             id="returnMode"
@@ -645,8 +645,8 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
                             onChange={handleInputChange}
                             className="text-black w-12">
                             <option defaultValue="">Select</option>
-                            <option value="Pitch">Init</option>
-                            <option value="Length">R Point</option>
+                            <option value="Init">Init</option>
+                            <option value="R Point">R Point</option>
                         </select>
                     </div>
                     <div className={`flex max-w-fit space-x-1 ml-6 ${formData.dropdown === "Circle" ? 'block' : 'hidden'}`}>
@@ -680,19 +680,6 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
                             onChange={handleInputChange}
                             className="text-black w-12"
                         />
-                        <label htmlFor="rVal"> Return </label>
-                        <select
-                            type="number"
-                            id="returnMode"
-                            name="returnMode"
-                            title="Select return mode"
-                            value={formData.returnMode}
-                            onChange={handleInputChange}
-                            className="text-black w-12">
-                            <option defaultValue="">Select</option>
-                            <option value="Pitch">Init</option>
-                            <option value="Length">R Point</option>
-                        </select>
                         <label htmlFor="theta"> θ:</label>
                         <input
                             type="number"
@@ -704,7 +691,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
                             className="text-black w-12"
                         />
 
-                        <label htmlFor="Radius"> Radius:</label>
+                        <label htmlFor="radius"> Radius:</label>
                         <input
                             type="number"
                             id="radius"
@@ -715,7 +702,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
                             className="text-black w-12"
                             min="0"
                         />
-                        <label htmlFor="NumberOFHoles"> # of Holes:</label>
+                        <label htmlFor="numberOFHoles"> # of Holes:</label>
                         <input
                             type="number"
                             id="numberOfHoles"
@@ -726,6 +713,19 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
                             className="text-black w-12"
                             min="0"
                         />
+                        <label htmlFor="returnMode"> Return </label>
+                        <select
+                            type="number"
+                            id="returnMode"
+                            name="returnMode"
+                            title="Select return mode"
+                            value={formData.returnMode}
+                            onChange={handleInputChange}
+                            className="text-black w-12">
+                            <option defaultValue="">Select</option>
+                            <option value="Init">Init</option>
+                            <option value="R Point">R Point</option>
+                        </select>
                     </div>
                     <div className={`flex max-w-fit space-x-1 ml-6 ${formData.dropdown === "Arc" ? 'block' : 'hidden'}`}>
                         <label htmlFor="zVal"> Z</label>
@@ -758,7 +758,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
                             onChange={handleInputChange}
                             className="text-black w-12"
                         />
-                        <label htmlFor="rVal"> Return </label>
+                        <label htmlFor="returnMode"> Return </label>
                         <select
                             type="number"
                             id="returnMode"
@@ -768,8 +768,8 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
                             onChange={handleInputChange}
                             className="text-black w-12">
                             <option defaultValue="">Select</option>
-                            <option value="Pitch">Init</option>
-                            <option value="Length">R Point</option>
+                            <option value="Init">Init</option>
+                            <option value="R Point">R Point</option>
                         </select>
                     </div>
                 </div>
