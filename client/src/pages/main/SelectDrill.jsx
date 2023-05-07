@@ -14,7 +14,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
     const [enabled_drill, setEnabled_drill] = useState(true);
     const [enabled_chamfer, setEnabled_chamfer] = useState(true);
 
-    const [formData, setFormData] = useState({
+    const INITIAL_STATE = {
         holeDiameter: "", holeDepth: "", chamferWidth: "",
         spotToolNum: "", spotToolDepth: "", spotToolFeed: "", spotToolSpeed: "", spotToolCoolant: "",
         centreToolNum: "", centreToolDepth: "", centreToolFeed: "", centreToolSpeed: "", centreToolCoolant: "",
@@ -22,7 +22,9 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
         chamferToolNum: "", chamferToolAngle: "", chamferToolFeed: "", chamferToolSpeed: "", chamferToolCoolant: "",
         dropdown: "", xPosition: "", yPosition: "", zVal: "", theta: "", spacing: "", spacingMode: "", numberOfHoles: "",
         returnMode: "", radius: "",
-    });
+    };
+    const [formData, setFormData] = useState(INITIAL_STATE);
+    
 
     const handleInputChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -48,10 +50,8 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
         //re-init values in form
         //setFormData({ ...formData, [value]: "" });
 
-        Object.keys(formData).forEach((key) => {
-            formData[key]= "";
-          });
-    
+        setFormData(INITIAL_STATE);
+        
         onClose();
         selectMainClose();
 
