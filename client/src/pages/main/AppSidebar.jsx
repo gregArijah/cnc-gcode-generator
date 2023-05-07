@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { plusIcon } from '../../icons/FontAwesome';
 import SelectOpType from './Select_Main';
 
-const operations = [
+export const operations = [
     {
     name:"centre drill",
     desc:"centre drill for 1 inch holes",
