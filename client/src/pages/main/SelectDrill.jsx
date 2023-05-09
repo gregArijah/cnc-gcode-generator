@@ -10,7 +10,7 @@ function toRadians(angle) {
 
 export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
     const [enabled_spot, setEnabled_spot] = useState(false);
-    const [enabled_centre, setEnabled_centre] = useState(true);
+    const [enabled_centre, setEnabled_centre] = useState("");
     const [enabled_drill, setEnabled_drill] = useState(true);
     const [enabled_chamfer, setEnabled_chamfer] = useState(true);
 
@@ -51,7 +51,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
         //setFormData({ ...formData, [value]: "" });
 
         setFormData(INITIAL_STATE);
-        
+
         onClose();
         selectMainClose();
 

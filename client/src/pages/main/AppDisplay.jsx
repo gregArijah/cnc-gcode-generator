@@ -1,10 +1,22 @@
+import { operations } from "./AppSidebar"
+
 export default function Display({ currentTab, setCurrentTab, currentOperation } ){
 
     return(
         <div className='p-3'> 
-            {currentTab === "Meta" && <div>Meta info about "{currentOperation}" goes here</div>}
-            {currentTab === "G-code" && <div>G-code info about  "{currentOperation}" goes here</div>}
-            {currentTab === "Simulate" && <div>Simulation about "{currentOperation}" info goes here</div>}
-            {currentTab === "List" && <div>Tool list info for entire project goes here</div>}
+            <div className= {currentTab === "Meta" ? 'block' : 'hidden'}>
+              Meta info about "{currentOperation}" goes here
+            </div>
+            <div className= {currentTab === "G-code" ? 'block' : 'hidden'}>
+              G-code info about "{currentOperation}" goes here
+            </div>
+            <div className= {currentTab === "Simulate" ? 'block' : 'hidden'}>
+              Simulation info about "{currentOperation}" goes here
+            </div>
+            <div className= {currentTab === "List" ? 'block' : 'hidden'}>
+              Tool list info about "{currentOperation}" goes here
+            </div>
+            
+        
         </div>
 )}
