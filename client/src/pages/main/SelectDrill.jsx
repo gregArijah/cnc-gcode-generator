@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import MyModal from "../../components/modal"
 import MyToggle from "../../components/toggle"
 import { operations } from "./AppSidebar";
+import drillingPoint from "../../pathLogic/drillingPoint";
 
 //convert degrees to radians
 function toRadians(angle) {
@@ -33,9 +34,13 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
         console.log(`looking for ${name} and ${val} `);
     };
 
+    let gCode="34";
     const handleSubmit = (e) => {
         e.preventDefault();
+       //let gCode=""
         const { value } = e.target;
+        if (formData.dropdown === "Point")  gCode = drillingPoint(formData);
+        formData.gCode = gCode;
         //calculate values
         // operations.push({
         //     name:"drill2",
