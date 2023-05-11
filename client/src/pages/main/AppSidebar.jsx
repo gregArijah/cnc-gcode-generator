@@ -4,24 +4,24 @@ import { plusIcon } from '../../icons/FontAwesome';
 import SelectOpType from './Select_Main';
 
 export const operations = [
-    {
-    name:"centre drill",
-    desc:"centre drill for 1 inch holes",
-    tool:"centre drill",
-    gcode:"gcode goes here for centre drilling 1 inch holes"
-    },
-    {
-    name:"pilot drill",
-    desc:"pilot drill for 1 inch holes",
-    tool:"5/8 drill",
-    gcode:"gcode goes here for pilot drilling 1 inch holes with 5/8 drill"
-    },
-    {
-    name:"drill",
-    desc:"drill for 1 inch holes",
-    tool:"1 inch drill",
-    gcode:"gcode goes here for drilling 1 inch holes"
-    }
+    // {
+    // name:"centre drill",
+    // desc:"centre drill for 1 inch holes",
+    // tool:"centre drill",
+    // gcode:"gcode goes here for centre drilling 1 inch holes"
+    // },
+    // {
+    // name:"pilot drill",
+    // desc:"pilot drill for 1 inch holes",
+    // tool:"5/8 drill",
+    // gcode:"gcode goes here for pilot drilling 1 inch holes with 5/8 drill"
+    // },
+    // {
+    // name:"drill",
+    // desc:"drill for 1 inch holes",
+    // tool:"1 inch drill",
+    // gcode:"gcode goes here for drilling 1 inch holes"
+    // }
 ]
    
 export default function Sidebar({ currentOperation, setCurrentOperation }){
@@ -43,7 +43,7 @@ export default function Sidebar({ currentOperation, setCurrentOperation }){
             </div>
             <ul className='pl-4'>
                 {operations.map((item,index)=>{
-                    return <li key={index} className= {`mr-1 py-0.5 cursor-pointer ${currentOperation === `op${index+1}` ? 'text-orange-500' : 'text-white hover:text-orange-700'}`} onClick={() => setCurrentOperation(`op${index+1}`)}>{index+1}. {item.name}</li>
+                    return <li key={index} className= {`mr-1 py-0.5 cursor-pointer ${currentOperation === `op${index+1}` ? 'text-orange-500' : 'text-white hover:text-orange-700'}`} onClick={() => setCurrentOperation(index)}>{index+1}. {item.name}</li>
                 })}
             </ul>  
             

@@ -22,7 +22,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
         drillToolNum: "", drillToolAngle: "", drillToolDepth: "", drillToolFeed: "", drillToolSpeed: "", drillToolCoolant: "", drillToolCycle: "",
         chamferToolNum: "", chamferToolAngle: "", chamferToolFeed: "", chamferToolSpeed: "", chamferToolCoolant: "",
         dropdown: "", xPosition: "", yPosition: "", zVal: "", theta: "", spacing: "", spacingMode: "", numberOfHoles: "",
-        returnMode: "", radius: "",
+        returnMode: "", radius: "", gCode: "",
     };
     const [formData, setFormData] = useState(INITIAL_STATE);
     
@@ -39,7 +39,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
         e.preventDefault();
        //let gCode=""
         const { value } = e.target;
-        if (formData.dropdown === "Point")  gCode = drillingPoint(formData);
+        if (formData.dropdown === "Point")  gCode = drillingPoint({formData});
         formData.gCode = gCode;
         //calculate values
         // operations.push({
@@ -274,7 +274,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
                                     id="drillToolDepth"
                                     name="drillToolDepth"
                                     title="Enter drill tool depth"
-                                    value={formData.holeDepth == 0 || formData.holeDepth == null ? 0 : `${parseFloat(formData.holeDepth) + parseFloat((formData.holeDiameter / 2) / Math.tan(toRadians(parseInt(formData.drillToolAngle || 118) / 2)))}`}
+                                    value={formData.holeDepth == 0 || formData.holeDepth == "" ? 0 : parseFloat(formData.holeDepth) + parseFloat((formData.holeDiameter / 2) / Math.tan(toRadians(parseInt(formData.drillToolAngle || 118) / 2)))}
                                     onChange={handleInputChange}
                                     className="text-black w-12"
                                     min="0"

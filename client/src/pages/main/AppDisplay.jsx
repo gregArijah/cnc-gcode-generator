@@ -1,6 +1,18 @@
 import { operations } from "./AppSidebar"
 
-export default function Display({ currentTab, setCurrentTab, currentOperation } ){
+export default function Display({ currentTab, currentOperation } ){
+    console.log(operations)
+    let gcode = "";
+    //let operationArray = Object.entries(operations[currentOperation]|| "");
+    //'gcode = operationArray[0][1].gCode
+    if (operations[currentOperation] === undefined) {
+        null
+    } else {
+        gcode = (operations[currentOperation].formData.gCode)
+    }
+    //console.log("hello", operations[currentOperation].formData.gCode);
+   // let gcode = operationArray[currentOperation].formData.gCode;
+    console.log("log gcode: " + gcode);
 
     return(
         <div className='p-3'> 
@@ -8,7 +20,9 @@ export default function Display({ currentTab, setCurrentTab, currentOperation } 
               Meta info about "{currentOperation}" goes here
             </div>
             <div className= {currentTab === "G-code" ? 'block' : 'hidden'}>
-              G-code info about "{currentOperation}" goes here
+              <pre>
+                {gcode}
+              </pre>
             </div>
             <div className= {currentTab === "Simulate" ? 'block' : 'hidden'}>
               Simulation info about "{currentOperation}" goes here
