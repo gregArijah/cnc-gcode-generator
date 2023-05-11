@@ -37,7 +37,6 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
         diameter = parseFloat(diameter);
         depth = parseFloat(depth);
         let result = depth == 0 || depth == "" ? 0 : depth + (diameter / 2) / Math.tan(toRadians((angle||118) / 2))
-        result = parseFloat((result).toFixed(4));
         console.log(`drillToolDepth: ${result}`);
         console.log(!isNaN(result));
         return result;
