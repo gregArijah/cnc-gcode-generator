@@ -43,7 +43,7 @@ export default function Sidebar({ currentOperation, setCurrentOperation }){
             </div>
             <ul className='pl-4'>
                 {operations.map((item,index)=>{
-                    return <li key={index} className= {`mr-1 py-0.5 cursor-pointer ${currentOperation === `op${index+1}` ? 'text-orange-500' : 'text-white hover:text-orange-700'}`} onClick={() => setCurrentOperation(index)}>{index+1}. {item.name}</li>
+                    return <li key={index} className= {`mr-1 py-0.5 cursor-pointer ${currentOperation === `op${index+1}` ? 'text-orange-500' : 'text-white hover:text-orange-700'}`} onClick={() => setCurrentOperation(index)}>Operation {index+1}</li>
                 })}
             </ul>  
             

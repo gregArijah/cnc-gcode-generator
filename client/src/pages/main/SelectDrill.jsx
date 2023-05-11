@@ -27,14 +27,41 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
     const [formData, setFormData] = useState(INITIAL_STATE);
     
 
+    
+
+    let gCode="34";  //this 34 is for debugging only, delete later
+
+    //calculate the depth of the drill tool based on the angle and diameter and callout depth
+    const drillToolDepthCalc = (angle, diameter, depth) => { 
+        angle = parseFloat(angle);
+        diameter = parseFloat(diameter);
+        depth = parseFloat(depth);
+        let result = depth == 0 || depth == "" ? 0 : depth + (diameter / 2) / Math.tan(toRadians((angle||118) / 2))
+        result = parseFloat((result).toFixed(4));
+        console.log(`drillToolDepth: ${result}`);
+        console.log(!isNaN(result));
+        return result;
+    }
+
     const handleInputChange = (e) => {
         const { name, value, type, checked } = e.target;
         const val = type === "checkbox" ? checked : value;
-        setFormData({ ...formData, [name]: val });
+
+        setFormData((formData)=>({
+            ...formData, 
+            [name]: val,
+            drillToolDepth: name === 'drillToolAngle' || name === 'holeDiameter' || name === 'holeDepth'
+            ? drillToolDepthCalc(
+                name === "drillToolAngle" ? val : formData.drillToolAngle, 
+                name === "holeDiameter" ? val : formData.holeDiameter, 
+                name === "holeDepth" ? val : formData.holeDepth
+          ) 
+            : formData.drillToolDepth
+        }));
+
         console.log(`looking for ${name} and ${val} `);
     };
 
-    let gCode="34";
     const handleSubmit = (e) => {
         e.preventDefault();
        //let gCode=""
@@ -46,14 +73,10 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
         //     name:"drill2",
         //     desc:"drill for 1 inch holes",
         //     tool:"1 inch drill",
-        //     gcode:"gcode goes here for drilling 1 inch holes"
+        //     gCode:"gcode goes here for drilling 1 inch holes"
         //     });
         operations.push({formData});
         console.log(operations);
-        
-        
-        //re-init values in form
-        //setFormData({ ...formData, [value]: "" });
 
         setFormData(INITIAL_STATE);
 
@@ -67,6 +90,8 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
         e.preventDefault();
         onClose();
     }
+
+   
 
 
     return (
@@ -274,7 +299,9 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
                                     id="drillToolDepth"
                                     name="drillToolDepth"
                                     title="Enter drill tool depth"
-                                    value={formData.holeDepth == 0 || formData.holeDepth == "" ? 0 : parseFloat(formData.holeDepth) + parseFloat((formData.holeDiameter / 2) / Math.tan(toRadians(parseInt(formData.drillToolAngle || 118) / 2)))}
+                                    value={formData.drillToolDepth || 0}
+                                    //value={drillToolDepth(formData.drillToolAngle, formData.holeDiameter, formData.holeDepth)||formData.drillToolDepth}
+                                    // value={formData.holeDepth == 0 || formData.holeDepth == "" ? 0 : parseFloat(formData.holeDepth) + parseFloat((formData.holeDiameter / 2) / Math.tan(toRadians(parseInt(formData.drillToolAngle || 118) / 2)))}
                                     onChange={handleInputChange}
                                     className="text-black w-12"
                                     min="0"
