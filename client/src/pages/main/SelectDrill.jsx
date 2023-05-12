@@ -3,6 +3,7 @@ import MyModal from "../../components/modal"
 import MyToggle from "../../components/toggle"
 import { operations } from "./AppSidebar";
 import drillingPoint from "../../pathLogic/drillingPoint";
+import drillingLine from "../../pathLogic/drillingLine";
 
 //convert degrees to radians
 function toRadians(angle) {
@@ -66,6 +67,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
        //let gCode=""
         const { value } = e.target;
         if (formData.dropdown === "Point")  gCode = drillingPoint({formData});
+        if (formData.dropdown === "Line")  gCode = drillingLine({formData});
         formData.gCode = gCode;
         //calculate values
         // operations.push({

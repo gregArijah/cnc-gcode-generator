@@ -13,6 +13,7 @@ export default function Display({ currentTab, currentOperation } ){
     //console.log("hello", operations[currentOperation].formData.gCode);
    // let gcode = operationArray[currentOperation].formData.gCode;
     console.log("log gcode: " + gcode);
+    console.log("log currentOperation: " + currentOperation);
 
     return(
         <div className='p-3'> 
