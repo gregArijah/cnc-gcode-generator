@@ -23,16 +23,16 @@ export default function drillingCircle({formData}) {
 
     let circleArray = [];
     //calculate postion of holes and add to array
-    for (let i = 1; i < nHoles; i++) {
+    for (let i = 0; i < nHoles; i++) {
         let x = radius * Math.cos(toRadians(parseFloat(theta) + pitchAngle * i));
         let y = radius * Math.sin(toRadians(parseFloat(theta) + pitchAngle * i));
         //let x = (parseFloat(X) + (spacing * Math.cos(toRadians(theta)) * i)).toFixed(4);
         //let y = (parseFloat(Y) + (spacing * Math.sin(toRadians(theta)) * i)).toFixed(4);
-        circleArray.push([x,y]);
+        circleArray.push([x.toFixed(4),y.toFixed(4)]);
     }
     let xStart = circleArray && circleArray[0][0];
     let yStart = circleArray && circleArray[0][1];
-
+    circleArray.shift();    //remove first element from array 
     //convert array to g-code
 
     
@@ -47,7 +47,7 @@ export default function drillingCircle({formData}) {
     G54 G00 X${xStart} Y${yStart}
     G43 H${T} Z${safeZ} ${Coolant ? "M08" : ""}
     ${Return} ${Cycle} Z${finalZ} R.5 F${F}
-    ${circleArray.slice(1).map((point) => `X${point[0]} Y${point[1]}`).join("\n")}
+    ${circleArray.map((point) => `X${point[0]} Y${point[1]}`).join("\n")}
     G00 Z${safeZ} ${Coolant ? "M09" : ""}
     G91 G28 Z0
     G91 G28 X0 Y0
