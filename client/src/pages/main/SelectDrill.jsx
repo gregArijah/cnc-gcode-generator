@@ -5,6 +5,7 @@ import { operations } from "./AppSidebar";
 import drillingPoint from "../../pathLogic/drillingPoint";
 import drillingLine from "../../pathLogic/drillingLine";
 import drillingCircle from "../../pathLogic/drillingCircle";
+import drillingArc from "../../pathLogic/drillingArc";
 
 //convert degrees to radians
 function toRadians(angle) {
@@ -70,6 +71,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
         if (formData.dropdown === "Point")  gCode = drillingPoint({formData});
         if (formData.dropdown === "Line")  gCode = drillingLine({formData});
         if (formData.dropdown === "Circle")  gCode = drillingCircle({formData});
+        if (formData.dropdown === "Arc")  gCode = drillingArc({formData});
         formData.gCode = gCode;
         //calculate values
         // operations.push({
@@ -456,7 +458,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
                             <option value="Square" disabled>Square</option>
                             <option value="Grid" disabled>Grid</option>
                             <option value="Circle">Circle</option>
-                            <option value="Arc" disabled>Arc</option>
+                            <option value="Arc">Arc</option>
                         </select>
                     </div>
                     <div className={`flex max-w-fit space-x-1 ml-6 ${formData.dropdown === "Point" ? 'block' : 'hidden'}`}>
@@ -465,7 +467,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
                             type="number"
                             id="zVal"
                             name="zVal"
-                            title="Enter Z value"
+                            title="Enter Z value of work surface"
                             value={formData.zVal}
                             onChange={handleInputChange}
                             className="text-black w-12"
@@ -510,7 +512,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
                             type="number"
                             id="zVal"
                             name="zVal"
-                            title="Enter Z value"
+                            title="Enter Z value of work surface"
                             value={formData.zVal}
                             onChange={handleInputChange}
                             className="text-black w-12"
@@ -535,7 +537,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
                             onChange={handleInputChange}
                             className="text-black w-12"
                         />
-                        <label htmlFor="theta"> θ:</label>
+                        <label htmlFor="theta"> Angle θ:</label>
                         <input
                             type="number"
                             id="theta"
@@ -600,7 +602,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
                             type="number"
                             id="zVal"
                             name="zVal"
-                            title="Enter Z value"
+                            title="Enter Z value of work surface"
                             value={formData.zVal}
                             onChange={handleInputChange}
                             className="text-black w-12"
@@ -645,7 +647,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
                             type="number"
                             id="zVal"
                             name="zVal"
-                            title="Enter Z value"
+                            title="Enter Z value of work surface"
                             value={formData.zVal}
                             onChange={handleInputChange}
                             className="text-black w-12"
@@ -690,7 +692,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
                             type="number"
                             id="zVal"
                             name="zVal"
-                            title="Enter Z value"
+                            title="Enter Z value of work surface"
                             value={formData.zVal}
                             onChange={handleInputChange}
                             className="text-black w-12"
@@ -715,7 +717,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
                             onChange={handleInputChange}
                             className="text-black w-12"
                         />
-                        <label htmlFor="theta"> θ:</label>
+                        <label htmlFor="theta"> Angle θ:</label>
                         <input
                             type="number"
                             id="theta"
@@ -763,12 +765,12 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
                         </select>
                     </div>
                     <div className={`flex max-w-fit space-x-1 ml-6 ${formData.dropdown === "Arc" ? 'block' : 'hidden'}`}>
-                        <label htmlFor="zVal"> Z</label>
+                    <label htmlFor="zVal"> Z</label>
                         <input
                             type="number"
                             id="zVal"
                             name="zVal"
-                            title="Enter Z value"
+                            title="Enter Z value of work surface"
                             value={formData.zVal}
                             onChange={handleInputChange}
                             className="text-black w-12"
@@ -778,7 +780,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
                             type="number"
                             id="xPosition"
                             name="xPosition"
-                            title="Enter X value"
+                            title="Enter X position of arc center"
                             value={formData.xPosition}
                             onChange={handleInputChange}
                             className="text-black w-12"
@@ -788,10 +790,65 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
                             type="number"
                             id="yPosition"
                             name="yPosition"
-                            title="Enter Y value"
+                            title="Enter Y position of arc center"
                             value={formData.yPosition}
                             onChange={handleInputChange}
                             className="text-black w-12"
+                        />
+                        <label htmlFor="theta"> Angle θ:</label>
+                        <input
+                            type="number"
+                            id="theta"
+                            name="theta"
+                            title="Enter angle of first hole from X axis"
+                            value={formData.theta}
+                            onChange={handleInputChange}
+                            className="text-black w-12"
+                        />
+                        <label htmlFor="spacing"> Angle β :</label>
+                        <input
+                            type="number"
+                            id="spacing"
+                            name="spacing"
+                            title="Enter total arc angle or angular pitch between holes"
+                            value={formData.spacing}
+                            onChange={handleInputChange}
+                            className="text-black w-12"
+                        />
+                        <label htmlFor="spacingMode"> </label>
+                        <select
+                            type="number"
+                            id="spacingMode"
+                            name="spacingMode"
+                            title="Select pitch angle or total arc angle"
+                            value={formData.spacingMode}
+                            onChange={handleInputChange}
+                            className="text-black w-12">
+                            <option defaultValue="">Select</option>
+                            <option value="Pitch">Pitch</option>
+                            <option value="Length">Arc</option>
+                        </select>
+                        <label htmlFor="radius"> Radius:</label>
+                        <input
+                            type="number"
+                            id="radius"
+                            name="radius"
+                            title="Enter arc radius"
+                            value={formData.radius}
+                            onChange={handleInputChange}
+                            className="text-black w-12"
+                            min="0"
+                        />
+                        <label htmlFor="numberOFHoles"> # of Holes:</label>
+                        <input
+                            type="number"
+                            id="numberOfHoles"
+                            name="numberOfHoles"
+                            title="Enter the number of holes"
+                            value={formData.numberOfHoles}
+                            onChange={handleInputChange}
+                            className="text-black w-12"
+                            min="0"
                         />
                         <label htmlFor="returnMode"> Return </label>
                         <select
@@ -806,6 +863,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
                             <option value="Init">Init</option>
                             <option value="R Point">R Point</option>
                         </select>
+
                     </div>
                 </div>
                 <br />

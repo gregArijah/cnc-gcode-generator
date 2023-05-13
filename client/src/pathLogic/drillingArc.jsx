@@ -1,19 +1,18 @@
 //this function will use the formData to creat g-code for drlling a single hole
 //the g-code will be returned as a string
 
-export default function drillingCircle({formData}) {
+export default function drillingArc({formData}) {
     //get the data from the form
     //const { 
     //create the g-code to drill a single hole based on the form data
-   
     let X = formData.xPosition, Y = formData.yPosition, Z = formData.zVal; // Get the position data from the form
     let safeZ = parseFloat(Z) + 2;	// Safe Z is 2 inches above the hole
     let T = formData.drillToolNum, S = formData.drillToolSpeed, F = formData.drillToolFeed, Coolant = formData.drillToolCoolant; // Get the tool data from the form
     let Return = formData.returnMode == "Init" ? "G98" : "G99", Cycle = formData.drillToolCycle;
     let finalZ = (parseFloat(Z) - formData.drillToolDepth).toFixed(4); 
-    let theta = formData.theta, radius = formData.radius, nHoles = formData.numberOfHoles; 
+    let theta = formData.theta, spacing = formData.spacing, spacingMode = formData.spacingMode, radius = formData.radius, nHoles = formData.numberOfHoles; 
     
-    let pitchAngle = (360/nHoles).toFixed(4); 
+    let pitchAngle = (spacingMode == "Length")? spacing / (nHoles-1): spacing;   //convert to pitch if in length mode
 
     //convert theta to radians
     //convert degrees to radians
@@ -21,22 +20,22 @@ export default function drillingCircle({formData}) {
         return angle * (Math.PI / 180);
     }
 
-    let circleArray = [];
+    let arcArray = [];
     //calculate postion of holes and add to array
     for (let i = 0; i < nHoles; i++) {
         let x = parseFloat(X) + radius * Math.cos(toRadians(parseFloat(theta) + (pitchAngle * i)));
         let y = parseFloat(Y) + radius * Math.sin(toRadians(parseFloat(theta) + (pitchAngle * i)));
         //let x = (parseFloat(X) + (spacing * Math.cos(toRadians(theta)) * i)).toFixed(4);
         //let y = (parseFloat(Y) + (spacing * Math.sin(toRadians(theta)) * i)).toFixed(4);
-        circleArray.push([x.toFixed(4),y.toFixed(4)]);
+        arcArray.push([x.toFixed(4),y.toFixed(4)]);
     }
-    let xStart = circleArray && circleArray[0][0];
-    let yStart = circleArray && circleArray[0][1];
-    circleArray.shift();    //remove first element from array 
+    let xStart = arcArray && arcArray[0][0];
+    let yStart = arcArray && arcArray[0][1];
+    arcArray.shift();    //remove first element from array 
     //convert array to g-code
 
     
-    const gCode = `(Drilling Circle)
+    const gCode = `(Drilling Arc)
      
 G17 G20 G40 G49 G69 G80 G90 G94
 G00 G91 G28 Z0
@@ -47,7 +46,7 @@ M03 S${S}
 G54 G00 X${xStart} Y${yStart}
 G43 H${T} Z${safeZ} ${Coolant ? "M08" : ""}
 ${Return} ${Cycle} Z${finalZ} R.5 F${F}
-${circleArray.map((point) => `X${point[0]} Y${point[1]}`).join("\n")}
+${arcArray.map((point) => `X${point[0]} Y${point[1]}`).join("\n")}
 G00 Z${safeZ} ${Coolant ? "M09" : ""} M05
 G91 G28 Z0
 G91 G28 X0 Y0
