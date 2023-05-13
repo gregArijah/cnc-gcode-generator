@@ -26,8 +26,8 @@ export default function SelectPocket({ isOpen, onClose, selectMainClose }) {
         //unit
         pocketDepth: "", stockRemovalZ: "", finishAllowanceZ: "", finishAllowanceR: "", chamferWidth: "",
         //tool
-        cuttingDir: "", stepDownMode: "", stepDown: "", roughStepOver: "", roughToolSpeed: "", roughToolFeed: "",
-        roughToolCoolant: "", roughToolNum: "",roughToolDiameter: "", finishStepOver: "", finishToolSpeed: "", finishToolFeed: "", 
+        cuttingDir: "", roughStepDownMode: "", roughStepDown: "", roughStepOver: "", roughToolSpeed: "", roughToolFeed: "",
+        roughToolCoolant: "", roughToolNum: "",roughToolDiameter: "", roughStepDownMode: "", roughStepDown: "", finishStepOver: "", finishToolSpeed: "", finishToolFeed: "", 
         finishToolCoolant: "", finishToolNum: "", finishToolDiameter: "", 
 
                 spotToolNum: "", spotToolDepth: "", spotToolFeed: "", spotToolSpeed: "", spotToolCoolant: "",
@@ -48,9 +48,12 @@ export default function SelectPocket({ isOpen, onClose, selectMainClose }) {
         const { name, value, type, checked } = e.target;
         const val = type === "checkbox" ? checked : value;
 
+        //select or deselect included tools
         if ((name === "finishAllowanceR" || name === "finishAllowanceZ")  && (value > 0)) setEnabled_finishMill(true);
+        else if (name === "finishAllowanceR" && (value === 0) && !formData.finishAllowanceZ > 0) setEnabled_finishMill(false);
+        else if (name === "finishAllowancez" && (value === 0) && !formData.finishAllowanceR > 0) setEnabled_finishMill(false);
         else setEnabled_finishMill(false);
-      
+        
         setFormData((formData)=>({
             ...formData, 
             [name]: val,
@@ -62,12 +65,11 @@ export default function SelectPocket({ isOpen, onClose, selectMainClose }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-       //let gCode=""
         const { value } = e.target;
-        if (formData.dropdown === "Point")  gCode = drillingPoint({formData});
-        if (formData.dropdown === "Line")  gCode = drillingLine({formData});
-        if (formData.dropdown === "Circle")  gCode = drillingCircle({formData});
-        if (formData.dropdown === "Arc")  gCode = drillingArc({formData});
+        if (formData.dropdown === "Square")  gCode = drillingPoint({formData});
+        if (formData.dropdown === "Circle")  gCode = drillingLine({formData});
+        if (formData.dropdown === "Arbitry")  gCode = drillingCircle({formData});
+       
         formData.gCode = gCode;
         //calculate values
         // operations.push({
@@ -172,121 +174,171 @@ export default function SelectPocket({ isOpen, onClose, selectMainClose }) {
 
                         <div className="flex flex-col justify-between space-y-1">
                             <div className={`flex max-w-fit space-x-1 ml-6 ${enabled_roughMill ? '' : 'pointer-events-none opacity-5'}`}>
-                                <label htmlFor="spotToolNum"> Tool #</label>
+                                <label htmlFor="roughToolNum"> Tool #</label>
                                 <input
                                     type="number"
-                                    id="spotToolNum"
-                                    name="spotToolNum"
-                                    title="Enter spot face tool number"
-                                    value={formData.spotToolNum}
+                                    id="roughToolNum"
+                                    name="roughToolNum"
+                                    title="Enter roughing end mill tool number"
+                                    value={formData.roughToolNum}
                                     onChange={handleInputChange}
                                     className="text-black w-12"
                                     min="0"
                                     step="any"
-                                />
-                                <label htmlFor="spotToolStock"> Stock Removal</label>
+                             />
+                                <label htmlFor="roughToolDiameter"> Tool Diameter</label>
                                 <input
                                     type="number"
-                                    id="spotToolStock"
-                                    name="spotToolStock"
+                                    id="roughToolDiameter"
+                                    name="roughToolDiameter"
                                     title="Enter stock to be removed by spot face tool"
-                                    value={formData.spotToolStock || 0}
+                                    value={formData.roughToolDiameter || 0}
                                     onChange={handleInputChange}
                                     className="text-black w-12"
                                     min="0"
                                     step="any"
                                 />
-                                <label htmlFor="spotToolFeed"> Feed Rate</label>
+                                <label htmlFor="roughStepOver"> Cut Width</label>
                                 <input
                                     type="number"
-                                    id="spotToolFeed"
-                                    name="spotToolFeed"
-                                    title="Enter feed rate for spot face tool"
-                                    value={formData.spotToolFeed}
+                                    id="roughStepOver"
+                                    name="roughStepOver"
+                                    title="Enter width of cut for roughing end mill"
+                                    value={formData.roughStepOver}
                                     onChange={handleInputChange}
                                     className="text-black w-12"
                                     min="0"
+                                    max="formData.roughToolDiameter"
                                     step="any"
                                 />
-                                <label htmlFor="spotToolSpeed"> Speed Rate</label>
+                                <label htmlFor="roughStepDown"> Cut Depth</label>
                                 <input
                                     type="number"
-                                    id="spotToolSpeed"
-                                    name="spotToolSpeed"
-                                    title="Enter speed rate for spot face tool"
-                                    value={formData.spotToolSpeed}
+                                    id="roughStepDown"
+                                    name="roughStepDown"
+                                    title="Enter depth of cut for roughing end mill"
+                                    value={formData.roughStepDown}
                                     onChange={handleInputChange}
                                     className="text-black w-12"
                                     min="0"
                                     step="any"
                                 />
-                                <label htmlFor="spotToolCoolant"> Coolant</label>
+                                 <label htmlFor="roughToolFeed"> Feed Rate</label>
+                                <input
+                                    type="number"
+                                    id="roughToolFeed"
+                                    name="roughToolFeed"
+                                    title="Enter roughing tool feed rate"
+                                    value={formData.roughToolFeed}
+                                    onChange={handleInputChange}
+                                    className="text-black w-12"
+                                    min="0"
+                                    step="any"
+                                />
+                                <label htmlFor="roughToolSpeed"> Speed Rate </label>
+                                <input
+                                    type="number"
+                                    id="roughToolSpeed"
+                                    name="roughToolSpeed"
+                                    title="Enter roughing tool speed rate"
+                                    value={formData.roughToolSpeed}
+                                    onChange={handleInputChange}
+                                    className="text-black w-12"
+                                    min="0"
+                                    step="any"
+                                />
+                                <label htmlFor="roughToolCoolant"> Coolant</label>
                                 <input
                                     type="checkbox"
-                                    id="spotToolCoolant"
-                                    name="spotToolCoolant"
+                                    id="roughToolCoolant"
+                                    name="roughToolCoolant"
                                     title="Select if coolant is required"
-                                    value={formData.spotToolCoolant}
+                                    value={formData.roughToolCoolant}
                                     onChange={handleInputChange}
                                     className="w-4"
                                 />
                             </div>
                             <div className={`flex max-w-fit space-x-1 ml-6 ${enabled_finishMill ? '' : 'pointer-events-none opacity-5'}`}>
-                                <label htmlFor="centreToolNum"> Tool #</label>
+                                <label htmlFor="finishToolNum"> Tool #</label>
                                 <input
                                     type="number"
-                                    id="centreToolNum"
-                                    name="centreToolNum"
-                                    title="Enter centre drill tool number"
-                                    value={formData.centreToolNum}
+                                    id="finishToolNum"
+                                    name="finishToolNum"
+                                    title="Enter finishing end mill tool number"
+                                    value={formData.finishToolNum}
+                                    onChange={handleInputChange}
+                                    className="text-black w-12"
+                                    min="0"
+                                    step="any"
+                             />
+                                <label htmlFor="finishToolDiameter"> Tool Diameter</label>
+                                <input
+                                    type="number"
+                                    id="finishToolDiameter"
+                                    name="finishToolDiameter"
+                                    title="Enter finishing end mill tool diameter"
+                                    value={formData.finishToolDiameter || 0}
                                     onChange={handleInputChange}
                                     className="text-black w-12"
                                     min="0"
                                     step="any"
                                 />
-                                <label htmlFor="centreToolDepth"> Depth</label>
+                                <label htmlFor="finishStepOver"> Cut Width</label>
                                 <input
                                     type="number"
-                                    id="centreToolDepth"
-                                    name="centreToolDepth"
-                                    title="Enter centre drill depth"
-                                    value={formData.centreToolDepth}
+                                    id="finishStepOver"
+                                    name="finishStepOver"
+                                    title="Enter width of cut for roughing end mill"
+                                    value={formData.finishStepOver}
+                                    onChange={handleInputChange}
+                                    className="text-black w-12"
+                                    min="0"
+                                    max="formData.finishToolDiameter"
+                                    step="any"
+                                />
+                                <label htmlFor="finishStepDown"> Cut Depth</label>
+                                <input
+                                    type="number"
+                                    id="finishStepDown"
+                                    name="finishStepDown"
+                                    title="Enter depth of cut for roughing end mill"
+                                    value={formData.finishStepDown}
                                     onChange={handleInputChange}
                                     className="text-black w-12"
                                     min="0"
                                     step="any"
                                 />
-                                <label htmlFor="centreToolFeed"> Feed Rate</label>
+                                 <label htmlFor="finishToolFeed"> Feed Rate</label>
                                 <input
                                     type="number"
-                                    id="centreToolFeed"
-                                    name="centreToolFeed"
-                                    title="Enter centre drill feed rate"
-                                    value={formData.centreToolFeed}
+                                    id="finishToolFeed"
+                                    name="finishToolFeed"
+                                    title="Enter roughing tool feed rate"
+                                    value={formData.finishToolFeed}
                                     onChange={handleInputChange}
                                     className="text-black w-12"
                                     min="0"
                                     step="any"
                                 />
-                                <label htmlFor="centreToolSpeed"> Speed Rate</label>
+                                <label htmlFor="finishToolSpeed"> Speed Rate </label>
                                 <input
                                     type="number"
-                                    id="centreToolSpeed"
-                                    name="centreToolSpeed"
-                                    title="Enter centre drill speed rate"
-                                    value={formData.centreToolSpeed}
+                                    id="finishToolSpeed"
+                                    name="finishToolSpeed"
+                                    title="Enter roughing tool speed rate"
+                                    value={formData.finishToolSpeed}
                                     onChange={handleInputChange}
                                     className="text-black w-12"
                                     min="0"
                                     step="any"
                                 />
-                                <label htmlFor="centreToolCoolant"> Coolant</label>
+                                <label htmlFor="finishToolCoolant"> Coolant</label>
                                 <input
                                     type="checkbox"
-                                    id="centreToolCoolant"
-                                    name="centreToolCoolant"
+                                    id="finishToolCoolant"
+                                    name="finishToolCoolant"
                                     title="Select if coolant is required"
-                                    value={formData.centreToolCoolant}
+                                    value={formData.finishToolCoolant}
                                     onChange={handleInputChange}
                                     className="w-4"
                                 />
@@ -317,78 +369,7 @@ export default function SelectPocket({ isOpen, onClose, selectMainClose }) {
                                     max="180"
                                     step="any"
                                 />
-                                <label htmlFor="drillToolDepth">Depth</label>
-                                <input
-                                    type="number"
-                                    id="drillToolDepth"
-                                    name="drillToolDepth"
-                                    title="Enter drill tool depth"
-                                    value={formData.drillToolDepth || 0}
-                                    //value={drillToolDepth(formData.drillToolAngle, formData.holeDiameter, formData.holeDepth)||formData.drillToolDepth}
-                                    // value={formData.holeDepth == 0 || formData.holeDepth == "" ? 0 : parseFloat(formData.holeDepth) + parseFloat((formData.holeDiameter / 2) / Math.tan(toRadians(parseInt(formData.drillToolAngle || 118) / 2)))}
-                                    onChange={handleInputChange}
-                                    className="text-black w-12"
-                                    min="0"
-                                    step="any"
-                                />
-
-                                <label htmlFor="drillToolFeed"> Feed Rate</label>
-                                <input
-                                    type="number"
-                                    id="drillToolFeed"
-                                    name="drillToolFeed"
-                                    title="Enter drill tool feed rate"
-                                    value={formData.drillToolFeed}
-                                    onChange={handleInputChange}
-                                    className="text-black w-12"
-                                    min="0"
-                                    step="any"
-                                />
-                                <label htmlFor="drillToolSpeed"> Speed Rate </label>
-                                <input
-                                    type="number"
-                                    id="drillToolSpeed"
-                                    name="drillToolSpeed"
-                                    title="Enter drill tool speed rate"
-                                    value={formData.drillToolSpeed}
-                                    onChange={handleInputChange}
-                                    className="text-black w-12"
-                                    min="0"
-                                    step="any"
-                                />
-                                <label htmlFor="drillToolCoolant"> Coolant</label>
-                                <input
-                                    type="checkbox"
-                                    id="drillToolCoolant"
-                                    name="drillToolCoolant"
-                                    title="Select if coolant is required"
-                                    value={formData.drillToolCoolant}
-                                    onChange={handleInputChange}
-                                    className="text-black w-4"
-                                />
-                                <label htmlFor="drillToolCycle"> Drill Cycle:</label>
-                                <label htmlFor="drillToolCycle"> G81</label>
-                                <input
-                                    type="radio"
-                                    id="drillToolCycle"
-                                    name="drillToolCycle"
-                                    value="G81"
-                                    title="Select for standard drilling cycle"
-                                    onChange={handleInputChange}
-                                    className="text-black w-4"
-                                    checked={formData.drillToolCycle === "G81"}
-                                />
-                                <label htmlFor="drillToolCycle"> G83</label>
-                                <input
-                                    type="radio"
-                                    id="drillToolCycle"
-                                    name="drillToolCycle"
-                                    title="Select for peck drilling cycle"
-                                    value={formData.drillToolCycle}
-                                    onChange={handleInputChange}
-                                    className="text-black w-4"
-                                    checked={formData.drillToolCycle === "G83"}
-                                />
+                                c
                             </div>
                             
 
@@ -398,7 +379,7 @@ export default function SelectPocket({ isOpen, onClose, selectMainClose }) {
                 <br />
                 <div className="flex flex-col space-x-2 space-y-1">
                     <div className="space-x-2">
-                        <label htmlFor="dropdown">Select a drilling pattern:</label>
+                        <label htmlFor="dropdown">Select a pocket pattern:</label>
                         <select id="dropdown"
                             type="text"
                             name="dropdown"
@@ -406,12 +387,17 @@ export default function SelectPocket({ isOpen, onClose, selectMainClose }) {
                             onChange={handleInputChange}
                             className="text-black">
                             <option defaultValue="">-- Select an option --</option>
-                            <option value="Point">Point</option>
-                            <option value="Line">Line</option>
-                            <option value="Square" disabled>Square</option>
-                            <option value="Grid" disabled>Grid</option>
-                            <option value="Circle">Circle</option>
-                            <option value="Arc">Arc</option>
+                            <option value="Square"
+                                    title="Create a rectangular pocket, square to x&y axis">
+                                    Square/Rectangle
+                            </option>
+                            <option value="Circle"
+                                    title="Create a circular pocket, centered on point (x,y)">	
+                                    Circle
+                            </option>
+                            <option value="Arbitrary"
+                                    title="Create a pocket with arbitrary shape, defined by a series of points">
+                                    Arbitrary</option>
                         </select>
                     </div>
                     <div className={`flex max-w-fit space-x-1 ml-6 ${formData.dropdown === "Point" ? 'block' : 'hidden'}`}>
