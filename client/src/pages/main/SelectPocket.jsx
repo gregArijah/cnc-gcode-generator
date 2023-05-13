@@ -66,9 +66,9 @@ export default function SelectPocket({ isOpen, onClose, selectMainClose }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         const { value } = e.target;
-        if (formData.dropdown === "Square")  gCode = drillingPoint({formData});
-        if (formData.dropdown === "Circle")  gCode = drillingLine({formData});
-        if (formData.dropdown === "Arbitry")  gCode = drillingCircle({formData});
+        if (formData.dropdown === "Square")  gCode = pocketSquare({formData});
+        if (formData.dropdown === "Circle")  gCode = pocketCircle({formData});
+        if (formData.dropdown === "Arbitrary")  gCode = pocketArbitrary({formData});
        
         formData.gCode = gCode;
         //calculate values
@@ -379,263 +379,72 @@ export default function SelectPocket({ isOpen, onClose, selectMainClose }) {
                 <br />
                 <div className="flex flex-col space-x-2 space-y-1">
                     <div className="space-x-2">
-                        <label htmlFor="dropdown">Select a pocket pattern:</label>
+                        <label htmlFor="dropdown">Select a pocket shape:</label>
                         <select id="dropdown"
                             type="text"
                             name="dropdown"
-                            title="Select a drilling pattern from the following options"
+                            title="Select a pocket shape from the following options"
                             onChange={handleInputChange}
                             className="text-black">
                             <option defaultValue="">-- Select an option --</option>
-                            <option value="Square"
-                                    title="Create a rectangular pocket, square to x&y axis">
-                                    Square/Rectangle
-                            </option>
-                            <option value="Circle"
-                                    title="Create a circular pocket, centered on point (x,y)">	
-                                    Circle
-                            </option>
-                            <option value="Arbitrary"
-                                    title="Create a pocket with arbitrary shape, defined by a series of points">
-                                    Arbitrary</option>
+                            <option value="Square" title="Create a rectangular pocket, square to x&y axis">Square/Rectangle</option>
+                            <option value="Circle" title="Create a circular pocket, centered on point (x,y)">Circle</option>
+                            <option disabled value="Arbitrary" title="Create a 4-sided pocket with arbitrary shape and orientation">Arbitrary</option>
                         </select>
-                    </div>
-                    <div className={`flex max-w-fit space-x-1 ml-6 ${formData.dropdown === "Point" ? 'block' : 'hidden'}`}>
-                        <label htmlFor="zVal"> Z</label>
-                        <input
-                            type="number"
-                            id="zVal"
-                            name="zVal"
-                            title="Enter Z value of work surface"
-                            value={formData.zVal}
-                            onChange={handleInputChange}
-                            className="text-black w-12"
-                        />
-                        <label htmlFor="xPosition"> X</label>
-                        <input
-                            type="number"
-                            id="xPosition"
-                            name="xPosition"
-                            title="Enter X position"
-                            value={formData.xPosition}
-                            onChange={handleInputChange}
-                            className="text-black w-12"
-                        />
-                        <label htmlFor="yPosition"> Y</label>
-                        <input
-                            type="number"
-                            id="yPosition"
-                            name="yPosition"
-                            title="Enter Y position"
-                            value={formData.yPosition}
-                            onChange={handleInputChange}
-                            className="text-black w-12"
-                        />
-                        <label htmlFor="returnMode"> Return </label>
-                        <select
-                            type="number"
-                            id="returnMode"
-                            name="returnMode"
-                            title="Select return mode"
-                            value={formData.returnMode}
-                            onChange={handleInputChange}
-                            className="text-black w-12">
-                            <option defaultValue="">Select</option>
-                            <option value="Init">Init</option>
-                            <option value="R Point">R Point</option>
-                        </select>
-                    </div>
-                    <div className={`flex max-w-fit space-x-1 ml-6 ${formData.dropdown === "Line" ? 'block' : 'hidden'}`}>
-                        <label htmlFor="zVal"> Z</label>
-                        <input
-                            type="number"
-                            id="zVal"
-                            name="zVal"
-                            title="Enter Z value of work surface"
-                            value={formData.zVal}
-                            onChange={handleInputChange}
-                            className="text-black w-12"
-                        />
-                        <label htmlFor="xPosition"> X</label>
-                        <input
-                            type="number"
-                            id="xPosition"
-                            name="xPosition"
-                            title="Enter X position of first hole"
-                            value={formData.xPosition}
-                            onChange={handleInputChange}
-                            className="text-black w-12"
-                        />
-                        <label htmlFor="yPosition"> Y</label>
-                        <input
-                            type="number"
-                            id="yPosition"
-                            name="yPosition"
-                            title="Enter Y position of first hole"
-                            value={formData.yPosition}
-                            onChange={handleInputChange}
-                            className="text-black w-12"
-                        />
-                        <label htmlFor="theta"> Angle θ:</label>
-                        <input
-                            type="number"
-                            id="theta"
-                            name="theta"
-                            title="Enter angle from X axis"
-                            value={formData.theta}
-                            onChange={handleInputChange}
-                            className="text-black w-12"
-                        />
-                        <label htmlFor="spacing"> Pitch/Length:</label>
-                        <input
-                            type="number"
-                            id="spacing"
-                            name="spacing"
-                            title="Enter Pitch between holes or length of line"
-                            value={formData.spacing}
-                            onChange={handleInputChange}
-                            className="text-black w-12"
-                            min="0"
-                        />
-                        <label htmlFor="spacingMode"> </label>
-                        <select
-                            type="number"
-                            id="spacingMode"
-                            name="spacingMode"
-                            title="Select pitch or length"
-                            value={formData.spacingMode}
-                            onChange={handleInputChange}
-                            className="text-black w-12">
-                            <option defaultValue="">Select</option>
-                            <option value="Pitch">Pitch</option>
-                            <option value="Length">Length</option>
-                        </select>
-                        <label htmlFor="numberOfHoles"> # of Holes:</label>
-                        <input
-                            type="number"
-                            id="numberOfHoles"
-                            name="numberOfHoles"
-                            title="Enter the number of holes"
-                            value={formData.numberOfHoles}
-                            onChange={handleInputChange}
-                            className="text-black w-12"
-                        />
-                        <label htmlFor="returnMode"> Return </label>
-                        <select
-                            type="number"
-                            id="returnMode"
-                            name="returnMode"
-                            title="Select return mode"
-                            value={formData.returnMode}
-                            onChange={handleInputChange}
-                            className="text-black w-12">
-                            <option defaultValue="">Select</option>
-                            <option value="Init">Init</option>
-                            <option value="R Point">R Point</option>
-                        </select>
-
                     </div>
                     <div className={`flex max-w-fit space-x-1 ml-6 ${formData.dropdown === "Square" ? 'block' : 'hidden'}`}>
-                        <label htmlFor="zVal"> Z</label>
+                        <label htmlFor="pointX1"> X1</label>
                         <input
                             type="number"
-                            id="zVal"
-                            name="zVal"
-                            title="Enter Z value of work surface"
-                            value={formData.zVal}
+                            id="pointX1"
+                            name="pointX1"
+                            title="Enter X position of first corner"
+                            value={formData.pointX1}
                             onChange={handleInputChange}
                             className="text-black w-12"
                         />
-                        <label htmlFor="xPosition"> X</label>
+                        <label htmlFor="pointY1"> Y1</label>
                         <input
                             type="number"
-                            id="xPosition"
-                            name="xPosition"
-                            title="Enter X value"
-                            value={formData.xPosition}
+                            id="pointY1"
+                            name="pointY1"
+                            title="Enter Y position of first corner"
+                            value={formData.pointY1}
                             onChange={handleInputChange}
                             className="text-black w-12"
                         />
-                        <label htmlFor="yPosition"> Y</label>
+                        <label htmlFor="pointX3"> X3</label>
                         <input
                             type="number"
-                            id="yPosition"
-                            name="yPosition"
-                            title="Enter Y value"
-                            value={formData.yPosition}
+                            id="pointX3"
+                            name="pointX3"
+                            title="Enter X position of opposing corner"
+                            value={formData.pointX3}
                             onChange={handleInputChange}
                             className="text-black w-12"
                         />
-                        <label htmlFor="returnMode"> Return </label>
-                        <select
-                            type="number"
-                            id="returnMode"
-                            name="returnMode"
-                            title="Select return mode"
-                            value={formData.returnMode}
-                            onChange={handleInputChange}
-                            className="text-black w-12">
-                            <option defaultValue="">Select</option>
-                            <option value="Init">Init</option>
-                            <option value="R Point">R Point</option>
-                        </select>
-                    </div>
-                    <div className={`flex max-w-fit space-x-1 ml-6 ${formData.dropdown === "Grid" ? 'block' : 'hidden'}`}>
-                        <label htmlFor="zVal"> Z</label>
+                        <label htmlFor="pointY3"> Y3</label>
                         <input
                             type="number"
-                            id="zVal"
-                            name="zVal"
-                            title="Enter Z value of work surface"
-                            value={formData.zVal}
+                            id="pointY3"
+                            name="pointY3"
+                            title="Enter Y position of opposing corner"
+                            value={formData.pointY3}
                             onChange={handleInputChange}
                             className="text-black w-12"
                         />
-                        <label htmlFor="xPosition"> X</label>
+                        <label htmlFor="radius"> Corner Radius</label>
                         <input
                             type="number"
-                            id="xPosition"
-                            name="xPosition"
-                            title="Enter X value"
-                            value={formData.xPosition}
+                            id="radius"
+                            name="radius"
+                            title="Enter radius of pocket corners"
+                            value={formData.radius}
                             onChange={handleInputChange}
                             className="text-black w-12"
-                        />
-                        <label htmlFor="yPosition"> Y</label>
-                        <input
-                            type="number"
-                            id="yPosition"
-                            name="yPosition"
-                            title="Enter Y value"
-                            value={formData.yPosition}
-                            onChange={handleInputChange}
-                            className="text-black w-12"
-                        />
-                        <label htmlFor="returnMode"> Return </label>
-                        <select
-                            type="number"
-                            id="returnMode"
-                            name="returnMode"
-                            title="Select return mode"
-                            value={formData.returnMode}
-                            onChange={handleInputChange}
-                            className="text-black w-12">
-                            <option defaultValue="">Select</option>
-                            <option value="Init">Init</option>
-                            <option value="R Point">R Point</option>
-                        </select>
+                        />   
                     </div>
                     <div className={`flex max-w-fit space-x-1 ml-6 ${formData.dropdown === "Circle" ? 'block' : 'hidden'}`}>
-                        <label htmlFor="zVal"> Z</label>
-                        <input
-                            type="number"
-                            id="zVal"
-                            name="zVal"
-                            title="Enter Z value of work surface"
-                            value={formData.zVal}
-                            onChange={handleInputChange}
-                            className="text-black w-12"
-                        />
                         <label htmlFor="xPosition"> X</label>
                         <input
                             type="number"
@@ -655,155 +464,19 @@ export default function SelectPocket({ isOpen, onClose, selectMainClose }) {
                             value={formData.yPosition}
                             onChange={handleInputChange}
                             className="text-black w-12"
-                        />
-                        <label htmlFor="theta"> Angle θ:</label>
-                        <input
-                            type="number"
-                            id="theta"
-                            name="theta"
-                            title="Enter angle of first hole from X axis"
-                            value={formData.theta}
-                            onChange={handleInputChange}
-                            className="text-black w-12"
-                        />
-
+                        />     
                         <label htmlFor="radius"> Radius:</label>
                         <input
                             type="number"
                             id="radius"
                             name="radius"
-                            title="Enter bolt circle radius"
+                            title="Enter radius of circle"
                             value={formData.radius}
                             onChange={handleInputChange}
                             className="text-black w-12"
                             min="0"
-                        />
-                        <label htmlFor="numberOFHoles"> # of Holes:</label>
-                        <input
-                            type="number"
-                            id="numberOfHoles"
-                            name="numberOfHoles"
-                            title="Enter the number of holes"
-                            value={formData.numberOfHoles}
-                            onChange={handleInputChange}
-                            className="text-black w-12"
-                            min="0"
-                        />
-                        <label htmlFor="returnMode"> Return </label>
-                        <select
-                            type="number"
-                            id="returnMode"
-                            name="returnMode"
-                            title="Select return mode"
-                            value={formData.returnMode}
-                            onChange={handleInputChange}
-                            className="text-black w-12">
-                            <option defaultValue="">Select</option>
-                            <option value="Init">Init</option>
-                            <option value="R Point">R Point</option>
-                        </select>
-                    </div>
-                    <div className={`flex max-w-fit space-x-1 ml-6 ${formData.dropdown === "Arc" ? 'block' : 'hidden'}`}>
-                    <label htmlFor="zVal"> Z</label>
-                        <input
-                            type="number"
-                            id="zVal"
-                            name="zVal"
-                            title="Enter Z value of work surface"
-                            value={formData.zVal}
-                            onChange={handleInputChange}
-                            className="text-black w-12"
-                        />
-                        <label htmlFor="xPosition"> X</label>
-                        <input
-                            type="number"
-                            id="xPosition"
-                            name="xPosition"
-                            title="Enter X position of arc center"
-                            value={formData.xPosition}
-                            onChange={handleInputChange}
-                            className="text-black w-12"
-                        />
-                        <label htmlFor="yPosition"> Y</label>
-                        <input
-                            type="number"
-                            id="yPosition"
-                            name="yPosition"
-                            title="Enter Y position of arc center"
-                            value={formData.yPosition}
-                            onChange={handleInputChange}
-                            className="text-black w-12"
-                        />
-                        <label htmlFor="theta"> Angle θ:</label>
-                        <input
-                            type="number"
-                            id="theta"
-                            name="theta"
-                            title="Enter angle of first hole from X axis"
-                            value={formData.theta}
-                            onChange={handleInputChange}
-                            className="text-black w-12"
-                        />
-                        <label htmlFor="spacing"> Angle β :</label>
-                        <input
-                            type="number"
-                            id="spacing"
-                            name="spacing"
-                            title="Enter total arc angle or angular pitch between holes"
-                            value={formData.spacing}
-                            onChange={handleInputChange}
-                            className="text-black w-12"
-                        />
-                        <label htmlFor="spacingMode"> </label>
-                        <select
-                            type="number"
-                            id="spacingMode"
-                            name="spacingMode"
-                            title="Select pitch angle or total arc angle"
-                            value={formData.spacingMode}
-                            onChange={handleInputChange}
-                            className="text-black w-12">
-                            <option defaultValue="">Select</option>
-                            <option value="Pitch">Pitch</option>
-                            <option value="Length">Arc</option>
-                        </select>
-                        <label htmlFor="radius"> Radius:</label>
-                        <input
-                            type="number"
-                            id="radius"
-                            name="radius"
-                            title="Enter arc radius"
-                            value={formData.radius}
-                            onChange={handleInputChange}
-                            className="text-black w-12"
-                            min="0"
-                        />
-                        <label htmlFor="numberOFHoles"> # of Holes:</label>
-                        <input
-                            type="number"
-                            id="numberOfHoles"
-                            name="numberOfHoles"
-                            title="Enter the number of holes"
-                            value={formData.numberOfHoles}
-                            onChange={handleInputChange}
-                            className="text-black w-12"
-                            min="0"
-                        />
-                        <label htmlFor="returnMode"> Return </label>
-                        <select
-                            type="number"
-                            id="returnMode"
-                            name="returnMode"
-                            title="Select return mode"
-                            value={formData.returnMode}
-                            onChange={handleInputChange}
-                            className="text-black w-12">
-                            <option defaultValue="">Select</option>
-                            <option value="Init">Init</option>
-                            <option value="R Point">R Point</option>
-                        </select>
-
-                    </div>
+                        />                        
+                    </div>                    
                 </div>
                 <br />
                 <div className="space-x-2 mt-4 flex justify-between">

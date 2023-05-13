@@ -453,12 +453,12 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
                             onChange={handleInputChange}
                             className="text-black">
                             <option defaultValue="">-- Select an option --</option>
-                            <option value="Point">Point</option>
-                            <option value="Line">Line</option>
-                            <option value="Square" disabled>Square</option>
-                            <option value="Grid" disabled>Grid</option>
-                            <option value="Circle">Circle</option>
-                            <option value="Arc">Arc</option>
+                            <option value="Point" title="Drill a single hole">Point</option>
+                            <option value="Line" title="Drill a straight line of holes">Line</option>
+                            <option value="Square" title="Drill a square formation of holes"disabled>Square</option>
+                            <option value="Grid" title="Drill a grid formation of holes"disabled>Grid</option>
+                            <option value="Circle" title="Drill a circular formation of holes">Circle</option>
+                            <option value="Arc" title="Drill an arc length of holes">Arc</option>
                         </select>
                     </div>
                     <div className={`flex max-w-fit space-x-1 ml-6 ${formData.dropdown === "Point" ? 'block' : 'hidden'}`}>
