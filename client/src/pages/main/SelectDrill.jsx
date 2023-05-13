@@ -57,7 +57,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
                 name === "drillToolAngle" ? val : formData.drillToolAngle, 
                 name === "holeDiameter" ? val : formData.holeDiameter, 
                 name === "holeDepth" ? val : formData.holeDepth
-          ) 
+            ) 
             : formData.drillToolDepth
         }));
 
