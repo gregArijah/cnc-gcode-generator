@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import MyModal from "../../components/modal"
 import MyToggle from "../../components/toggle"
 import { operations } from "./AppSidebar";
-import drillingPoint from "../../pathLogic/drillingPoint";
-import drillingLine from "../../pathLogic/drillingLine";
-import drillingCircle from "../../pathLogic/drillingCircle";
-import drillingArc from "../../pathLogic/drillingArc";
+
 
 
 
@@ -26,16 +23,12 @@ export default function SelectPocket({ isOpen, onClose, selectMainClose }) {
         //unit
         pocketDepth: "", stockRemovalZ: "", finishAllowanceZ: "", finishAllowanceR: "", chamferWidth: "",
         //tool
-        cuttingDir: "", roughStepDownMode: "", roughStepDown: "", roughStepOver: "", roughToolSpeed: "", roughToolFeed: "",
+        roughStepDownMode: "", roughStepDown: "", roughStepOver: "", roughToolSpeed: "", roughToolFeed: "",
         roughToolCoolant: "", roughToolNum: "",roughToolDiameter: "", roughStepDownMode: "", roughStepDown: "", finishStepOver: "", finishToolSpeed: "", finishToolFeed: "", 
         finishToolCoolant: "", finishToolNum: "", finishToolDiameter: "", 
-
-                spotToolNum: "", spotToolDepth: "", spotToolFeed: "", spotToolSpeed: "", spotToolCoolant: "",
-        centreToolNum: "", centreToolDepth: "", centreToolFeed: "", centreToolSpeed: "", centreToolCoolant: "",
-        drillToolNum: "", drillToolAngle: "", drillToolDepth: "", drillToolFeed: "", drillToolSpeed: "", drillToolCoolant: "", drillToolCycle: "",
-        chamferToolNum: "", chamferToolAngle: "", chamferToolFeed: "", chamferToolSpeed: "", chamferToolCoolant: "",
-        dropdown: "", xPosition: "", yPosition: "", zVal: "", theta: "", spacing: "", spacingMode: "", numberOfHoles: "",
-        returnMode: "", radius: "", gCode: "",
+        //shape
+        pointX1: "", pointY1: "", pointX2: "", pointY2: "", pointX3: "", pointY3: "", pointX4: "", pointY4: "",
+        xPosition: "", yPosition: "", radius: "", gCode: "",dropdown: ""
     };
     const [formData, setFormData] = useState(INITIAL_STATE);
     
