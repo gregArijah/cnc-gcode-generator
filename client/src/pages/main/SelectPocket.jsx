@@ -33,13 +33,13 @@ export default function SelectPocket({ isOpen, onClose, selectMainClose }) {
     
 
     let gCode="34";  //this 34 is for debugging only, delete later
-    let finR =0, finZ=0;
+
     const handleInputChange = (e) => {
         const { name, value, type, checked } = e.target;
         const val = type === "checkbox" ? checked : value;
 
-        finR = (name === "finishAllowanceR"? value: formData.finishAllowanceR);
-        finZ = (name === "finishAllowanceZ"? value: formData.finishAllowanceZ);
+        let finR = (name === "finishAllowanceR"? value: formData.finishAllowanceR);
+        let finZ = (name === "finishAllowanceZ"? value: formData.finishAllowanceZ);
 
         //select or deselect included tools
         if (finR > 0 || finZ> 0) setEnabled_finishMill(true);
