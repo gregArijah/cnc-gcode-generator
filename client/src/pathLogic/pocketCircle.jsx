@@ -14,7 +14,7 @@ export default function pocketCircle({formData}) {
     finishStepOver = formData.finishStepOver, finishToolSpeed = formData.finishToolSpeed, finishToolFeed = formData.finishToolFeed, finishToolCoolant = formData.finishToolCoolant, FT = formData.finishToolNum, finishToolDiameter = formData.finishToolDiameter;
 
     //shape
-    let X = formData.xPosition, Y = formData.yPosition, radius = formData.radius, gcode = formData.gCode, dropdown = formData.dropdown;
+    let centreX = formData.xPosition, centreY = formData.yPosition, radius = formData.radius, gcode = formData.gCode, dropdown = formData.dropdown;
     
     // let X = formData.xPosition, Y = formData.yPosition, Z = formData.zVal; // Get the position data from the form
     let safeZ = parseFloat(finZ) + parseFloat(srZ) + 2;	// Safe Z is 2 inches above the hole
@@ -23,17 +23,39 @@ export default function pocketCircle({formData}) {
     // let Return = formData.returnMode == "Init" ? "G98" : "G99", Cycle = formData.drillToolCycle;
     let finalZ = parseFloat(formData.pocketDepth).toFixed(4); 
 
-    let currentZ = startZ, currentX = X, currentY = Y;
+    let Z = startZ, X = centreX, Y = centreY; 
+    let I;
 
     //g code to ramp step down helically, .100" step down per revolution around the helix
-    const ramp = () =>  {
-        let ramp = `G01 G41 D${RT} X${parseFloat(X)+roughToolDiameter} F${RF}
-    G03  I${-1*roughToolDiameter} J0 Z${parseFloat(currentZ)-roughStepDown}
-    G01 G40 X${X} Y${Y}  
-    G40`;
+    const nextPass = () =>  {
+        let pass = "";
+        while (parseFloat(Z) - roughStepDown > finalZ) {
+            Z = parseFloat(Z) - parseFloat(roughStepDown);	
+        
+        //ramp down helically
+        I = parseFloat(roughStepOver) + roughToolDiameter/2;
+        X = parseFloat(X) + parseFloat(I);
+        
+        let rampHelical = `G01 G41 D${RT} X${X} F${RF}
+    G03  I-${I} J0 Z${Z}
+    `;
+        //open up the pocket  //change this function possibly inctrement valuews after
+        let openPocket = "";
+        while (parseFloat(X)-parseFloat(centreX)+roughStepOver < radius){
+            I+= parseFloat(roughStepOver);
+            X+= parseFloat(roughStepOver);
+            openPocket += `G01 X${X} 
+        G03 I-${I} J0 
+        `
+        }
+    pass += rampHelical + openPocket;
+            
+    }
+
         currentZ = parseFloat(currentZ) - parseFloat(roughStepDown);
-        return ramp;   
-    } 
+        return pass;   
+    
+}
 
     
     const gCode = `(Rough Milling Circular Pocket)
@@ -47,7 +69,9 @@ M03 S${RS}
 G54 G00 X${X} Y${Y}
 G43 H${RT} Z${safeZ} 
 G01 Z${startZ} ${Coolant ? "M08" : ""} F${RF}
+${currentZ > finalZ ? nextPass() : ""}
 
+} }
 
 
 

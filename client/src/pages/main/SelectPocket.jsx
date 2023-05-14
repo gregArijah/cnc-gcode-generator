@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import MyModal from "../../components/modal"
 import MyToggle from "../../components/toggle"
 import { operations } from "./AppSidebar";
-
-
-
-
+import pocketCircle from "../../pathLogic/pocketCircle";
 
 
 
@@ -36,15 +33,16 @@ export default function SelectPocket({ isOpen, onClose, selectMainClose }) {
     
 
     let gCode="34";  //this 34 is for debugging only, delete later
-
+    let finR =0, finZ=0;
     const handleInputChange = (e) => {
         const { name, value, type, checked } = e.target;
         const val = type === "checkbox" ? checked : value;
 
+        finR = (name === "finishAllowanceR"? value: formData.finishAllowanceR);
+        finZ = (name === "finishAllowanceZ"? value: formData.finishAllowanceZ);
+
         //select or deselect included tools
-        if ((name === "finishAllowanceR" || name === "finishAllowanceZ")  && (value > 0)) setEnabled_finishMill(true);
-        else if (name === "finishAllowanceR" && (value === 0) && !formData.finishAllowanceZ > 0) setEnabled_finishMill(false);
-        else if (name === "finishAllowancez" && (value === 0) && !formData.finishAllowanceR > 0) setEnabled_finishMill(false);
+        if (finR > 0 || finZ> 0) setEnabled_finishMill(true);
         else setEnabled_finishMill(false);
         
         setFormData((formData)=>({
@@ -54,6 +52,8 @@ export default function SelectPocket({ isOpen, onClose, selectMainClose }) {
         }));
 
         console.log(`looking for ${name} and ${val} `);
+        console.log("finR: ", finR, "finZ: ", finZ, "enabled_finishMill: ", enabled_finishMill);	
+       
     };
 
     const handleSubmit = (e) => {
