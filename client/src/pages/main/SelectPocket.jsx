@@ -161,7 +161,7 @@ export default function SelectPocket({ isOpen, onClose, selectMainClose }) {
                     <div className="space-y-1">
                         <div className="flex justify-between">Include rough end mill<MyToggle enabled={enabled_roughMill} setEnabled={setEnabled_roughMill} /></div>
                         <div className="flex justify-between">Include finish end mill<MyToggle enabled={enabled_finishMill} setEnabled={setEnabled_finishMill} /></div>
-                        <div className="flex justify-between">Include chamfer drill<MyToggle enabled={enabled_chamferMill} setEnabled={setEnabled_chamferMill} /></div>
+                        {/* <div className="flex justify-between">Include chamfer drill<MyToggle enabled={enabled_chamferMill} setEnabled={setEnabled_chamferMill} /></div> */}
                     </div>
                     <div>
 
@@ -335,36 +335,7 @@ export default function SelectPocket({ isOpen, onClose, selectMainClose }) {
                                     onChange={handleInputChange}
                                     className="w-4"
                                 />
-                            </div>
-                            <div className={`flex max-w-fit space-x-1 ml-6 ${enabled_chamferMill ? '' : 'pointer-events-none opacity-5'}`}>
-                                <label htmlFor="drillToolNum"> Tool #</label>
-                                <input
-                                    type="number"
-                                    id="drillToolNum"
-                                    name="drillToolNum"
-                                    title="Enter drill tool number"
-                                    value={formData.drillToolNum}
-                                    onChange={handleInputChange}
-                                    className="text-black w-12"
-                                    min="0"
-                                    step="any"
-                                />
-                                <label htmlFor="drillToolAngle">Angle</label>
-                                <input
-                                    type="number"
-                                    id="drillToolAngle"
-                                    name="drillToolAngle"
-                                    title="Enter drill tool angle"
-                                    value={formData.drillToolAngle || 118}
-                                    onChange={handleInputChange}
-                                    className="text-black w-12"
-                                    min="90"
-                                    max="180"
-                                    step="any"
-                                />
-                                c
-                            </div>
-                            
+                            </div> 
 
                         </div>
                     </div>
@@ -380,7 +351,7 @@ export default function SelectPocket({ isOpen, onClose, selectMainClose }) {
                             onChange={handleInputChange}
                             className="text-black">
                             <option defaultValue="">-- Select an option --</option>
-                            <option value="Square" title="Create a rectangular pocket, square to x&y axis">Square/Rectangle</option>
+                            <option disabled value="Square" title="Create a rectangular pocket, square to x&y axis">Square/Rectangle</option>
                             <option value="Circle" title="Create a circular pocket, centered on point (x,y)">Circle</option>
                             <option disabled value="Arbitrary" title="Create a 4-sided pocket with arbitrary shape and orientation">Arbitrary</option>
                         </select>
