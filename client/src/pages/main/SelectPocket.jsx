@@ -21,7 +21,7 @@ export default function SelectPocket({ isOpen, onClose, selectMainClose }) {
         pocketDepth: "", stockRemovalZ: "", finishAllowanceZ: "", finishAllowanceR: "", chamferWidth: "",
         //tool
         roughStepDownMode: "", roughStepDown: "", roughStepOver: "", roughToolSpeed: "", roughToolFeed: "",
-        roughToolCoolant: "", roughToolNum: "",roughToolDiameter: "", roughStepDownMode: "", roughStepDown: "", finishStepOver: "", finishToolSpeed: "", finishToolFeed: "", 
+        roughToolCoolant: "", roughToolNum: "",roughToolDiameter: "", finishStepDownMode: "", finishStepDown: "", finishStepOver: "", finishToolSpeed: "", finishToolFeed: "", 
         finishToolCoolant: "", finishToolNum: "", finishToolDiameter: "", 
         //shape
         pointX1: "", pointY1: "", pointX2: "", pointY2: "", pointX3: "", pointY3: "", pointX4: "", pointY4: "",

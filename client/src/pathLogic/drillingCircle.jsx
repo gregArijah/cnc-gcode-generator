@@ -46,7 +46,7 @@ T${T} M06
 M03 S${S}
 G54 G00 X${xStart} Y${yStart}
 G43 H${T} Z${safeZ} ${Coolant ? "M08" : ""}
-${Return} ${Cycle} Z${finalZ} R.5 F${F}
+${Return} ${Cycle} Z${finalZ} R.5 F${F}  (fix this R value!! should not be hard coded, make it vary with work surface)
 ${circleArray.map((point) => `X${point[0]} Y${point[1]}`).join("\n")}
 G00 Z${safeZ} ${Coolant ? "M09" : ""} M05
 G91 G28 Z0

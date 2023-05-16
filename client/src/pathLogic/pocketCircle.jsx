@@ -21,35 +21,42 @@ export default function pocketCircle({formData}) {
     let startZ = parseFloat(pocketDepth) + parseFloat(srZ);	// Start Z is val of work sureface
     // let T = formData.drillToolNum, S = formData.drillToolSpeed, F = formData.drillToolFeed, Coolant = formData.drillToolCoolant; // Get the tool data from the form
     // let Return = formData.returnMode == "Init" ? "G98" : "G99", Cycle = formData.drillToolCycle;
-    let finalZ = parseFloat(formData.pocketDepth).toFixed(4); 
+    let finalZ = parseFloat(pocketDepth).toFixed(4); 
+    let finalR = parseFloat(centreX) + parseFloat(radius);
 
     let Z = startZ, X = centreX, Y = centreY; 
     let I;
-
+    let roughFinalZ = finalZ + parseFloat(finZ);
+    let roughFinalR = finalR - parseFloat(finR);
+    ;
     //g code to ramp step down helically, .100" step down per revolution around the helix
     const nextPass = () =>  {
         
         let pass = "";
-        while (parseFloat(Z) - roughStepDown > finalZ) {
+        while (parseFloat(Z) - roughStepDown > roughFinalZ) {
             Z = parseFloat(Z) - parseFloat(roughStepDown);	
             X = centreX;
         
-        //ramp down helically
+        //ramp down helicallyeee
         I = parseFloat(roughStepOver) + roughToolDiameter/2;
         X = parseFloat(X) + parseFloat(I);
         
         let rampHelical = `G01 G41 D${RT} X${X} F${RF}
-G03  I-${I} J0 Z${Z}
-`;
-        //open up the pocket  //change this function possibly inctrement valuews after
+G03  I-${I} J0 Z${Z}\n`;
+
+        //open up the pocket  //change this function possibly inctrement values after
         // change this function later to check if the step over exceed boundaray and make adjustment
+        let nextX = parseFloat(X) + parseFloat(roughStepOver);
         let openPocket = "";
-        while (parseFloat(X)-parseFloat(centreX)+roughStepOver < radius){
+        //while (parseFloat(X)-parseFloat(centreX)+roughStepOver < radius){
+        console.log("nextX: " + nextX + " roughFinalR: " + roughFinalR + "finalR: " + finalR);
+        while (parseFloat(nextX) <= roughFinalR)    {
             I+= parseFloat(roughStepOver);
             X+= parseFloat(roughStepOver);
-            openPocket += `G01 X${X} 
-G03 I-${I} J0 
+            openPocket += `G01 X${X}
+G03 I-${I} J0
 `
+            nextX = parseFloat(X) + parseFloat(roughStepOver) < roughFinalR ? parseFloat(nextX) + parseFloat(roughStepOver) : roughFinalR;
         }
         openPocket += `G01 G40 X${centreX}
 `
@@ -74,7 +81,7 @@ M03 S${RS}
 G54 G00 X${X} Y${Y}
 G43 H${RT} Z${safeZ} 
 G01 Z${startZ} ${roughToolCoolant ? "M08" : ""} F${RF}
-${Z > finalZ ? nextPass() : ""}
+${Z > roughFinalZ ? nextPass() : ""}
 
 
 !!!!!!!!!!Write the finish milling g-code here!!!!!!
