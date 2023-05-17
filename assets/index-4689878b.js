@@ -904,7 +904,8 @@ M01`}function Xf(e){return e*(Math.PI/180)}function Fx({isOpen:e,onClose:t,selec
 G03  I-${T} J0 Z${v}
 `,he=parseFloat(S)+parseFloat(o),at=parseFloat(T)+parseFloat(o),Ae="";for(console.log("nextX: "+he+" roughFinalR: "+P+"finalR: "+m);parseFloat(he)<=parseFloat(P);)Ae+=`G01 X${he}
 G03 I-${at} J0
-`,he=parseFloat(S)+parseFloat(o)<P?parseFloat(he)+parseFloat(o):P,at=parseFloat(S)+parseFloat(o)<P?parseFloat(at)+parseFloat(o):y-l;Ae+=`G01 G40 X${f}`,te+=Le+Ae}return te};return`(Rough Milling Circular Pocket)
+`,he=parseFloat(S)+parseFloat(o)<P?parseFloat(he)+parseFloat(o):P,at=parseFloat(S)+parseFloat(o)<P?parseFloat(at)+parseFloat(o):y-l;Ae+=`G01 G40 X${f}
+`,te+=Le+Ae}return te};return`(Rough Milling Circular Pocket)
      
 G17 G20 G40 G49 G69 G80 G90 G94
 G00 G91 G28 Z0
