@@ -57,8 +57,9 @@ G03 I-${nextI} J0
             nextX = parseFloat(X) + parseFloat(roughStepOver) < roughFinalR ? parseFloat(nextX) + parseFloat(roughStepOver) : roughFinalR;
             nextI = parseFloat(X) + parseFloat(roughStepOver) < roughFinalR ? parseFloat(nextI) + parseFloat(roughStepOver) : radius - finR;
         }
-        openPocket += `G01 G40 X${centreX}`
-        
+        openPocket += `G01 G40 X${centreX}
+`
+
         pass += rampHelical + openPocket;
             
     }
