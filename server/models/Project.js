@@ -1,36 +1,30 @@
-//create user schema for mongoose
+//define project schema for mongoose
 
-const { Schema, Types } = require('mongoose');
+const { Schema, model } = require('mongoose'); 
 const moment = require('moment');
 
-const UserSchema = new Schema({
-    userId: {
+const ProjectSchema = new Schema({
+    projectId: {
         type: Schema.Types.ObjectId,
         default: () => new Types.ObjectId(),
     },
-    username: {
+    projectName: {
         type: String,
-        unique: true,
         required: true,
         trim: true
     },
-    password: {
+    projectDescription: {
         type: String,
         required: true,
+        trim: true 
     },
-    // email: {
-    //     type: String,
-    //     required: true,
-    //     unique: true,
-    //     match: [/.+@.+\..+/, 'Please enter a valid e-mail address']
-    // },
-    projects: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Project'
-    }],
-    toolLibrary: [{
+    projectTools: [{
         type: Schema.Types.ObjectId,
         ref: 'Tool'
+    }],
+    operations: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Operation'
     }],
     createdAt: {
         type: Date,
@@ -40,7 +34,7 @@ const UserSchema = new Schema({
 });
 
 //initialize model
-const User = model('User', UserSchema);
+const Project = model('Project', ProjectSchema);
 
 //export model
-module.exports = User;
+module.exports = Project;
