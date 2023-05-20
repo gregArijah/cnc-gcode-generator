@@ -1,4 +1,4 @@
-const { schema, model } = require('mongoose');
+const { Schema, model } = require('mongoose');
 const moment = require('moment');
 
 const OperationSchema = new Schema({
