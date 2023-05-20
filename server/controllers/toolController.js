@@ -4,10 +4,10 @@ const toolController = {
     // get all tools
     getAllTools(req, res) {
         Tool.find({})
-            .populate({
-                path: 'projects',
-                select: '-__v'
-            })
+            // .populate({
+            //     path: 'projects',
+            //     select: '-__v'
+            // })
             .select('-__v')
             .sort({ _id: -1 })
             .then(dbToolData => res.json(dbToolData))

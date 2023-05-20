@@ -1,4 +1,7 @@
+const express = require('express');
 const router = require('express').Router();
+const userController = require('../../controllers/userController');
+
 const {
     getAllUsers,
     getUserById,
@@ -18,4 +21,10 @@ router.route('/:id')
     .put(updateUser)
     .delete(deleteUser);
 
-module.exports = router;
+// //Set up POST and DELETE at /api/users/:userId/toolLibrary/:toolId  
+// router.route('/:userId/toolLibrary/:toolId')
+//     .post(userController.addToolToLibrary)
+//     .delete(userController.removeToolFromLibrary);
+
+
+module.exports = router;    
