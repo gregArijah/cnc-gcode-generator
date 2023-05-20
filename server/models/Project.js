@@ -11,7 +11,7 @@ const projectSchema = new Schema({
     type: String,
     trim: true
   },
-  createdBy: {
+  userId: {
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true

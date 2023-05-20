@@ -13,6 +13,18 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
+  toolLibrary: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Tool'
+    }
+  ],
+  projects: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Project'
+    }
+  ],
   createdAt: {
     type: Date,
     default: Date.now,

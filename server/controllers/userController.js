@@ -4,10 +4,10 @@ const userController = {
     // get all users
     getAllUsers(req, res) {
         User.find({})
-            .populate({
-                path: 'projects',
-                select: '-__v'
-            })
+            // .populate({
+            //     path: 'createdBy',
+            //     select: '-__v'
+            // })
             .populate({
                 path: 'toolLibrary',
                 select: '-__v'
