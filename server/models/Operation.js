@@ -1,35 +1,34 @@
 const { Schema, model } = require('mongoose');
 const moment = require('moment');
 
-const OperationSchema = new Schema({
-    operationId: {
-        type: Schema.Types.ObjectId,
-        default: () => new Types.ObjectId(),
-    },
-    operationName: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    operationData: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    operationGCode: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-        get: (timestamp) => moment(timestamp).format('MMM Do, YYYY [at] hh:mm a')
-    }
+const operationSchema = new Schema({
+  operationName: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  operationData: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  operationGCode: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  projectId: {
+    type: Schema.Types.ObjectId,
+    ref: 'Project',
+    required: true
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+    get: (timestamp) => moment(timestamp).format('MMM Do, YYYY [at] hh:mm a')
+  }
 });
 
-//initialize model
-const Operation = model('Operation', OperationSchema);
+const Operation = model('Operation', operationSchema);
 
-//export model
 module.exports = Operation;
