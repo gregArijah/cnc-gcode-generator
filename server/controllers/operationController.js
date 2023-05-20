@@ -1,4 +1,4 @@
-const { Operation, Project, User } = require('../models');
+const { Operation } = require('../models');
 
 const operationController = {
     // get all operations
