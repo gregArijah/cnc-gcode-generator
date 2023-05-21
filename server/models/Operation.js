@@ -8,7 +8,7 @@ const operationSchema = new Schema({
     trim: true
   },
   operationData: {
-    type: String,
+    type: Object,
     required: true,
     trim: true
   },
@@ -17,10 +17,9 @@ const operationSchema = new Schema({
     required: true,
     trim: true
   },
-  projectId: {
-    type: Schema.Types.ObjectId,
-    ref: 'Project',
-    required: true
+  operationSimulate: {
+    type: String,
+    trim: true
   },
   createdAt: {
     type: Date,

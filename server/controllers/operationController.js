@@ -1,13 +1,9 @@
-const { Operation } = require('../models');
+const { Operation, Project } = require('../models');
 
 const operationController = {
     // get all operations
     getAllOperations(req, res) {
         Operation.find({})
-            .populate({
-                path: 'project',
-                select: '-__v'
-            })
             .select('-__v')
             .sort({ _id: -1 })
             .then(dbOperationData => res.json(dbOperationData))
@@ -21,10 +17,6 @@ const operationController = {
     // get one operation by id
     getOperationById({ params }, res) {
         Operation.findOne({ _id: params.id })
-            .populate({
-                path: 'project',
-                select: '-__v'
-            })
             .select('-__v')
             .then(dbOperationData => {
                 // If no operation is found, send 404
@@ -43,10 +35,24 @@ const operationController = {
     },
 
     // create operation
-    createOperation({ body }, res) {
-        Operation.create(body)
-            .then(dbOperationData => res.json(dbOperationData))
+    createOperation(req, res) {
+        Operation.create(req.body)
+            .then(dbOperationData => {
+                Project.findOneAndUpdate(
+                    { _id: req.body.projectId },
+                    { $push: { operations: dbOperationData._id } },
+                    { runValidators: true, new: true }
+                )
+                .then(dbProjectData => {
+                    if (!dbProjectData) {
+                        res.status(404).json({ message: 'No project found with this id!' });
+                        return;
+                    }
+                    res.json(dbOperationData);
+                }
+            )
             .catch(err => res.json(err));
+        })
     },
 
     // update operation by id

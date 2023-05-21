@@ -4,7 +4,11 @@ const projectController = {
     // get all projects
     getAllProjects(req, res) {
         Project.find({})
-          
+            .populate
+            ({
+                path: 'operations',
+                select: '-__v'
+            })
             .select('-__v')
             .sort({ _id: -1 })
             .then(dbProjectData => res.json(dbProjectData))
@@ -18,6 +22,10 @@ const projectController = {
     // get one project by id
     getProjectById({ params }, res) {
         Project.findOne({ _id: params.id })
+            .populate({
+                path: 'operations',
+                select: '-__v'
+            })
             .select('-__v')
             .then(dbProjectData => {
                 // If no project is found, send 404
