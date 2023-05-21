@@ -1,17 +1,10 @@
-const { Project } = require('../models');
+const { Project, User } = require('../models');
 
 const projectController = {
     // get all projects
     getAllProjects(req, res) {
         Project.find({})
-            .populate({
-                path: 'operations',
-                select: '-__v'
-            })
-            .populate({
-                path: 'toolLibrary',
-                select: '-__v'
-            })
+          
             .select('-__v')
             .sort({ _id: -1 })
             .then(dbProjectData => res.json(dbProjectData))
@@ -25,14 +18,6 @@ const projectController = {
     // get one project by id
     getProjectById({ params }, res) {
         Project.findOne({ _id: params.id })
-            .populate({
-                path: 'operations',
-                select: '-__v'
-            })
-            .populate({
-                path: 'toolLibrary',
-                select: '-__v'
-            })
             .select('-__v')
             .then(dbProjectData => {
                 // If no project is found, send 404
@@ -51,10 +36,24 @@ const projectController = {
     },
 
     // create project
-    createProject({ body }, res) {
-        Project.create(body)
-            .then(dbProjectData => res.json(dbProjectData))
+    createProject( req, res) {
+        Project.create(req.body)
+            .then(dbProjectData => {
+                User.findOneAndUpdate(
+                    { _id: req.body.userId },
+                    { $push: { projects: dbProjectData._id } },
+                    { runValidators: true, new: true }
+                )
+                .then(dbUserData => {
+                    if (!dbUserData) {
+                        res.status(404).json({ message: 'No user found with this id!' });
+                        return;
+                    }
+                    res.json(dbProjectData);
+                }
+            )
             .catch(err => res.json(err));
+        })
     },
 
     // update project by id

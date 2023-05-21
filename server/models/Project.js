@@ -11,11 +11,12 @@ const projectSchema = new Schema({
     type: String,
     trim: true
   },
-  userId: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
-  },
+  operations: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Operation'
+    } 
+  ],
   createdAt: {
     type: Date,
     default: Date.now,
