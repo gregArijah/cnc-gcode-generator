@@ -4,7 +4,8 @@ const moment = require('moment');
 const toolSchema = new Schema({
   toolNumber: {
     type: Number,
-    required: true
+    required: true,
+    unique: true
   },
   toolType: {
     type: String,
@@ -22,15 +23,6 @@ const toolSchema = new Schema({
     type: String,
     trim: true
   },
-  username: {
-    type: String,
-    required: true
-  },
-  // userId: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: 'User',
-  //   required: true
-  // },
   createdAt: {
     type: Date,
     default: Date.now,
