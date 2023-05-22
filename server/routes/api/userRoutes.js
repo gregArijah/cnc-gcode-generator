@@ -7,7 +7,8 @@ const {
     getUserById,
     createUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    loginUser
 } = require('../../controllers/userController');
 
 // Set up GET all and POST at /api/users
@@ -20,6 +21,10 @@ router.route('/:id')
     .get(getUserById)
     .put(updateUser)
     .delete(deleteUser);
+
+// Set up POST at /api/users/login
+router.route('/login')
+    .post(loginUser);
 
 // //Set up POST and DELETE at /api/users/:userId/toolLibrary/:toolId  
 // router.route('/:userId/toolLibrary/:toolId')

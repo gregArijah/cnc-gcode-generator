@@ -1,4 +1,5 @@
 const { User } = require('../models');
+const jwt = require('jsonwebtoken');
 
 const userController = {
     // get all users
@@ -79,6 +80,46 @@ const userController = {
             }
         )   
         .catch(err => res.status(400).json(err));
+    },
+
+    // login user
+    loginUser({ body }, res) {
+        //get username and password from body
+        const { username, password } = body;
+
+        //check if user exists and password is correct
+        User.findOne({ username: username })
+            .then((user) => {
+                if (!user) {
+                    res.status(400).json({ message: 'No user found with this username!' });
+                    return;
+                }
+                //check if password is correct
+                user.comparePassword(password)
+                    .then((isCorrect) => {
+                        if (!isCorrect) {
+                            res.status(400).json({ message: 'Incorrect password!' });
+                            return;
+                        }
+                        //if user exists and password is correct, generate jwt token
+                        const token = jwt.sign(
+                            { userId: user._id },
+                            process.env.JWT_SECRET,
+                            { expiresIn: '1d' }
+                        );
+                        //send token to client
+                        res.json({ token: token});
+                    })
+                    
+                    .catch((err) => {
+                        console.log(err);
+                        res.sendStatus(400);
+                    });
+            })
+            .catch((err) => {
+                console.log(err);
+                res.sendStatus(400);
+            });
     },
 };
 
