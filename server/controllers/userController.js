@@ -108,7 +108,7 @@ const userController = {
                             { expiresIn: '1d' }
                         );
                         //send token to client
-                        res.json({ token: token});
+                        res.json({ token: token, user: user});
                     })
                     
                     .catch((err) => {
