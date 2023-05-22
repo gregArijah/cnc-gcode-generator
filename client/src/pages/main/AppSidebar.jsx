@@ -1,7 +1,7 @@
 import { useState } from 'react';
-
 import { plusIcon } from '../../icons/FontAwesome';
 import SelectOpType from './Select_Main';
+import { getAllOperations } from '../../util/api';
 
 export const operations = [
     // {
@@ -10,18 +10,6 @@ export const operations = [
     // tool:"centre drill",
     // gcode:"gcode goes here for centre drilling 1 inch holes"
     // },
-    // {
-    // name:"pilot drill",
-    // desc:"pilot drill for 1 inch holes",
-    // tool:"5/8 drill",
-    // gcode:"gcode goes here for pilot drilling 1 inch holes with 5/8 drill"
-    // },
-    // {
-    // name:"drill",
-    // desc:"drill for 1 inch holes",
-    // tool:"1 inch drill",
-    // gcode:"gcode goes here for drilling 1 inch holes"
-    // }
 ]
    
 export default function Sidebar({ currentOperation, setCurrentOperation }){
