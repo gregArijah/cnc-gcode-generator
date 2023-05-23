@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import MyModal from '../components/modalSmall'; 
 import { Link, useNavigate } from 'react-router-dom';
+import { loginUser } from '../utils/api';
 
 export default function UserLogin( {isOpen, onClose} ) {
     const [username, setUsername] = useState('');
@@ -9,35 +10,27 @@ export default function UserLogin( {isOpen, onClose} ) {
     
     const handleLogin = (e) => {
       e.preventDefault();
-        // Perform login logic here
-        // You can use the `username` and `password` states to access the entered values
-        // Example:
-        if (username === 'admin' && password === 'password') {
-            // Successful login
+
+      loginUser({ username, password })
+        .then((res) => {
+          console.log(res);
+          if (res.status === 200) {
             console.log('Logged in');
             //navigate to the app page
             navigate('/app');
-
-
-            
-            console.log('navigated');
             onClose();
-      
-            
-        } else {
-            // Failed login
+          } else {
             console.log('Login failed');
-        }
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     };
-
-
-
-
   
   const handleCloseModal = () => {
     onClose();
   };
-
 
 
   return (

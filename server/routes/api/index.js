@@ -8,7 +8,7 @@ const projectRoutes = require('./projectRoutes');
 const  { authUser }  = require('../../utils/auth');
 router.use(setUser);
 
-router.use('/users', authUser , userRoutes);
+router.use('/users', userRoutes);
 router.use('/operations', operationRoutes);
 router.use('/tools', toolRoutes);
 router.use('/projects', projectRoutes);

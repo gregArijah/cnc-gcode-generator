@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const db = require('./config/connection');
+const cors = require('cors');
 
 //API routes
 const routes = require('./routes');
@@ -10,6 +11,9 @@ const routes = require('./routes');
 //Initialize app and port for server
 const PORT = process.env.PORT || 3001;
 const app = express();
+
+//Enable CORS
+app.use(cors());
 
 //Middleware for parsing JSON and urlencoded form data
 app.use(express.urlencoded({ extended: true }));
