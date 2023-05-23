@@ -7,8 +7,8 @@ import { warehouseIcon, libraryIcon, chatIcon, settingsIcon, helpIcon, exitIcon 
 export default function Header (){
     const navigate = useNavigate();
     const logout = () => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('userId');
+        localStorage.removeItem('javatrolToken');
+        localStorage.removeItem('javatrolUserId');
         navigate('/');
     }
 

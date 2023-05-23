@@ -34,7 +34,7 @@ function Home() {
   const navigate = useNavigate();
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const handleEnterApp = () => { 
-    const isAuthenticated = localStorage.getItem('token') != null;
+    const isAuthenticated = localStorage.getItem('javatrolToken') != null;
     if (isAuthenticated) {
         window.location.href = '/javatrol/app';
         console.log('logged in');

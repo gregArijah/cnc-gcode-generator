@@ -25,8 +25,8 @@ export default function UserLogin( {isOpen, onClose} ) {
             console.log('Logged in');
             console.log(res.data.token);
             console.log(res.data.user._id);
-            localStorage.setItem('token', res.data.token);
-            localStorage.setItem('userId', res.data.user._id);
+            localStorage.setItem('javatrolToken', res.data.token);
+            localStorage.setItem('javatrolUserId', res.data.user._id);
             //navigate to the app page
             navigate('/app');
             onClose();

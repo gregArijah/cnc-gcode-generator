@@ -17,6 +17,10 @@ export default function Sidebar({ currentOperation, setCurrentOperation }){
     const [isOpen, setIsOpen] = useState(false);
    
     const handleOpenModal = () => {
+        if (localStorage.getItem('javatrolProjectId') === null) {
+            alert('Please select or create a project first');
+            return;
+        }
         setIsOpen(true);
     };
 
