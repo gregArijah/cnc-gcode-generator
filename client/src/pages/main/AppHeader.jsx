@@ -20,19 +20,20 @@ export default function Header (){
         setIsOpen(!isOpen);
       };
 
-    const [isCreateProjectOpen, setIsCreateProjectOpen] = useState(false);
-    const handleCreateProjectOpen = () => { setIsCreateProjectOpen(true)};
-    const handleCreateProjectClose = () => { setIsCreateProjectOpen(false)};
+    const [isNewProjectOpen, setIsNewProjectOpen] = useState(false);
+    const handleNewProjectOpen = () => { setIsNewProjectOpen(true)};
+    const handleNewProjectClose = () => { setIsNewProjectOpen(false)};
+    
     const handleNewProject = () => {
         setIsOpen(!isOpen); 
         console.log('New Project');
-        handleCreateProjectOpen();
+        handleNewProjectOpen();
         
     }
       
     return(    
         <div>
-            <NewProject isOpen={isCreateProjectOpen} onClose={handleCreateProjectClose} />
+            <NewProject isOpen={isNewProjectOpen} onClose={handleNewProjectClose} />
             <header className="h-16 flex justify-between items-center font-bold text-xl border-b mb-4 pb-4">
                 <div>Javatrol</div>
                 <div className="pr-4 md:pr-6">              

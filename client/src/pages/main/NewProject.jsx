@@ -15,13 +15,13 @@ export default function NewProject( {isOpen, onClose} ) {
         return;
       }
 
-      createProject({ projectName })
+      createProject({ projectName: projectName, userId: localStorage.getItem('javatrolUserId') })
         .then((res) => {
             console.log(res);
             if (res.status === 200) {
                 console.log('Project created');
-                console.log(res.data.project._id);
-                localStorage.setItem('javatrolProjectId', res.data.project._id);
+                console.log(res.data._id);
+                localStorage.setItem('javatrolProjectId', res.data._id);
                 onClose();
             
             } else {
