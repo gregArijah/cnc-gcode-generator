@@ -1,195 +1,94 @@
-//API related to operations
+import axios from 'axios';
+
+const api = axios.create({
+  baseURL: '/api', // Set the base URL for your backend API
+  headers: {
+    'Content-Type': 'application/json'
+  }
+});
+
+export const loginUser = (loginData) => {
+  return api.post('/users/login', loginData);
+};
 
 export const getAllOperations = () => {
-    return fetch('/api/operations', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
+  return api.get('/operations');
 };
 
 export const getOperationById = (operationId) => {
-    return fetch(`/api/operations/${operationId}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-}
+  return api.get(`/operations/${operationId}`);
+};
 
 export const createOperation = (operationData) => {
-    return fetch('/api/operations', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(operationData)
-    });
-}
+  return api.post('/operations', operationData);
+};
 
 export const updateOperation = (operationId, operationData) => {
-    return fetch(`/api/operations/${operationId}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(operationData)
-    });
-}
+  return api.put(`/operations/${operationId}`, operationData);
+};
 
 export const deleteOperation = (operationId) => {
-    return fetch(`/api/operations/${operationId}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-}
-
-//API related to projects
+  return api.delete(`/operations/${operationId}`);
+};
 
 export const getAllProjects = () => {
-    return fetch('/api/projects', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-}
+  return api.get('/projects');
+};
 
 export const getProjectById = (projectId) => {
-    return fetch(`/api/projects/${projectId}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-}
+  return api.get(`/projects/${projectId}`);
+};
 
 export const createProject = (projectData) => {
-    return fetch('/api/projects', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(projectData)
-    });
-}
+  return api.post('/projects', projectData);
+};
 
 export const updateProject = (projectId, projectData) => {
-    return fetch(`/api/projects/${projectId}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(projectData)
-    });
-}
+  return api.put(`/projects/${projectId}`, projectData);
+};
 
 export const deleteProject = (projectId) => {
-    return fetch(`/api/projects/${projectId}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-}
-
-//API related to users
+  return api.delete(`/projects/${projectId}`);
+};
 
 export const getAllUsers = () => {
-    return fetch('/api/users', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-}
+  return api.get('/users');
+};
 
 export const getUserById = (userId) => {
-    return fetch(`/api/users/${userId}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-}
+  return api.get(`/users/${userId}`);
+};
 
 export const createUser = (userData) => {
-    return fetch('/api/users', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(userData)
-    });
-}
+  return api.post('/users', userData);
+};
 
 export const updateUser = (userId, userData) => {
-    return fetch(`/api/users/${userId}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(userData)
-    });
-}
+  return api.put(`/users/${userId}`, userData);
+};
 
 export const deleteUser = (userId) => {
-    return fetch(`/api/users/${userId}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-}
-
-//API related to tools
+  return api.delete(`/users/${userId}`);
+};
 
 export const getAllTools = () => {
-    return fetch('/api/tools', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-}
+  return api.get('/tools');
+};
 
 export const getToolById = (toolId) => {
-    return fetch(`/api/tools/${toolId}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-}
+  return api.get(`/tools/${toolId}`);
+};
 
 export const createTool = (toolData) => {
-    return fetch('/api/tools', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(toolData)
-    });
-}
+  return api.post('/tools', toolData);
+};
 
 export const updateTool = (toolId, toolData) => {
-    return fetch(`/api/tools/${toolId}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(toolData)
-    });
-}
+  return api.put(`/tools/${toolId}`, toolData);
+};
 
 export const deleteTool = (toolId) => {
-    return fetch(`/api/tools/${toolId}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-}
+  return api.delete(`/tools/${toolId}`);
+};
+
+export default api;

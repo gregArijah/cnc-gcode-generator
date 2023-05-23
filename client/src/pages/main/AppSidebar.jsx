@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { plusIcon } from '../../icons/FontAwesome';
 import SelectOpType from './Select_Main';
-import { getAllOperations } from '../../util/api';
+import { getAllOperations } from '../../utils/api';
 
 export const operations = [
     // {
