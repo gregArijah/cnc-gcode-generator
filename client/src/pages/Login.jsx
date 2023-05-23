@@ -18,6 +18,7 @@ export default function UserLogin( {isOpen, onClose} ) {
             console.log('Logged in');
             //navigate to the app page
             navigate('/app');
+
             onClose();
           } else {
             console.log('Login failed');

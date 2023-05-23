@@ -1,5 +1,6 @@
 const { User } = require('../models');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 const userController = {
     // get all users
@@ -52,6 +53,13 @@ const userController = {
 
     // update user by id
     updateUser({ params, body }, res) {
+        //check if password is being updated
+        if (body.password) {
+            //hash password
+            const salt = bcrypt.genSaltSync(10);
+            body.password = bcrypt.hashSync(body.password, salt);
+        }
+
         User.findOneAndUpdate(
             { _id: params.id },
             body,
@@ -92,6 +100,7 @@ const userController = {
             .then((user) => {
                 if (!user) {
                     res.status(400).json({ message: 'No user found with this username!' });
+                    //alert('No user found with this username!');
                     return;
                 }
                 //check if password is correct
