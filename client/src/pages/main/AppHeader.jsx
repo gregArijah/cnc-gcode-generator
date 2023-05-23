@@ -41,7 +41,7 @@ export default function Header (){
                         <li className='opacity-30'>Chat {chatIcon}</li>
                         <li className='opacity-30'>Settings {settingsIcon}</li>
                         <li className='opacity-30'>Help {helpIcon}</li>
-                        <li onClick={logout} className='cursor-pointer hover:italic hover:text-orange-500'   >Exit {exitIcon}</li>
+                        <li onClick={logout} className='cursor-pointer hover:text-orange-500  hover:bg-gray-600'   >Exit {exitIcon}</li>
                     </ul>
                 </div>
             </header>
