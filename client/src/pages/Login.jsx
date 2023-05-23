@@ -11,17 +11,28 @@ export default function UserLogin( {isOpen, onClose} ) {
     const handleLogin = (e) => {
       e.preventDefault();
 
+      if (!username.trim() || !password.trim()) {
+        alert('Please enter a username and password');
+        return;
+      }
+
       loginUser({ username, password })
         .then((res) => {
           console.log(res);
           if (res.status === 200) {
             console.log('Logged in');
+            console.log(res.data.token);
+            console.log(res.data.user._id);
+            localStorage.setItem('token', res.data.token);
+            localStorage.setItem('userId', res.data.user._id);
             //navigate to the app page
             navigate('/app');
-
             onClose();
+            
           } else {
             console.log('Login failed');
+            alert('Login failed');
+            onClose();
           }
         })
         .catch((err) => {

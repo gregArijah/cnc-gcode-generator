@@ -100,7 +100,7 @@ const userController = {
             .then((user) => {
                 if (!user) {
                     res.status(400).json({ message: 'No user found with this username!' });
-                    //alert('No user found with this username!');
+                    //window.alert('No user found with this username!');
                     return;
                 }
                 //check if password is correct
