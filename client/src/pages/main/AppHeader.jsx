@@ -1,9 +1,16 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { dropIcon, newIcon, openIcon, dlIcon, trashIcon  } from '../../icons/FontAwesome';
 import { warehouseIcon, libraryIcon, chatIcon, settingsIcon, helpIcon, exitIcon } from '../../icons/FontAwesome';
 
 export default function Header (){
+    const navigate = useNavigate();
+    const logout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('userId');
+        navigate('/');
+    }
 
     const [isOpen, setIsOpen] = useState(false);
     const toggleDropdown = () => {
@@ -16,7 +23,7 @@ export default function Header (){
                 <div>Javatrol</div>
                 <div className="pr-4 md:pr-6">              
                     <ul className='flex px-2 font-thin space-x-6'>
-                    <div className="relative">
+                    <div className="relative opacity-30">
                         <button type="button" className="font-semibold px-4 rounded items-center hover:bg-gray-800 focus:outline-none" onClick={toggleDropdown} >
                         My Projects {dropIcon}  
                         </button>
@@ -29,12 +36,12 @@ export default function Header (){
                         </ul>
                         )}
                         </div>
-                        <li>Home {warehouseIcon}</li>
-                        <li>Tool Library {libraryIcon}</li>
-                        <li>Chat {chatIcon}</li>
-                        <li>Settings {settingsIcon}</li>
-                        <li>Help {helpIcon}</li>
-                        <li>Exit {exitIcon}</li>
+                        <li className='opacity-30'>Home {warehouseIcon}</li>
+                        <li className='opacity-30'>Tool Library {libraryIcon}</li>
+                        <li className='opacity-30'>Chat {chatIcon}</li>
+                        <li className='opacity-30'>Settings {settingsIcon}</li>
+                        <li className='opacity-30'>Help {helpIcon}</li>
+                        <li onClick={logout} className='cursor-pointer hover:italic hover:text-orange-500'   >Exit {exitIcon}</li>
                     </ul>
                 </div>
             </header>
