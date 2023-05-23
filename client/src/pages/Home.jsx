@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef }  from 'react';
 import { Link } from 'react-router-dom';
+import UserLogin from './Login';
 
 import { circleRightIcon } from '../icons/FontAwesome';
 
@@ -30,16 +31,22 @@ function Home() {
     alert("That button dont work.LOL! :P ")
   }
 
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const handleEnterApp = () => { setIsLoginOpen(true)};
+  const handleLoginClose = () => { setIsLoginOpen(false)}; 
+
   return (
     <div>
+        
         <div className="bg-cnc-background bg-cover text-white min-h-screen max-w-full bg-center">
           <div className='min-h-screen' style={{backgroundColor: 'rgba(35, 35, 100, 0.5)'}}> 
             <div className='flex items-center justify-between'>
               <img className="m-5 h-36 sm:h-48" src= "images/logos/logosmallwhite.png"/> 
               <div className="pr-4 md:pr-28">
-                <Link role='button' to='/app' className="flex items-center justify-center sm:text-2xl bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full h-16 sm:h-16 sm:w-48 float-right">
+                <Link role='button' to='#' onClick={handleEnterApp} className="flex items-center justify-center sm:text-2xl bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full h-16 sm:h-16 sm:w-48 float-right">
                   Enter App
                 </Link>
+                
               </div>
             </div>
             <div className= "p-2 md:pl-10 md:flex">
@@ -116,7 +123,8 @@ function Home() {
               </div>  
             </div>
         </div>
-      </div>  
+      </div>
+      <UserLogin isOpen={isLoginOpen} onClose={handleLoginClose}/>  
     </div>
   );
 }
