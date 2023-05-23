@@ -11,6 +11,8 @@ export default function UserLogin( {isOpen, onClose} ) {
     const handleLogin = (e) => {
       e.preventDefault();
 
+      
+
       if (!username.trim() || !password.trim()) {
         alert('Please enter a username and password');
         return;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef }  from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import UserLogin from './Login';
 
 import { circleRightIcon } from '../icons/FontAwesome';
@@ -31,8 +31,17 @@ function Home() {
     alert("That button dont work.LOL! :P ")
   }
 
+  const navigate = useNavigate();
   const [isLoginOpen, setIsLoginOpen] = useState(false);
-  const handleEnterApp = () => { setIsLoginOpen(true)};
+  const handleEnterApp = () => { 
+    const isAuthenticated = localStorage.getItem('token') != null;
+    if (isAuthenticated) {
+        window.location.href = '/javatrol/app';
+        console.log('logged in');
+    } else {
+      setIsLoginOpen(true);
+    }
+  };
   const handleLoginClose = () => { setIsLoginOpen(false)}; 
 
   return (
