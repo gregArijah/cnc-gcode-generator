@@ -22,7 +22,7 @@ export default function Main() {
           <main className="flex-grow p-6">
             < Navbar setCurrentTab={setCurrentTab} currentTab={currentTab} currentOperation={currentOperation}/>    
             < Display currentTab={currentTab} setCurrentTab={setCurrentTab} currentOperation={currentOperation} />
-            {currentTab===""&&currentOperation!==""&&setCurrentTab('Meta')}
+            {currentTab===""&&currentOperation!==""&&setCurrentTab('G-code')}
             {currentTab!==""&&currentOperation===""&&setCurrentTab('')}
           </main>
       </div>

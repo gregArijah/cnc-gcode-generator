@@ -3,8 +3,8 @@ import MyModal from '../../components/modalSmall';
 import { Link, useNavigate } from 'react-router-dom';
 import { getUserById, deleteProject } from '../../utils/api';
 
-export default function DeleteProject( {isOpen, onClose, setActiveProject} ) {
-    const [projectArray, setProjectArray] = useState([]);
+export default function DeleteProject( {isOpen, onClose, setActiveProject, projectArray, setProjectArray} ) {
+    //const [projectArray, setProjectArray] = useState([]);
     const navigate = useNavigate();
       //read getUserById from api.js into state variable
       //extract [projectName] from state variable
@@ -24,7 +24,7 @@ export default function DeleteProject( {isOpen, onClose, setActiveProject} ) {
     });
   };
     
-    const handleDeleteProject = (project) => {
+    const handleDeleteProject = (e,project) => {
       //e.preventDefault();
       console.log(project);
       //localStorage.setItem('javatrolProjectId', project._id);
@@ -69,14 +69,15 @@ export default function DeleteProject( {isOpen, onClose, setActiveProject} ) {
     <div>
 
       <MyModal isOpen={isOpen} onClose={handleCloseModal}>
+        <form>
         <div className="text-2xl font-medium mb-4">Delete Project</div>
         
          
         <ul className="m-4 space-y-3 text-lg">
           
-          {projectArray.length > 0 ? 
+          {projectArray && projectArray.length > 0 ? 
             projectArray.map((project, index) => (
-              <li onClick={()=>handleDeleteProject(project)} className='cursor-pointer justify-between flex hover:bg-gray-700' key={index}>{index+1}. {project.projectName}<span className='opacity-10 pl-6'>{project._id}</span></li>
+              <li onClick={(e)=>handleDeleteProject(e,project)} className='cursor-pointer justify-between flex hover:bg-gray-700' key={index}>{index+1}. {project.projectName}<span className='opacity-10 pl-6'>{project._id}</span></li>
             ))
            : 
             <li>No projects found</li>
@@ -84,7 +85,7 @@ export default function DeleteProject( {isOpen, onClose, setActiveProject} ) {
         </ul>
 
         <button onClick={handleCloseModal} className="m-4 p-2 bg-blue-500 text-white font-medium">Go Back</button>
-
+          </form>
       </MyModal>
     </div>
   );

@@ -14,6 +14,7 @@ export default function Header ({ setActiveProject }){
         localStorage.removeItem('javatrolToken');
         localStorage.removeItem('javatrolUserId');
         localStorage.removeItem('javatrolProjectId');
+        localStorage.removeItem('javatrolProjectName');
         navigate('/');
     }
 
@@ -56,12 +57,14 @@ export default function Header ({ setActiveProject }){
         setActiveProject(projectName);
     };
 
+    const [projectArray, setProjectArray] = useState([]);
+
       
     return(    
         <div>
             <NewProject isOpen={isNewProjectOpen} onClose={handleNewProjectClose} setActiveProject={handleSetActiveProject} />
-            <OpenProject isOpen={isOpenProjectOpen} onClose={handleOpenProjectClose} setActiveProject={handleSetActiveProject}/>
-            <DeleteProject isOpen={isDeleteProjectOpen} onClose={handleDeleteProjectClose} setActiveProject={handleSetActiveProject}/>
+            <OpenProject isOpen={isOpenProjectOpen} onClose={handleOpenProjectClose} setActiveProject={handleSetActiveProject} projectArray={projectArray} setProjectArray={setProjectArray} />
+            <DeleteProject isOpen={isDeleteProjectOpen} onClose={handleDeleteProjectClose} setActiveProject={handleSetActiveProject} projectArray={projectArray} setProjectArray={setProjectArray}/>
             <header className="h-16 flex justify-between items-center font-bold text-xl border-b mb-4 pb-4">
                 <div>Javatrol</div>
                 <div className="pr-4 md:pr-6">              
