@@ -7,7 +7,7 @@ import OpenProject from './ProjectOpen';
 import { dropIcon, newIcon, openIcon, dlIcon, trashIcon  } from '../../icons/FontAwesome';
 import { warehouseIcon, libraryIcon, chatIcon, settingsIcon, helpIcon, exitIcon } from '../../icons/FontAwesome';
 
-export default function Header (){
+export default function Header ({ setActiveProject }){
     const navigate = useNavigate();
     const logout = () => {
         localStorage.removeItem('javatrolToken');
@@ -40,11 +40,16 @@ export default function Header (){
         console.log('Open Project');
         handleOpenProjectOpen();
     }
+
+    const handleSetActiveProject = (projectName) => {
+        setActiveProject(projectName);
+    };
+
       
     return(    
         <div>
-            <NewProject isOpen={isNewProjectOpen} onClose={handleNewProjectClose} />
-            <OpenProject isOpen={isOpenProjectOpen} onClose={handleOpenProjectClose} />
+            <NewProject isOpen={isNewProjectOpen} onClose={handleNewProjectClose} setActiveProject={handleSetActiveProject} />
+            <OpenProject isOpen={isOpenProjectOpen} onClose={handleOpenProjectClose} setActiveProject={handleSetActiveProject}/>
             <header className="h-16 flex justify-between items-center font-bold text-xl border-b mb-4 pb-4">
                 <div>Javatrol</div>
                 <div className="pr-4 md:pr-6">              

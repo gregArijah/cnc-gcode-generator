@@ -7,7 +7,7 @@ export const operations = [
 
 ]
    
-export default function Sidebar({ currentOperation, setCurrentOperation }){
+export default function Sidebar({ currentOperation, setCurrentOperation, activeProject }){
      
     const [isOpen, setIsOpen] = useState(false);
    
@@ -23,11 +23,10 @@ export default function Sidebar({ currentOperation, setCurrentOperation }){
         setIsOpen(false);
     };    
     
-    const [activeProject, setActiveProject] = useState('Project') ;
     return (
         <div className="w-64 bg-gray-800 border rounded-md" style={{height:"80vh", overflowY: 'auto',}}>
             <div className="h-16 flex justify-center items-center font-bold text-xl border-b" >
-                {activeProject || 'Operations'	}
+                {activeProject}
             </div>
             <ul className='pl-4'>
                 {operations.map((item,index)=>{

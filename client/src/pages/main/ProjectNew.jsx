@@ -3,7 +3,7 @@ import MyModal from '../../components/modalSmall';
 import { Link, useNavigate } from 'react-router-dom';
 import { createProject } from '../../utils/api';
 
-export default function NewProject( {isOpen, onClose} ) {
+export default function NewProject( {isOpen, onClose, setActiveProject} ) {
     const [projectName, setProjectName] = useState('');
     const navigate = useNavigate();
     
@@ -23,6 +23,7 @@ export default function NewProject( {isOpen, onClose} ) {
                 console.log(res.data._id);
                 localStorage.setItem('javatrolProjectId', res.data._id);
                 localStorage.setItem('javatrolProjectName', projectName);
+                setActiveProject(projectName);
                 onClose();
             
             } else {
