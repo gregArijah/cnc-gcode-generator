@@ -63,7 +63,7 @@ export default function SelectPocket({ isOpen, onClose, selectMainClose }) {
         if (formData.dropdown === "Circle")  gCode = pocketCircle({formData});
         if (formData.dropdown === "Arbitrary")  gCode = pocketArbitrary({formData});
        
-        formData.gCode = gCode;
+        //formData.gCode = gCode;
         //calculate values
         // operations.push({
         //     name:"drill2",
@@ -71,8 +71,8 @@ export default function SelectPocket({ isOpen, onClose, selectMainClose }) {
         //     tool:"1 inch drill",
         //     gCode:"gcode goes here for drilling 1 inch holes"
         //     });
-        operations.push({formData});
-        console.log(operations);
+        operations.push({ data:formData, gCode:gCode})
+        console.log("operations: ", operations);
 
         setFormData(INITIAL_STATE);
 
