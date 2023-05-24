@@ -27,6 +27,14 @@ const userController = {
     // get one user by id
     getUserById({ params }, res) {
         User.findOne({ _id: params.id })
+            .populate({
+                path: 'toolLibrary',
+                select: '-__v'
+            })
+            .populate({
+                path: 'projects',
+                select: '-__v'
+            })
             .select('-__v')
             .then(dbUserData => {
                 // If no user is found, send 404

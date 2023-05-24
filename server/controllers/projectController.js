@@ -62,6 +62,7 @@ const projectController = {
             )
             .catch(err => res.json(err));
         })
+        .catch(err => res.json(err));
     },
 
     // update project by id
