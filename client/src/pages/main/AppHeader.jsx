@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import NewProject from './NewProject';
+import NewProject from './ProjectNew';
 
 
 import { dropIcon, newIcon, openIcon, dlIcon, trashIcon  } from '../../icons/FontAwesome';
