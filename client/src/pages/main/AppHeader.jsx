@@ -75,7 +75,7 @@ export default function Header ({ setActiveProject }){
                                 <li onClick={handleNewProject}><a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{newIcon} New</a></li>
                                 <li onClick={handleOpenProject}><a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{openIcon} Open</a></li>
                                 <li onClick={handleDeleteProject}><a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{trashIcon} Delete</a></li>
-                                <li onClick={()=>setIsOpen(!isOpen)}><a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">{dlIcon} Download</a></li>
+                                <li><a className="block px-4 py-2 text-sm text-gray-700 opacity-40">{dlIcon} Download</a></li>
                             </ul>
                             )}
                         </div>
