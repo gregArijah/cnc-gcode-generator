@@ -72,7 +72,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
         if (formData.dropdown === "Line")  gCode = drillingLine({formData});
         if (formData.dropdown === "Circle")  gCode = drillingCircle({formData});
         if (formData.dropdown === "Arc")  gCode = drillingArc({formData});
-        formData.gCode = gCode;
+        //formData.gCode = gCode;
         //calculate values
         // operations.push({
         //     name:"drill2",
@@ -80,7 +80,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
         //     tool:"1 inch drill",
         //     gCode:"gcode goes here for drilling 1 inch holes"
         //     });
-        operations.push({formData});
+        operations.push({data:formData, gCode:gCode});
         console.log(operations);
 
         setFormData(INITIAL_STATE);
