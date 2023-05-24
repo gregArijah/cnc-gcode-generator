@@ -4,12 +4,7 @@ import SelectOpType from './Select_Main';
 import { getAllOperations } from '../../utils/api';
 
 export const operations = [
-    // {
-    // name:"centre drill",
-    // desc:"centre drill for 1 inch holes",
-    // tool:"centre drill",
-    // gcode:"gcode goes here for centre drilling 1 inch holes"
-    // },
+
 ]
    
 export default function Sidebar({ currentOperation, setCurrentOperation }){
@@ -27,11 +22,12 @@ export default function Sidebar({ currentOperation, setCurrentOperation }){
     const handleCloseModal = () => {
         setIsOpen(false);
     };    
-
+    
+    const [activeProject, setActiveProject] = useState('Project') ;
     return (
         <div className="w-64 bg-gray-800 border rounded-md" style={{height:"80vh", overflowY: 'auto',}}>
             <div className="h-16 flex justify-center items-center font-bold text-xl border-b" >
-                Operations
+                {activeProject || 'Operations'	}
             </div>
             <ul className='pl-4'>
                 {operations.map((item,index)=>{

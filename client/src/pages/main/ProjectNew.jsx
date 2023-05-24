@@ -22,6 +22,7 @@ export default function NewProject( {isOpen, onClose} ) {
                 console.log('Project created');
                 console.log(res.data._id);
                 localStorage.setItem('javatrolProjectId', res.data._id);
+                localStorage.setItem('javatrolProjectName', projectName);
                 onClose();
             
             } else {

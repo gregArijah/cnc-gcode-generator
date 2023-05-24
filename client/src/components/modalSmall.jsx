@@ -35,7 +35,7 @@ export default function MyModal({ isOpen, onClose, children }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="inline-block justify-center items-center w-min p-6 my-8 text-left text-white align-middle transition-all transform bg-gray-900 shadow-xl rounded-2xl border"  >
+              <div className="inline-block justify-center w-fit items-center p-6 my-8 text-left text-white align-middle transition-all transform bg-gray-900 shadow-xl rounded-2xl border"  >
                  {children}
               </div>
             </Transition.Child>
