@@ -36,13 +36,13 @@ function Home() {
   
 
   const handleEnterApp = () => { 
-    const isAuthenticated = localStorage.getItem('javatrolToken') != null;
-    if (isAuthenticated) {
-        window.location.href = '/app';
-        console.log('logged in');
-    } else {
+    // const isAuthenticated = localStorage.getItem('javatrolToken') != null;
+    // if (isAuthenticated) {
+    //     window.location.href = '/app';
+    //     console.log('logged in');
+    // } else {
       setIsLoginOpen(true);
-    }
+    //}
   };
   
   const [isLoginOpen, setIsLoginOpen] = useState(false);
