@@ -11,7 +11,7 @@ export default function Main() {
 
   const [currentOperation, setCurrentOperation] = useState("");
   const [currentTab, setCurrentTab] = useState("");
-  const [activeProject, setActiveProject] = useState('Project') ;
+  const [activeProject, setActiveProject] = useState(localStorage.getItem('javatrolProjectName') || 'Project') ;
   const [operationsArray, setOperationsArray] = useState([]);
 
   
