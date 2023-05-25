@@ -1,14 +1,32 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { plusIcon } from '../../icons/FontAwesome';
 import SelectOpType from './Select_Main';
-import { getAllOperations } from '../../utils/api';
+import { getAllOperations, getProjectById } from '../../utils/api';
 
-export const operations = [
 
-]
+export const operations = [];
+
+
+
    
-export default function Sidebar({ currentOperation, setCurrentOperation, activeProject }){
-     
+export default function Sidebar({ currentOperation, setCurrentOperation, activeProject, operationsArray, setOperationsArray }){
+
+    //const [operationsArray, setOperationsArray] = useState([]);
+    useEffect(() => {
+        getProjectOperations();
+    }, []);
+
+    const getProjectOperations = () => {
+        getProjectById(localStorage.getItem('javatrolProjectId'))
+            .then((response) => {
+                setOperationsArray(response.data.operations);
+                console.log(response.data.operations);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
     const [isOpen, setIsOpen] = useState(false);
    
     const handleOpenModal = () => {
@@ -29,7 +47,7 @@ export default function Sidebar({ currentOperation, setCurrentOperation, activeP
                 {activeProject}
             </div>
             <ul className='pl-4'>
-                {operations.map((item,index)=>{
+                {operationsArray.map((item,index)=>{
                     return <li key={index} className= {`mr-1 py-0.5 cursor-pointer ${currentOperation === `op${index+1}` ? 'text-orange-500' : 'text-white hover:text-orange-700'}`} onClick={() => setCurrentOperation(index)}>Operation {index+1}</li>
                 })}
             </ul>  

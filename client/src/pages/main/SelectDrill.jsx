@@ -6,6 +6,7 @@ import drillingPoint from "../../pathLogic/drillingPoint";
 import drillingLine from "../../pathLogic/drillingLine";
 import drillingCircle from "../../pathLogic/drillingCircle";
 import drillingArc from "../../pathLogic/drillingArc";
+import { createOperation } from "../../utils/api";
 
 //convert degrees to radians
 function toRadians(angle) {
@@ -72,15 +73,26 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
         if (formData.dropdown === "Line")  gCode = drillingLine({formData});
         if (formData.dropdown === "Circle")  gCode = drillingCircle({formData});
         if (formData.dropdown === "Arc")  gCode = drillingArc({formData});
-        //formData.gCode = gCode;
-        //calculate values
-        // operations.push({
-        //     name:"drill2",
-        //     desc:"drill for 1 inch holes",
-        //     tool:"1 inch drill",
-        //     gCode:"gcode goes here for drilling 1 inch holes"
-        //     });
-        operations.push({data:formData, gCode:gCode});
+      
+        let operationName = `Drilling ${formData.holeDiameter}" hole${formData.dropdown !== "Point" ? "s" : ""}`;
+        let operationData = {operationName:operationName, operationData:formData, operationGCode:gCode, projectId:localStorage.getItem('javatrolProjectId')};
+        
+        createOperation(operationData)
+            .then((response) => {
+                console.log("Operation push to project file:", response);
+                if (response.status === 200) {
+                    console.log("Operation created");
+                } else {
+                    console.log("Operation creation failed");
+                    alert("Operation creation failed");
+                } 
+
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+
+        operations.push({name:operationName, data:formData, gCode:gCode});
         console.log(operations);
 
         setFormData(INITIAL_STATE);
