@@ -1,7 +1,9 @@
 //import libraries
+require('dotenv').config();
+
 const mongoose = require('mongoose');
 
-const uri = "mongodb+srv://gregarijah:Ax54I2SUHgmAkdpW@cluster0.24twaxc.mongodb.net/javatrolDB?retryWrites=true&w=majority"
+const uri = process.env.MONGODB_URI;
 
 mongoose.connect(uri, {
   useNewUrlParser: true,
