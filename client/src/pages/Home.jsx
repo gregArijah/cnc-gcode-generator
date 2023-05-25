@@ -38,7 +38,7 @@ function Home() {
   const handleEnterApp = () => { 
     const isAuthenticated = localStorage.getItem('javatrolToken') != null;
     if (isAuthenticated) {
-        window.location.href = '/javatrol/app';
+        window.location.href = '/app';
         console.log('logged in');
     } else {
       setIsLoginOpen(true);
