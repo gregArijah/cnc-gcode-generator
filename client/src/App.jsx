@@ -7,7 +7,7 @@ import Main from './pages/main/App_Main';
 
 export default function App(){
   return (
-      <Router basename = '/javatrol'>
+      <Router basename = '/'>
         <Routes>
             <Route path ='/' element={<Home />} />
             <Route element={<ProtectedRoute />} >
