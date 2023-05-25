@@ -24,6 +24,9 @@ export default function UserCreate( {isOpen, onClose, openLogin} ) {
           if (res.status === 200) {
             console.log('User created successfully');
             alert('User created successfully');
+            openLogin();
+            setPassword('');
+            setUsername('');
             onClose();  
             
           } else {
@@ -49,8 +52,7 @@ export default function UserCreate( {isOpen, onClose, openLogin} ) {
 
   return (
     <div>
-      {/* <button onClick={handleOpenModal}>Enter App</button> */}
-
+      
       <MyModal isOpen={isOpen} onClose={handleCloseModal}>
         <div className="text-2xl font-medium mb-4">Sign Up</div>
         <form onSubmit={handleSignUp}>
