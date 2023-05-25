@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef }  from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import UserLogin from './Login';
+import UserSignUp from './SignUp';
 
 import { circleRightIcon } from '../icons/FontAwesome';
 
@@ -32,7 +33,8 @@ function Home() {
   }
 
   const navigate = useNavigate();
-  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  
+
   const handleEnterApp = () => { 
     const isAuthenticated = localStorage.getItem('javatrolToken') != null;
     if (isAuthenticated) {
@@ -42,11 +44,21 @@ function Home() {
       setIsLoginOpen(true);
     }
   };
+  
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
   const handleLoginClose = () => { setIsLoginOpen(false)}; 
+  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
+  const handleSignUpClose = () => { setIsSignUpOpen(false)};
+
+  const changeForm = () => {
+    setIsLoginOpen(!isLoginOpen);
+    setIsSignUpOpen(!isSignUpOpen);
+  }
 
   return (
     <div>
-        
+        <UserLogin isOpen={isLoginOpen} onClose={handleLoginClose} openSignUp={changeForm}/>  
+        <UserSignUp isOpen={isSignUpOpen} onClose={handleSignUpClose} openLogin={changeForm}/>
         <div className="bg-cnc-background bg-cover text-white min-h-screen max-w-full bg-center">
           <div className='min-h-screen' style={{backgroundColor: 'rgba(35, 35, 100, 0.5)'}}> 
             <div className='flex items-center justify-between'>
@@ -133,7 +145,7 @@ function Home() {
             </div>
         </div>
       </div>
-      <UserLogin isOpen={isLoginOpen} onClose={handleLoginClose}/>  
+      
     </div>
   );
 }
