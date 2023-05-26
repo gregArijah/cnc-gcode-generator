@@ -18,7 +18,6 @@ export default function OpenProject( {isOpen, onClose, setActiveProject, project
         getUserById(localStorage.getItem('javatrolUserId'))
             .then((response) => {
                 setProjectArray(response.data.projects);
-                setOperationsArray(response.data.operations);
                 console.log(response.data.projects);
     })
     .catch((err) => {
@@ -32,6 +31,7 @@ export default function OpenProject( {isOpen, onClose, setActiveProject, project
       localStorage.setItem('javatrolProjectId', project._id);
       localStorage.setItem('javatrolProjectName', project.projectName);
       setActiveProject(project.projectName);
+      setOperationsArray(project.operations);
 
 
 
