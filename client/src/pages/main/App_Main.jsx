@@ -17,7 +17,7 @@ export default function Main() {
   
   return (
     <div className="min-h-screen bg-gray-900 text-white p-4">
-      <Header setActiveProject={setActiveProject} />  
+      <Header setActiveProject={setActiveProject} setOperationsArray={setOperationsArray}/>  
       <div className="flex flex-grow">  
           <Sidebar currentOperation={currentOperation}
                    setCurrentOperation={setCurrentOperation} 

@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import MyModal from '../../components/modalSmall'; 
 import { Link, useNavigate } from 'react-router-dom';
 import { getUserById } from '../../utils/api';
+import { set } from 'mongoose';
 
-export default function OpenProject( {isOpen, onClose, setActiveProject, projectArray, setProjectArray} ) {
+export default function OpenProject( {isOpen, onClose, setActiveProject, projectArray, setProjectArray, setOperationsArray} ) {
     //const [projectArray, setProjectArray] = useState([]);
     const navigate = useNavigate();
       //read getUserById from api.js into state variable
@@ -17,6 +18,7 @@ export default function OpenProject( {isOpen, onClose, setActiveProject, project
         getUserById(localStorage.getItem('javatrolUserId'))
             .then((response) => {
                 setProjectArray(response.data.projects);
+                setOperationsArray(response.data.operations);
                 console.log(response.data.projects);
     })
     .catch((err) => {
