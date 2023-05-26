@@ -8,7 +8,7 @@ export default function Display({ currentTab, currentOperation, operationsArray 
     //let operationArray = Object.entries(operations[currentOperation]|| "");
     //'gcode = operationArray[0][1].gCode
     if (operationsArray[currentOperation] === undefined) {
-        null
+        console.log("undefined at line 11");
     } else {
         gcode = (operationsArray[currentOperation].operationGCode);
         meta = JSON.stringify(operationsArray[currentOperation].operationData, null, 2);
