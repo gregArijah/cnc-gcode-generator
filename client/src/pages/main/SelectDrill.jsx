@@ -82,6 +82,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose, operatio
                 console.log("Operation push to project file:", response);
                 if (response.status === 200) {
                     console.log("Operation created");
+                    setOperationsArray([...operationsArray, operationData]);
                 } else {
                     console.log("Operation creation failed");
                     alert("Operation creation failed");
@@ -94,7 +95,7 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose, operatio
 
         //let newItem = {operationName: operationName, data:formData, gCode};
         //console.log(operations);
-        setOperationsArray([...operationsArray, operationData]);
+        
 
         setFormData(INITIAL_STATE);
 
