@@ -3,7 +3,7 @@ import MyModal from "../../components/modal"
 import SelectDrill  from "./SelectDrill";
 import SelectPocket from "./SelectPocket";
 
-export default function SelectOpType({ isOpen, onClose}){
+export default function SelectOpType({ isOpen, onClose, operationsArray, setOperationsArray}){
 
     const [isDrillOpen, setIsDrillOpen] = useState(false);
     const handleDrillOpen = () => { setIsDrillOpen(true)};
@@ -15,6 +15,8 @@ export default function SelectOpType({ isOpen, onClose}){
     
     return ( 
         <div>
+            <SelectDrill isOpen={isDrillOpen} onClose={handleDrillClose} selectMainClose={onClose} operationsArray={operationsArray} setOperationsArray={setOperationsArray}/>
+            <SelectPocket isOpen={isPocketOpen} onClose={handlePocketClose} selectMainClose={onClose} operationsArray={operationsArray} setOperationsArray={setOperationsArray}/>
             <MyModal isOpen={isOpen} onClose={onClose}>
                 <div className="text-2xl font-medium mb-4">Select an Operation</div>
                 <p className="m-4 mb-2 text-lg font-medium">Point</p>
@@ -60,8 +62,7 @@ export default function SelectOpType({ isOpen, onClose}){
  
                 <button onClick={onClose} className="rounded border-2 p-3 px-10 mt-2 bg-gray-950 hover:text-orange-500  hover:border-orange-500">Go Back</button>
             </MyModal>
-            <SelectDrill isOpen={isDrillOpen} onClose={handleDrillClose} selectMainClose={onClose}/>
-            <SelectPocket isOpen={isPocketOpen} onClose={handlePocketClose} selectMainClose={onClose}/>
+            
         </div>    
     )
 } 

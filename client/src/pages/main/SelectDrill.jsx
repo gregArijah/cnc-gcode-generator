@@ -7,13 +7,14 @@ import drillingLine from "../../pathLogic/drillingLine";
 import drillingCircle from "../../pathLogic/drillingCircle";
 import drillingArc from "../../pathLogic/drillingArc";
 import { createOperation } from "../../utils/api";
+import { set } from "mongoose";
 
 //convert degrees to radians
 function toRadians(angle) {
     return angle * (Math.PI / 180);
 }
 
-export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
+export default function SelectDrill({ isOpen, onClose, selectMainClose, operationsArray, setOperationsArray }) {
     const [enabled_spot, setEnabled_spot] = useState(false);
     const [enabled_centre, setEnabled_centre] = useState("");
     const [enabled_drill, setEnabled_drill] = useState(true);
@@ -92,8 +93,9 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose }) {
                 console.log(err);
             });
 
-        operations.push({name:operationName, data:formData, gCode:gCode});
-        console.log(operations);
+        let newItem = {name:operationName, data:formData, gCode:gCode};
+        //console.log(operations);
+        setOperationsArray([...operationsArray, newItem]);
 
         setFormData(INITIAL_STATE);
 

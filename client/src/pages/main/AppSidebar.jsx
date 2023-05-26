@@ -53,7 +53,7 @@ export default function Sidebar({ currentOperation, setCurrentOperation, activeP
             </ul>  
             
             <button onClick={handleOpenModal} className='border-t border-b min-w-full mt-2 p-1 pl-4 bg-gray-900 text-left'>{plusIcon} add operation</button>      
-            <SelectOpType isOpen={isOpen} onClose={handleCloseModal} />
+            <SelectOpType isOpen={isOpen} onClose={handleCloseModal} operationsArray={operationsArray} setOperationsArray={setOperationsArray} />
             
  
         </div>

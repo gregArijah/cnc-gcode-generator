@@ -11,7 +11,7 @@ function toRadians(angle) {
     return angle * (Math.PI / 180);
 }
 
-export default function SelectPocket({ isOpen, onClose, selectMainClose }) {
+export default function SelectPocket({ isOpen, onClose, selectMainClose, operationsArray, setOperationsArray}) {
     const [enabled_roughMill, setEnabled_roughMill] = useState(true);
     const [enabled_finishMill, setEnabled_finishMill] = useState("");
     const [enabled_chamferMill, setEnabled_chamferMill] = useState("");
