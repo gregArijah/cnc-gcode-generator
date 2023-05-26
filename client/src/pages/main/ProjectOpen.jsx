@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import MyModal from '../../components/modalSmall'; 
 import { Link, useNavigate } from 'react-router-dom';
-import { getUserById } from '../../utils/api';
+import { getUserById, getProjectById } from '../../utils/api';
 
 
 export default function OpenProject( {isOpen, onClose, setActiveProject, projectArray, setProjectArray, setOperationsArray} ) {
@@ -31,7 +31,17 @@ export default function OpenProject( {isOpen, onClose, setActiveProject, project
       localStorage.setItem('javatrolProjectId', project._id);
       localStorage.setItem('javatrolProjectName', project.projectName);
       setActiveProject(project.projectName);
-      setOperationsArray(project.operations);
+
+      getProjectById(localStorage.getItem('javatrolProjectId'))
+            .then((response) => {
+                setOperationsArray(response.data.operations);
+                console.log(response.data.projects);
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+    
+    //setOperationsArray(project.operations);
 
 
 
