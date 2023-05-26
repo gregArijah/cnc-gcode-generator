@@ -92,9 +92,9 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose, operatio
                 console.log(err);
             });
 
-        let newItem = {name:operationName, data:formData, gCode:gCode};
+        //let newItem = {operationName: operationName, data:formData, gCode};
         //console.log(operations);
-        setOperationsArray([...operationsArray, newItem]);
+        setOperationsArray([...operationsArray, operationData]);
 
         setFormData(INITIAL_STATE);
 
