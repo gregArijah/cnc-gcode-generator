@@ -7,7 +7,6 @@ import drillingLine from "../../pathLogic/drillingLine";
 import drillingCircle from "../../pathLogic/drillingCircle";
 import drillingArc from "../../pathLogic/drillingArc";
 import { createOperation } from "../../utils/api";
-import { set } from "mongoose";
 
 //convert degrees to radians
 function toRadians(angle) {
