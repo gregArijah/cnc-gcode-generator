@@ -11,11 +11,13 @@ import { warehouseIcon, libraryIcon, chatIcon, settingsIcon, helpIcon, exitIcon 
 export default function Header ({ setActiveProject, setOperationsArray, setActiveScreen }){
     const navigate = useNavigate();
     const logout = () => {
-        localStorage.removeItem('javatrolToken');
-        localStorage.removeItem('javatrolUserId');
-        localStorage.removeItem('javatrolProjectId');
-        localStorage.removeItem('javatrolProjectName');
-        navigate('/');
+        if (confirm('Are you sure you want to logout and exit app?')) {
+            localStorage.removeItem('javatrolToken');
+            localStorage.removeItem('javatrolUserId');
+            localStorage.removeItem('javatrolProjectId');
+            localStorage.removeItem('javatrolProjectName');
+            navigate('/');
+        }
     }
 
     const [isOpen, setIsOpen] = useState(false);
