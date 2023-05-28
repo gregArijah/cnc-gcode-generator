@@ -1,7 +1,7 @@
 export default function Help() {
 
     return (
-        <div>
+        <div className="w-full bg-gray-800 border rounded-md p-4" style={{height:"80vh", overflowY: 'auto',}}>
             <div className="text-lg font-bold mb-2">Place holder for Help</div>
             <p>
            
