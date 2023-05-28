@@ -7,6 +7,7 @@ import Sidebar from './AppSidebar';
 import Navbar from './AppNavbar'
 import Display from './AppDisplay';
 import ToolLibrary from './HeadLibrary';
+import Chat from './HeadChat';
 
 export default function Main() {
 
@@ -46,6 +47,9 @@ export default function Main() {
       <div className= {activeScreen == 'library'? "flex flex-grow": "hidden" }>
         <ToolLibrary />
       </div>
+      <div className= {activeScreen == 'chat'? "flex flex-grow": "hidden" }>
+        <Chat />
+      </div>  
 
     </div>
 );
