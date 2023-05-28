@@ -8,7 +8,7 @@ import DeleteProject from './ProjectDelete';
 import { dropIcon, newIcon, openIcon, dlIcon, trashIcon  } from '../../icons/FontAwesome';
 import { warehouseIcon, libraryIcon, chatIcon, settingsIcon, helpIcon, exitIcon } from '../../icons/FontAwesome';
 
-export default function Header ({ setActiveProject, setOperationsArray }){
+export default function Header ({ setActiveProject, setOperationsArray, setActiveScreen }){
     const navigate = useNavigate();
     const logout = () => {
         localStorage.removeItem('javatrolToken');
@@ -82,7 +82,7 @@ export default function Header ({ setActiveProject, setOperationsArray }){
                             </ul>
                             )}
                         </div>
-                        <li className='opacity-30'>Home {warehouseIcon}</li>
+                        <li onClick={setActiveScreen('home')} className='cursor-pointer hover:text-orange-500  hover:bg-gray-600'>Home {warehouseIcon}</li>
                         <li className='opacity-30'>Tool Library {libraryIcon}</li>
                         <li className='opacity-30'>Chat {chatIcon}</li>
                         <li className='opacity-30'>Settings {settingsIcon}</li>

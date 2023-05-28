@@ -13,12 +13,15 @@ export default function Main() {
   const [currentTab, setCurrentTab] = useState("");
   const [activeProject, setActiveProject] = useState(localStorage.getItem('javatrolProjectName') || 'Project') ;
   const [operationsArray, setOperationsArray] = useState([]);
+  const [activeScreen, setActiveScreen] = useState('home');
 
   
   return (
     <div className="min-h-screen bg-gray-900 text-white p-4">
-      <Header setActiveProject={setActiveProject} setOperationsArray={setOperationsArray}/>  
-      <div className="flex flex-grow">  
+      <Header setActiveProject={setActiveProject} 
+              setOperationsArray={setOperationsArray} 
+              setActiveScreen={setActiveScreen}/>  
+      <div className= {activeScreen == 'home'? "flex flex-grow": "hidden" }>  
           <Sidebar currentOperation={currentOperation}
                    setCurrentOperation={setCurrentOperation} 
                    activeProject={activeProject}
