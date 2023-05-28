@@ -86,7 +86,7 @@ export default function Header ({ setActiveProject, setOperationsArray, setActiv
                         <li onClick={()=>setActiveScreen('library')} className='cursor-pointer hover:text-orange-500  hover:bg-gray-600'>Tool Library {libraryIcon}</li>
                         <li onClick={()=>setActiveScreen('chat')} className='cursor-pointer hover:text-orange-500  hover:bg-gray-600'>Chat {chatIcon}</li>
                         <li onClick={()=>setActiveScreen('settings')} className='cursor-pointer hover:text-orange-500  hover:bg-gray-600'>Settings {settingsIcon}</li>
-                        <li className='opacity-30'>Help {helpIcon}</li>
+                        <li onClick={()=>setActiveScreen('help')} className='cursor-pointer hover:text-orange-500  hover:bg-gray-600'>Help {helpIcon}</li>
                         <li onClick={logout} className='cursor-pointer hover:text-orange-500  hover:bg-gray-600'   >Exit {exitIcon}</li>
                     </ul>
                 </div>

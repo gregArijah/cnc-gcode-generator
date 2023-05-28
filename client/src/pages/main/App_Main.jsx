@@ -9,6 +9,7 @@ import Display from './AppDisplay';
 import ToolLibrary from './HeadLibrary';
 import Chat from './HeadChat';
 import Settings from './HeadSettings';
+import Help from './HeadHelp';
 
 export default function Main() {
 
@@ -53,6 +54,9 @@ export default function Main() {
       </div>  
       <div className= {activeScreen == 'settings'? "flex flex-grow": "hidden" }>
         <Settings />
+      </div>  
+      <div className= {activeScreen == 'help'? "flex flex-grow": "hidden" }>
+        <Help />
       </div>  
 
     </div>
