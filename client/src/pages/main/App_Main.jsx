@@ -6,6 +6,7 @@ import Header from './AppHeader';
 import Sidebar from './AppSidebar';
 import Navbar from './AppNavbar'
 import Display from './AppDisplay';
+import ToolLibrary from './HeadLibrary';
 
 export default function Main() {
 
@@ -42,6 +43,10 @@ export default function Main() {
             {currentTab!==""&&currentOperation===""&&setCurrentTab('')}
           </main>
       </div>
+      <div className= {activeScreen == 'library'? "flex flex-grow": "hidden" }>
+        <ToolLibrary />
+      </div>
+
     </div>
 );
 }
