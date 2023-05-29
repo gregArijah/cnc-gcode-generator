@@ -1,12 +1,22 @@
 import { useState } from 'react';
 import MyModal from '../../components/modalSmall'; 
 import { Link, useNavigate } from 'react-router-dom';
-import { createProject } from '../../utils/api';
+import { createProject, getUserById } from '../../utils/api';
 
-export default function NewProject( {isOpen, onClose, setActiveProject} ) {
+export default function NewProject( {isOpen, onClose, setActiveProject, setProjectArray} ) {
     const [projectName, setProjectName] = useState('');
     const navigate = useNavigate();
     
+    const getUserProjects = () => {
+      getUserById(localStorage.getItem('javatrolUserId'))
+          .then((response) => {
+              setProjectArray(response.data.projects);
+              console.log(response.data.projects);
+          })
+          .catch((err) => {
+              console.log(err);
+          });}
+
     const handleCreateProject = (e) => {
       e.preventDefault();
       
@@ -20,10 +30,11 @@ export default function NewProject( {isOpen, onClose, setActiveProject} ) {
             console.log(res);
             if (res.status === 200) {
                 console.log('Project created');
-                console.log(res.data._id);
+                console.log(res);//(res.data._id);
                 localStorage.setItem('javatrolProjectId', res.data._id);
                 localStorage.setItem('javatrolProjectName', projectName);
-                setActiveProject(projectName);
+                setActiveProject(projectName);  
+                getUserProjects();
                 onClose();
             
             } else {

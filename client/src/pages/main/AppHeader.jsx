@@ -64,7 +64,7 @@ export default function Header ({ setActiveProject, setOperationsArray, setActiv
       
     return(    
         <div>
-            <NewProject isOpen={isNewProjectOpen} onClose={handleNewProjectClose} setActiveProject={handleSetActiveProject}/>
+            <NewProject isOpen={isNewProjectOpen} onClose={handleNewProjectClose} setActiveProject={handleSetActiveProject} setProjectArray={setProjectArray}/>
             <OpenProject isOpen={isOpenProjectOpen} onClose={handleOpenProjectClose} setActiveProject={handleSetActiveProject} projectArray={projectArray} setProjectArray={setProjectArray}  setOperationsArray={setOperationsArray}/>
             <DeleteProject isOpen={isDeleteProjectOpen} onClose={handleDeleteProjectClose} setActiveProject={handleSetActiveProject} projectArray={projectArray} setProjectArray={setProjectArray}/>
             <header className="h-16 flex justify-between items-center font-bold text-xl border-b mb-4 pb-4">
