@@ -15,7 +15,8 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:3001',
+        target: 'http://localhost:3001', //for local development
+        //target: 'https://javatrol.herokuapp.com',  //for production
         changeOrigin: true,
       },
     },
