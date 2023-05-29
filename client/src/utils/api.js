@@ -1,8 +1,10 @@
 import axios from 'axios';
 
 const api = axios.create({
+
   baseURL: 'http://localhost:3001/api', // local development: Set the base URL for your backend API
   //baseURL: 'https://javatrol.herokuapp.com/api', // production: Set the base URL for your backend API
+
   headers: {
     'Content-Type': 'application/json'
   }
