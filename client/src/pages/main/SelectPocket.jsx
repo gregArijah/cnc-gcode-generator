@@ -3,7 +3,7 @@ import MyModal from "../../components/modal"
 import MyToggle from "../../components/toggle"
 import { operations } from "./AppSidebar";
 import pocketCircle from "../../pathLogic/pocketCircle";
-
+import { createOperation } from "../../utils/api";
 
 
 //convert degrees to radians
@@ -63,14 +63,25 @@ export default function SelectPocket({ isOpen, onClose, selectMainClose, operati
         if (formData.dropdown === "Circle")  gCode = pocketCircle({formData});
         if (formData.dropdown === "Arbitrary")  gCode = pocketArbitrary({formData});
        
-        //formData.gCode = gCode;
-        //calculate values
-        // operations.push({
-        //     name:"drill2",
-        //     desc:"drill for 1 inch holes",
-        //     tool:"1 inch drill",
-        //     gCode:"gcode goes here for drilling 1 inch holes"
-        //     });
+        let operationName = `Pocket`; // ${formData.holeDiameter}" hole${formData.dropdown !== "Point" ? "s" : ""}`;
+        let operationData = {operationName:operationName, operationData:formData, operationGCode:gCode, projectId:localStorage.getItem('javatrolProjectId')};
+        
+        createOperation(operationData)
+            .then((response) => {
+                console.log("Operation push to project file:", response);
+                if (response.status === 200) {
+                    console.log("Operation created");
+                    setOperationsArray([...operationsArray, operationData]);
+                } else {
+                    console.log("Operation creation failed");
+                    alert("Operation creation failed");
+                } 
+
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+
         operations.push({ data:formData, gCode:gCode})
         console.log("operations: ", operations);
 

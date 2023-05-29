@@ -93,10 +93,6 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose, operatio
                 console.log(err);
             });
 
-        //let newItem = {operationName: operationName, data:formData, gCode};
-        //console.log(operations);
-        
-
         setFormData(INITIAL_STATE);
 
         onClose();
