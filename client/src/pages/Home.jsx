@@ -29,7 +29,7 @@ function Home() {
     setName('');
     setEmail('');
     setMessage('');    
-    alert("That button dont work.LOL! :P ")
+    alert("This button doesn't do anything yet. Im not sure if to save the message to server or send to myself by email or text. ")
   }
 
   const navigate = useNavigate();

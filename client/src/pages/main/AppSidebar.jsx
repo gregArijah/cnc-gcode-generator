@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { plusIcon } from '../../icons/FontAwesome';
+import { plusIcon, trashIcon, updateIcon } from '../../icons/FontAwesome';
 import SelectOpType from './Select_Main';
 import { getAllOperations, getProjectById } from '../../utils/api';
 
@@ -41,6 +41,7 @@ export default function Sidebar({ currentOperation, setCurrentOperation, activeP
         setIsOpen(false);
     };    
     
+    
     return (
         <div className="w-64 bg-gray-800 border rounded-md" style={{height:"80vh", overflowY: 'auto',}}>
             <div className="h-16 flex justify-center items-center font-bold text-xl border-b" >
@@ -48,7 +49,8 @@ export default function Sidebar({ currentOperation, setCurrentOperation, activeP
             </div>
             <ul className='pl-4'>
                 {operationsArray.map((item,index)=>{
-                    return <li key={index} className= {`mr-1 py-0.5 cursor-pointer ${currentOperation === index ? 'text-orange-500' : 'text-white hover:text-orange-700'}`} onClick={() => setCurrentOperation(index)}>Operation {index+1}</li>
+                    return <li key={index} className= {`mr-1 py-0.5 cursor-pointer flex justify-between ${currentOperation === index ? 'text-orange-500' : 'text-white hover:text-orange-700'}`} onClick={() => setCurrentOperation(index)}>Operation {index+1}
+                    <span className={`space-x-1 ${currentOperation===index?'block':'hidden'}`}><span onClick={()=>alert("edit function coming soon")}>{updateIcon}</span><span onClick={()=>alert("delete function coming soon")}>{trashIcon}</span></span></li>
                 })}
             </ul>  
             
