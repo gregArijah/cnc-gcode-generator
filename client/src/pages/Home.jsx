@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef }  from 'react';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import UserLogin from './Login';
 import UserSignUp from './SignUp';
 
@@ -7,17 +7,13 @@ import { circleRightIcon } from '../icons/FontAwesome';
 
 function Home() {
   const [brief, setBrief] = useState(0);
-  const [scroll, setScroll] = useState('');
   const myRef = useRef(null);
+
+  const navigate = useNavigate();
 
   useEffect(()=>{
       myRef.current.scrollTop = 0;
   },[brief])
-
-  const changeBriefs = () => {  //i made a funny haha
-    if (brief<5) setBrief(brief+1);
-    else setBrief(0);    
-  }
   
   const [name,setName] = useState('');
   const [email,setEmail] = useState('');
@@ -32,17 +28,23 @@ function Home() {
     alert("This button doesn't do anything yet. Im not sure if to save the message to server or send to myself by email or text. ")
   }
 
-  const navigate = useNavigate();
-  
+  const changeBriefs = () => {  //i made a funny haha
+    if (brief<5) setBrief(brief+1);
+    else setBrief(0);    
+  }
 
+  
   const handleEnterApp = () => { 
-    // const isAuthenticated = localStorage.getItem('javatrolToken') != null;
-    // if (isAuthenticated) {
-    //     window.location.href = '/app';
-    //     console.log('logged in');
-    // } else {
-      setIsLoginOpen(true);
-    //}
+    const checkAuth=()=> {
+      const isAuthenticated = localStorage.getItem('javatrolToken') != null;
+      if (isAuthenticated) {
+        navigate('/app');
+        onClose();
+      }
+    }
+   
+    checkAuth();
+    setIsLoginOpen(true);
   };
   
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -64,10 +66,9 @@ function Home() {
             <div className='flex items-center justify-between'>
               <img className="m-5 h-36 sm:h-48" src= "images/logos/logosmallwhite.png"/> 
               <div className="pr-4 md:pr-28">
-                <Link role='button' to='#' onClick={handleEnterApp} className="flex items-center justify-center sm:text-2xl bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full h-16 sm:h-16 sm:w-48 float-right">
+                <button onClick={handleEnterApp} className="flex items-center justify-center sm:text-2xl bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full h-16 sm:h-16 sm:w-48 float-right">
                   Enter App
-                </Link>
-                
+                </button>           
               </div>
             </div>
             <div className= "p-2 md:pl-10 md:flex">
@@ -131,6 +132,7 @@ function Home() {
                       <textarea className="rounded-md  text-black border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200" id="message" value={message} rows="5" onChange={(event) => setMessage(event.target.value)} required></textarea>
 
                       <button className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded" type="submit">Submit</button>
+
                     </form>
 
                   </div>
