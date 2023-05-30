@@ -8,11 +8,7 @@ export default function UserLogin( {isOpen, onClose, openSignUp} ) {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
     
-    const isAuthenticated = localStorage.getItem('javatrolToken') != null;
-    if (isAuthenticated) {
-      navigate('/app');
-      onClose();
-    }
+   
 
     const handleLogin = (e) => {
       e.preventDefault();
