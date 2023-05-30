@@ -4,8 +4,8 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 
 
-//const uri = process.env.MONGODB_URI;  //for production 
-const uri = 'mongodb://127.0.0.1:27017/javatrol'; //for local development
+const uri = process.env.MONGODB_URI;  //for production 
+//const uri = 'mongodb://127.0.0.1:27017/javatrol'; //for local development
 
 
 
