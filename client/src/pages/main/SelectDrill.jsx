@@ -477,7 +477,6 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose, operatio
                             type="number"
                             id="zVal"
                             name="zVal"
-                            pattern="-?\d*"
                             title="Enter Z value of work surface"
                             value={formData.zVal}
                             onChange={handleInputChange}
@@ -488,7 +487,6 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose, operatio
                             type="number"
                             id="xPosition"
                             name="xPosition"
-                            pattern="-?\d*"
                             title="Enter X position"
                             value={formData.xPosition}
                             onChange={handleInputChange}
@@ -499,7 +497,6 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose, operatio
                             type="number"
                             id="yPosition"
                             name="yPosition"
-                            pattern="-?\d*"
                             title="Enter Y position"
                             value={formData.yPosition}
                             onChange={handleInputChange}
