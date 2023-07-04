@@ -1,80 +1,82 @@
-# Javatrol - Conversational CNC Programming
+## Example app using MongoDB
 
- Javatrol is conversational CNC programming web application, which allows machinists to quickly generate g-code for a various machining operations.
+[MongoDB](https://www.mongodb.com/) is a general purpose, document-based, distributed database built for modern application developers and for the cloud era. This example will show you how to connect to and use MongoDB as your backend for your Next.js app.
 
-## Table of Contents
+If you want to learn more about MongoDB, visit the following pages:
 
-- [Introduction](#introduction)
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
+- [MongoDB Atlas](https://mongodb.com/atlas)
+- [MongoDB Documentation](https://docs.mongodb.com/)
 
-## Introduction
+## Deploy your own
 
-A brief introduction to the project.
+Once you have access to the environment variables you'll need, deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?project-name=with-mongodb&repository-name=with-mongodb&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-mongodb&integration-ids=oac_jnzmjqM10gllKmSrG0SGrHOH)
 
+## How to use
 
-## Features
+Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
 
-- **Conversational Interface:** Javatrol's browser-based conversational interface allows users to generate toolpaths and create CNC programs without the need for manual coding. The intuitive commands make it easy for hobbyists, machinists, and engineers to use.
+```bash
+npx create-next-app --example with-mongodb with-mongodb-app
+```
 
-- **Cloud Storage:** Javatrol enables users to save their work in the cloud, eliminating the need for local file management. This allows for easy access to projects from anywhere with an internet connection.
+```bash
+yarn create next-app --example with-mongodb with-mongodb-app
+```
 
-- **G-code Output:** Javatrol generates ISO-standard G-code, compatible with a wide range of CNC machines, ensuring seamless integration with existing machining setups.
+```bash
+pnpm create next-app --example with-mongodb with-mongodb-app
+```
 
-- **Time and Cost Savings:** By providing on-the-spot toolpath generation on the shop floor, Javatrol saves time by reducing the reliance on a separate programming office. Additionally, it eliminates the need for expensive software licenses, resulting in cost savings for businesses.
+## Configuration
 
-- **MERN Stack:** Javatrol is built using the MERN (MongoDB, Express.js, React, Node.js) stack, leveraging the power of JavaScript and its ecosystem to deliver a robust and scalable web application.
+### Set up a MongoDB database
 
+Set up a MongoDB database either locally or with [MongoDB Atlas for free](https://mongodb.com/atlas).
 
-## Installation
+### Set up environment variables
 
-To use the app please visit the deployed link at [javatrol.herokuapp.com](javatrol.herokuapp.com).
+Copy the `env.local.example` file in this directory to `.env.local` (which will be ignored by Git):
 
-To run on your local system follow these steps:
+```bash
+cp .env.local.example .env.local
+```
 
-1. Clone the repository:
-    ```
-    git clone https://github.com/gregArijah/javatrol.git
-    ```
+Set each variable on `.env.local`:
 
-2. Install the required client and server dependencies:
-    ```
-    npm install
-    ```
+- `MONGODB_URI` - Your MongoDB connection string. If you are using [MongoDB Atlas](https://mongodb.com/atlas) you can find this by clicking the "Connect" button for your cluster.
 
-3. Configure the environment and development variables   
-    - **.env** : set JWT_SECRET(for json web tokens) and MONGODB_URI(for mongo connection string) 
-    - **client/src/utils/api.js** : set baseURL to desired address
-    - **client/vit.config.js** : set server.proxy.target to desired address
-    - **server/config/connection.js** : set to connection string for your database  
+### Run Next.js in development mode
 
-4. Start the development server:
-    ```
-    npm run dev
-    ```
+```bash
+npm install
+npm run dev
 
-5. Access the application by visiting `http://127.0.0.1:5173/` in your web browser.
+# or
 
+yarn install
+yarn dev
+```
 
+Your app should be up and running on [http://localhost:3000](http://localhost:3000)! If it doesn't work, post on [GitHub discussions](https://github.com/vercel/next.js/discussions).
 
-## Usage
+You will either see a message stating "You are connected to MongoDB" or "You are NOT connected to MongoDB". Ensure that you have provided the correct `MONGODB_URI` environment variable.
 
-Guidelines and examples on how to use the project.
+When you are successfully connected, you can refer to the [MongoDB Node.js Driver docs](https://mongodb.github.io/node-mongodb-native/3.4/tutorials/collections/) for further instructions on how to query your database.
 
-## Contributing
+## Deploy on Vercel
 
-Guidelines on how to contribute to the project.
+You can deploy this app to the cloud with [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
 
-## License
+#### Deploy Your Local Project
 
-The license under which the project is distributed.
+To deploy your local project to Vercel, push it to GitHub/GitLab/Bitbucket and [import to Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example).
 
-## Contact
+**Important**: When you import your project on Vercel, make sure to click on **Environment Variables** and set them to match your `.env.local` file.
 
-Contact information for inquiries, support, or feedback.
+#### Deploy from Our Template
 
+Alternatively, you can deploy using our template by clicking on the Deploy button below.
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?project-name=with-mongodb&repository-name=with-mongodb&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-mongodb&integration-ids=oac_jnzmjqM10gllKmSrG0SGrHOH)

@@ -1,27 +1,20 @@
 {
-  "name": "javatrol",
-  "version": "1.0.0",
-  "description": "conversational cnc programming",
-  "main": "server/server.js",
+  "private": true,
   "scripts": {
-    "start": "node server/server.js --ignore client",
-    "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm run dev\"",
-    "install": "cd server && npm i && cd ../client && npm i",
-    "seed": "cd server && npm run seed",
-    "build": "cd client && npm run build",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gregArijah/javatrol.git"
-  },
-  "author": "Greg Arijah",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/gregArijah/javatrol/issues"
-  },
-  "homepage": "https://github.com/gregArijah/javatrol#readme",
   "dependencies": {
-    "concurrently": "^8.0.1"
+    "eslint-config-next": "^13.4.8",
+    "mongodb": "^4.8.1",
+    "next": "^13.4.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "18.7.5",
+    "@types/react": "16.9.17",
+    "typescript": "4.6.3"
   }
 }
