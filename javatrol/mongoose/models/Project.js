@@ -1,5 +1,5 @@
-const { Schema, model } = require('mongoose');
-const moment = require('moment');
+import { Schema, model } from 'mongoose';
+import moment from 'moment';
 
 const projectSchema = new Schema({
   projectName: {
@@ -26,4 +26,4 @@ const projectSchema = new Schema({
 
 const Project = model('Project', projectSchema);
 
-module.exports = Project;
+export default Project;

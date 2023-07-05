@@ -1,5 +1,5 @@
-const { Schema, model } = require('mongoose');
-const moment = require('moment');
+import { Schema, model } from 'mongoose';
+import moment from 'moment';
 
 const operationSchema = new Schema({
   operationName: {
@@ -30,4 +30,4 @@ const operationSchema = new Schema({
 
 const Operation = model('Operation', operationSchema);
 
-module.exports = Operation;
+export default Operation;

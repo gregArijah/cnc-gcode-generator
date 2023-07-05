@@ -1,5 +1,5 @@
-const { Schema, model } = require('mongoose');
-const moment = require('moment');
+import { Schema, model } from 'mongoose';
+import moment from 'moment';
 
 const toolSchema = new Schema({
   toolNumber: {
@@ -32,5 +32,4 @@ const toolSchema = new Schema({
 
 const Tool = model('Tool', toolSchema);
 
-module.exports = Tool;
-
+export default Tool;
