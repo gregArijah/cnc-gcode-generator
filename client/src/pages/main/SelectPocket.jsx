@@ -51,9 +51,6 @@ export default function SelectPocket({ isOpen, onClose, selectMainClose, operati
          
         }));
 
-        console.log(`looking for ${name} and ${val} `);
-        console.log("finR: ", finR, "finZ: ", finZ, "enabled_finishMill: ", enabled_finishMill);	
-       
     };
 
     const handleSubmit = (e) => {
@@ -68,12 +65,9 @@ export default function SelectPocket({ isOpen, onClose, selectMainClose, operati
         
         createOperation(operationData)
             .then((response) => {
-                console.log("Operation push to project file:", response);
                 if (response.status === 200) {
-                    console.log("Operation created");
                     setOperationsArray([...operationsArray, operationData]);
                 } else {
-                    console.log("Operation creation failed");
                     alert("Operation creation failed");
                 } 
 

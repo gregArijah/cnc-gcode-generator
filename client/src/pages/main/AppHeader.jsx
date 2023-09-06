@@ -31,7 +31,6 @@ export default function Header ({ setActiveProject, setOperationsArray, setActiv
     
     const handleNewProject = () => {
         setIsOpen(!isOpen); 
-        console.log('New Project');
         handleNewProjectOpen();
     }
 
@@ -41,7 +40,6 @@ export default function Header ({ setActiveProject, setOperationsArray, setActiv
 
     const handleOpenProject = () => {
         setIsOpen(!isOpen);
-        console.log('Open Project');
         handleOpenProjectOpen();
     }
 
@@ -51,7 +49,6 @@ export default function Header ({ setActiveProject, setOperationsArray, setActiv
 
     const handleDeleteProject = () => {
         setIsOpen(!isOpen);
-        console.log('Delete Project');
         handleDeleteProjectOpen();
     }
 

@@ -20,7 +20,6 @@ export default function Sidebar({ currentOperation, setCurrentOperation, activeP
         getProjectById(localStorage.getItem('javatrolProjectId'))
             .then((response) => {
                 setOperationsArray(response.data.operations);
-                console.log(response.data.operations);
             })
             .catch((err) => {
                 console.log(err);

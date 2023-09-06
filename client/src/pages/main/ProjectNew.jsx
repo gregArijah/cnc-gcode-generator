@@ -11,7 +11,6 @@ export default function NewProject( {isOpen, onClose, setActiveProject, setProje
       getUserById(localStorage.getItem('javatrolUserId'))
           .then((response) => {
               setProjectArray(response.data.projects);
-              console.log(response.data.projects);
           })
           .catch((err) => {
               console.log(err);
@@ -27,10 +26,7 @@ export default function NewProject( {isOpen, onClose, setActiveProject, setProje
 
       createProject({ projectName: projectName, userId: localStorage.getItem('javatrolUserId') })
         .then((res) => {
-            console.log(res);
             if (res.status === 200) {
-                console.log('Project created');
-                console.log(res);//(res.data._id);
                 localStorage.setItem('javatrolProjectId', res.data._id);
                 localStorage.setItem('javatrolProjectName', projectName);
                 setActiveProject(projectName);  
@@ -38,7 +34,6 @@ export default function NewProject( {isOpen, onClose, setActiveProject, setProje
                 onClose();
             
             } else {
-                console.log('Project creation failed');
                 alert('Project creation failed');
                 onClose();
             }

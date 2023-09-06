@@ -41,8 +41,6 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose, operatio
         diameter = parseFloat(diameter);
         depth = parseFloat(depth);
         let result = depth == 0 || depth == "" ? 0 : depth + (diameter / 2) / Math.tan(toRadians((angle||118) / 2))
-        console.log(`drillToolDepth: ${result}`);
-        console.log(!isNaN(result));
         return result;
     }
 
@@ -61,8 +59,6 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose, operatio
             ) 
             : formData.drillToolDepth
         }));
-
-        console.log(`looking for ${name} and ${val} `);
     };
 
     const handleSubmit = (e) => {
@@ -79,12 +75,9 @@ export default function SelectDrill({ isOpen, onClose, selectMainClose, operatio
         
         createOperation(operationData)
             .then((response) => {
-                console.log("Operation push to project file:", response);
                 if (response.status === 200) {
-                    console.log("Operation created");
                     setOperationsArray([...operationsArray, operationData]);
                 } else {
-                    console.log("Operation creation failed");
                     alert("Operation creation failed");
                 } 
 
