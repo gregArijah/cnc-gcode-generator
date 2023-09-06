@@ -17,7 +17,6 @@ export default function DeleteProject( {isOpen, onClose, setActiveProject, proje
         getUserById(localStorage.getItem('javatrolUserId'))
             .then((response) => {
                 setProjectArray(response.data.projects);
-                console.log(response.data.projects);
     })
     .catch((err) => {
         console.log(err);
@@ -25,24 +24,14 @@ export default function DeleteProject( {isOpen, onClose, setActiveProject, proje
   };
     
     const handleDeleteProject = (e,project) => {
-      //e.preventDefault();
-      console.log(project);
-      //localStorage.setItem('javatrolProjectId', project._id);
-      //localStorage.setItem('javatrolProjectName', project.projectName);
       
       //if its curretactive project, set title to project
       if (confirm('Are you sure you want to delete this project?')) {
         deleteProject(project._id)
         .then((response) => {
-            console.log(response);
             if (response.status === 200) {
-                console.log('Project deleted');
                 getUserProjects();
-                //setActiveProject(project.projectName);
-                //onClose();
-
             } else {
-                console.log('Project deletion failed');
                 alert('Project deletion failed');
                 onClose();
             }

@@ -20,9 +20,7 @@ export default function UserCreate( {isOpen, onClose, openLogin} ) {
 
       createUser({ username, password })
         .then((res) => {
-          console.log(res);
           if (res.status === 200) {
-            console.log('User created successfully');
             alert('User created successfully');
             openLogin();
             setPassword('');
@@ -30,7 +28,6 @@ export default function UserCreate( {isOpen, onClose, openLogin} ) {
             onClose();  
             
           } else {
-            console.log('Create user failed');
             alert('Create user failed');
             onClose();
           }

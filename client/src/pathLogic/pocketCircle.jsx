@@ -46,7 +46,6 @@ G03  I-${I} J0 Z${Z}\n`;
         let nextI = parseFloat(I) + parseFloat(roughStepOver);
         let openPocket = "";
         //while (parseFloat(X)-parseFloat(centreX)+roughStepOver < radius){
-        console.log("nextX: " + nextX + " roughFinalR: " + roughFinalR + "finalR: " + finalR);
         while (parseFloat(nextX) <= parseFloat(roughFinalR))    {
             //I+= parseFloat(roughStepOver);
             //X+= parseFloat(roughStepOver);
