@@ -4,8 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { loginUser } from '../utils/api';
 
 export default function UserLogin( {isOpen, onClose, openSignUp} ) {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('DemoAccount');
+    const [password, setPassword] = useState('demoaccount');
     const navigate = useNavigate();
     
    
