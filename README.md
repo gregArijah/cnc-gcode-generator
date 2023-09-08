@@ -7,10 +7,7 @@
 - [Introduction](#introduction)
 - [Features](#features)
 - [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
 - [License](#license)
-- [Contact](#contact)
 
 ## Introduction
 
@@ -61,20 +58,8 @@ To run on your local system follow these steps:
 5. Access the application by visiting `http://127.0.0.1:5173/` in your web browser.
 
 
-
-## Usage
-
-Guidelines and examples on how to use the project.
-
-## Contributing
-
-Guidelines on how to contribute to the project.
-
 ## License
 
-The license under which the project is distributed.
+This project is licensed under the terms of the [MIT License](https://choosealicense.com/licenses/mit/).
 
-## Contact
-
-Contact information for inquiries, support, or feedback.
 
