@@ -21,7 +21,7 @@ export default function Main() {
 
   
   return (
-    <div className="h-screen w-max sm:w-screen bg-gray-900 text-white p-4">
+    <div className="max-h- w-max sm:w-screen bg-gray-900 text-white p-4">
       <Header setActiveProject={setActiveProject} 
               setOperationsArray={setOperationsArray} 
               setActiveScreen={setActiveScreen}/>  
