@@ -34,6 +34,12 @@ if (process.env.NODE_ENV === 'production') {
 //Use API routes
 app.use(routes);
 
+// Catch-all route to serve the React app
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
+});
+
+
 //Start server and connect to MongoDB
 db.once('open', () => {
   app.listen(PORT, () => console.log(`Now listening on localhost: ${PORT}`));
